@@ -141,7 +141,10 @@
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 </lfui-dialog-side-sheet>
 
-
 <lfui-notification-alert heading="Optional title.">
-      Provide users with non-disruptive feedback. <lfui-button slot="button" variant="secondary" size="small">Button</lfui-button>
-    </lfui-notification-alert>
+  Provide users with non-disruptive feedback. <lfui-button
+    slot="button"
+    variant="secondary"
+    size="small">Button</lfui-button
+  >
+</lfui-notification-alert>

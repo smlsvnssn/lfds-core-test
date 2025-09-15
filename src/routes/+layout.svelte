@@ -23,5 +23,6 @@
 	:global(body) {
 		margin: 6rem 1rem;
 		margin-top: 6rem;
+		background: var(--lfds-semantic-background-primary);
 	}
 </style>
