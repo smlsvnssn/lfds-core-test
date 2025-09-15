@@ -156,7 +156,7 @@
   heading={activeData?.title}
 >
   <div style="width:100%; display:grid; place-items:center; margin-top: 3rem">
-    <img src={activeData?.bubbel} alt="" />
+    <img src={activeData?.bubbel} alt="" /> 
   </div>
 
   <LFQD_Box>
