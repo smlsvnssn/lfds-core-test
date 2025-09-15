@@ -1,8 +1,9 @@
 <script>
   import LFQD_Box from './LFQD_Box.svelte'
   import LFQD_BoxHeader from './LFQD_BoxHeader.svelte'
-
   import LFQD_Row from './LFQD_Row.svelte'
+
+  import lörem from 'loerem'
 
   import '@lansforsakringar/core-components'
   import '@lansforsakringar/core-components/index.css'
@@ -15,7 +16,7 @@
 
   const renderSheet = data => {
     activeTitle = data.titleLeft
-    activeText = data.subtitleLeft
+    activeText = lörem({ numberOfParagraphs: 2 })
     toggle()
   }
 
@@ -47,7 +48,7 @@
     },
   ]
 
-    let försäkringsdata = [
+  let försäkringsdata = [
     {
       titleLeft: 'Villahemförsäkring',
       subtitleLeft: 'Trumpeten 11',
@@ -91,14 +92,52 @@
   {/each}
 </LFQD_Box>
 
+<LFQD_Box>
+  <LFQD_BoxHeader>Mina uppgifter</LFQD_BoxHeader>
+  <div>
+    <lfui-form-input
+      label="Personnummer"
+      type="number"
+      help-text="12 siffror (ÅÅÅÅMMDDNNNN)"
+    ></lfui-form-input>
+
+    <lfui-form-input
+      label="Vilken är din favoritkändis?"
+      help-text="Det kan vara en nu levande eller död kändis, det spelar ingen roll."
+    ></lfui-form-input>
+
+    <lfui-form-input label="Vilket formulärelement saknar du mest i LFDS?"
+    ></lfui-form-input>
+
+    <form style="display: grid; width: 100%;">
+      <p>
+        Älskar du att checkboxar ligger ovanpå varandra istället för bredvid?
+      </p>
+      <lfui-form-checkbox id="demo-example-checkbox-1" label="Ja">
+      </lfui-form-checkbox>
+      <lfui-form-checkbox id="demo-example-checkbox-2" label="Nej">
+      </lfui-form-checkbox>
+      <lfui-form-checkbox id="demo-example-checkbox-2" label="Kanske">
+      </lfui-form-checkbox>
+    </form>
+
+    <lfui-button type="button"> Fyll mitt glas med bubbel </lfui-button>
+  </div>
+</LFQD_Box>
+
 <lfui-dialog-side-sheet
   size=""
   open={sheetIsOpen}
   height=""
   heading={activeTitle}
 >
-  {activeText}
+  {@html activeText}
 </lfui-dialog-side-sheet>
 
 <style>
+  div {
+    padding: 1rem;
+    display: grid;
+    gap: 1rem;
+  }
 </style>

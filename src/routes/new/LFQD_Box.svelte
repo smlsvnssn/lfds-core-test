@@ -13,6 +13,7 @@
 .box{
   overflow: hidden;
   border-radius: var(--lfds-semantic-sizes-radius-md);
+  background: var(--lfds-semantic-background-secondary);
 }
 </style>
 
