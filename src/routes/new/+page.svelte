@@ -1,24 +1,45 @@
 <script>
+  import LFQD_Padding from './LFQD_Padding.svelte'
   import LFQD_Box from './LFQD_Box.svelte'
   import LFQD_BoxHeader from './LFQD_BoxHeader.svelte'
   import LFQD_Row from './LFQD_Row.svelte'
 
   import lörem from 'loerem'
+  import * as ö from 'ouml'
 
   import '@lansforsakringar/core-components'
   import '@lansforsakringar/core-components/index.css'
 
-  let sheetIsOpen = $state(false)
-  let activeTitle = $state('')
-  let activeText = $state('')
+  import bubbel from './bubbel.svg'
 
-  const toggle = () => (sheetIsOpen = !sheetIsOpen)
+  let sheetIsOpen = $state(false)
+  let activeData = $state({})
+
+  const closeSheet = () => (sheetIsOpen = false)
 
   const renderSheet = data => {
-    activeTitle = data.titleLeft
-    activeText = lörem({ numberOfParagraphs: 2 })
-    toggle()
+    activeData = {
+      title: data.titleLeft,
+      text: lörem({ numberOfParagraphs: 2, sentencesPerParagraph: 4 }),
+      funky: getFunky(),
+    }
+    sheetIsOpen = true
   }
+
+  const getFunky = () =>
+    ö.times(ö.random(4) + 1, () => ({
+      titleLeft: lörem({ isName: true }),
+      subtitleLeft: ö.randomChars(),
+      titleRight: ö.prettyNumber(Math.abs(ö.randomNormal(0, 50000))) + ' kr',
+      icon: 'user',
+    }))
+
+  const renderBubbel = () => {
+    activeData = { title: 'Varsågod!', bubbel }
+    sheetIsOpen = true
+  }
+
+  $inspect(activeData)
 
   let bankdata = [
     {
@@ -94,7 +115,7 @@
 
 <LFQD_Box>
   <LFQD_BoxHeader>Mina uppgifter</LFQD_BoxHeader>
-  <div>
+  <LFQD_Padding>
     <lfui-form-input
       label="Personnummer"
       type="number"
@@ -121,23 +142,42 @@
       </lfui-form-checkbox>
     </form>
 
-    <lfui-button type="button"> Fyll mitt glas med bubbel </lfui-button>
-  </div>
+    <lfui-button type="button" onclick={() => renderBubbel()}>
+      Fyll mitt glas med bubbel
+    </lfui-button>
+  </LFQD_Padding>
 </LFQD_Box>
 
 <lfui-dialog-side-sheet
   size=""
   open={sheetIsOpen}
+  onclose={closeSheet}
   height=""
-  heading={activeTitle}
+  heading={activeData?.title}
 >
-  {@html activeText}
+  <div style="width:100%; display:grid; place-items:center; margin-top: 3rem">
+    <img src={activeData?.bubbel} alt="" />
+  </div>
+
+  <LFQD_Box>
+    {#each activeData?.funky as item}
+      <LFQD_Row {...item} onclick={() => renderSheet(item)} />
+    {/each}
+  </LFQD_Box>
+
+  <div class="spacer"></div>
+
+  {#if activeData.text}
+    <LFQD_Box>
+      <LFQD_Padding>
+        {@html activeData.text}
+      </LFQD_Padding>
+    </LFQD_Box>
+  {/if}
 </lfui-dialog-side-sheet>
 
 <style>
-  div {
-    padding: 1rem;
-    display: grid;
-    gap: 1rem;
+  .spacer {
+    height: 1.5rem;
   }
 </style>
