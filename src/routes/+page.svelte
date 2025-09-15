@@ -28,64 +28,62 @@
   icon-id="house"
 ></lfui-button-shortcut>
 
-<form>
-  <div style="display: grid; grid: auto-flow / 1fr 1fr; wrap; gap: 1.5rem;">
-    <lfui-form-radio-card
-      name="animal"
-      icon-id="horse"
-      checked
-      id="example-radio-card"
-      label="Häst"
-      description="Vår bästa vän"
-    >
-    </lfui-form-radio-card>
+<form style="display: grid; grid: auto-flow / 1fr 1fr; wrap; gap: 1.5rem;">
+  <lfui-form-radio-card
+    name="animal"
+    icon-id="horse"
+    checked
+    id="example-radio-card"
+    label="Häst"
+    description="Vår bästa vän"
+  >
+  </lfui-form-radio-card>
 
-    <lfui-form-radio-card
-      name="animal"
-      icon-id="dog"
-      id="example-radio-card"
-      label="Hund"
-      description="Vår näst bästa vän"
-    >
-    </lfui-form-radio-card>
+  <lfui-form-radio-card
+    name="animal"
+    icon-id="dog"
+    id="example-radio-card"
+    label="Hund"
+    description="Vår näst bästa vän"
+  >
+  </lfui-form-radio-card>
 
-    <lfui-form-radio-card
-      name="animal"
-      icon-id="cat"
-      id="example-radio-card"
-      label="Lejon"
-      description="Vår tertiära bästa vän"
-    >
-    </lfui-form-radio-card>
+  <lfui-form-radio-card
+    name="animal"
+    icon-id="cat"
+    id="example-radio-card"
+    label="Lejon"
+    description="Vår tertiära bästa vän"
+  >
+  </lfui-form-radio-card>
 
-    <lfui-form-radio-card
-      name="animal"
-      icon-id="fish"
-      id="example-radio-card"
-      label="Lax"
-      description="Också en bra vän"
-    >
-      Vad händer här?
-    </lfui-form-radio-card>
+  <lfui-form-radio-card
+    name="animal"
+    icon-id="fish"
+    id="example-radio-card"
+    label="Lax"
+    description="Också en bra vän"
+  >
+    Vad händer här?
+  </lfui-form-radio-card>
 
-    <lfui-form-radio-card
-      name="animal"
-      icon-id="chicken"
-      id="example-radio-card"
-      label="Höna"
-      description="Medioker som vän betraktad"
-    >
-    </lfui-form-radio-card>
+  <lfui-form-radio-card
+    name="animal"
+    icon-id="chicken"
+    id="example-radio-card"
+    label="Höna"
+    description="Medioker som vän betraktad"
+  >
+  </lfui-form-radio-card>
 
-    <lfui-form-radio-card
-      name="animal"
-      icon-id="cow"
-      id="example-radio-card"
-      label="Ko"
-      description="Ett helt ok djur"
-    >
-    </lfui-form-radio-card>
-  </div>
+  <lfui-form-radio-card
+    name="animal"
+    icon-id="cow"
+    id="example-radio-card"
+    label="Ko"
+    description="Ett helt ok djur"
+  >
+  </lfui-form-radio-card>
 </form>
 
 <lfui-form-checkbox-card
@@ -100,7 +98,7 @@
   </lfui-form-checkbox>
   <lfui-form-checkbox id="demo-example-checkbox-2" label="Göteborg">
   </lfui-form-checkbox>
-  <lfui-form-checkbox id="demo-example-checkbox-2" label="Marlmö">
+  <lfui-form-checkbox id="demo-example-checkbox-2" label="Borås">
   </lfui-form-checkbox>
 </form>
 
@@ -124,12 +122,16 @@
 ></lfui-form-input>
 
 <lfui-button type="button" onclick={toggle}> Open Side Sheet </lfui-button>
+
 <lfui-button type="button" variant="secondary" onclick={toggle}>
   Open Side Sheet
 </lfui-button>
+
 <lfui-button type="button" variant="tertiary" onclick={toggle}>
   Open Side Sheet
+  <lfui-spinner slot="trailing" color="currentcolor" size="20"></lfui-spinner>
 </lfui-button>
+
 <lfui-dialog-side-sheet
   size=""
   open={sheetIsOpen}
@@ -138,3 +140,8 @@
 >
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 </lfui-dialog-side-sheet>
+
+
+<lfui-notification-alert heading="Optional title.">
+      Provide users with non-disruptive feedback. <lfui-button slot="button" variant="secondary" size="small">Button</lfui-button>
+    </lfui-notification-alert>
