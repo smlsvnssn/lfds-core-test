@@ -12,21 +12,23 @@
 
   import bubbel from './bubbel.svg'
 
-  let sheetIsOpen = $state(false)
-  let activeData = $state({})
+  import { pushState } from '$app/navigation'
+  import { page } from '$app/state'
 
-  const closeSheet = () => (sheetIsOpen = false)
+  const closeSheet = () => (page.state.sheetIsOpen = false)
 
   const renderSheet = data => {
-    activeData = {
-      title: data.titleLeft,
-      text: lörem({ numberOfParagraphs: 2, sentencesPerParagraph: 4 }),
-      funky: getFunky(),
-    }
-    sheetIsOpen = true
+    pushState(data?.titleLeft, {
+      sheetIsOpen: true,
+      sheetData: {
+        title: data?.titleLeft,
+        text: lörem({ numberOfParagraphs: 2, sentencesPerParagraph: 4 }),
+        dummy: getDummy(),
+      },
+    })
   }
 
-  const getFunky = () =>
+  const getDummy = () =>
     ö.times(ö.random(4) + 1, () => ({
       titleLeft: lörem({ isName: true }),
       subtitleLeft: ö.randomChars(),
@@ -35,11 +37,11 @@
     }))
 
   const renderBubbel = () => {
-    activeData = { title: 'Varsågod!', bubbel }
-    sheetIsOpen = true
+    pushState('', {
+      sheetIsOpen: true,
+      sheetData: { title: 'Varsågod!', bubbel },
+    })
   }
-
-  $inspect(activeData)
 
   let bankdata = [
     {
@@ -150,27 +152,31 @@
 
 <lfui-dialog-side-sheet
   size=""
-  open={sheetIsOpen}
+  open={page.state?.sheetIsOpen ? true : false}
   onclose={closeSheet}
   height=""
-  heading={activeData?.title}
+  heading={page.state.sheetData?.title}
 >
-  <div style="width:100%; display:grid; place-items:center; margin-top: 3rem">
-    <img src={activeData?.bubbel} alt="" /> 
-  </div>
+  {#if page.state?.sheetData?.bubbel}
+    <div style="width:100%; display:grid; place-items:center; margin-top: 3rem">
+      <img src={page.state.sheetData.bubbel} alt="" />
+    </div>
+  {/if}
 
-  <LFQD_Box>
-    {#each activeData?.funky as item}
-      <LFQD_Row {...item} onclick={() => renderSheet(item)} />
-    {/each}
-  </LFQD_Box>
+  {#if page.state?.sheetData?.dummy}
+    <LFQD_Box>
+      {#each page.state.sheetData.dummy as item}
+        <LFQD_Row {...item} onclick={() => renderSheet(item)} />
+      {/each}
+    </LFQD_Box>
+  {/if}
 
   <div class="spacer"></div>
 
-  {#if activeData.text}
+  {#if page.state?.sheetData?.text}
     <LFQD_Box>
       <LFQD_Padding>
-        {@html activeData.text}
+        {@html page.state.sheetData.text}
       </LFQD_Padding>
     </LFQD_Box>
   {/if}
