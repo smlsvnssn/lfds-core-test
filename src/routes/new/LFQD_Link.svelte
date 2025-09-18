@@ -1,0 +1,20 @@
+<script>
+  let { href, alt, icon, children } = $props()
+</script>
+
+<div>
+  <a {href} {alt}>{@render children()}</a>
+</div>
+
+<style>
+  a {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-weight: var(--lfds-typography-weight-medium);
+    font-family: var(--lfds-typography-font-family-ibm);
+    color: var(--lfds-semantic-text-brand-primary);
+
+    text-decoration: none;
+  }
+</style>

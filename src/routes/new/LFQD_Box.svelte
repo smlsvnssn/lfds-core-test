@@ -1,7 +1,4 @@
 <script>
-  import '@lansforsakringar/core-components'
-  import '@lansforsakringar/core-components/index.css'
-
   let { children } = $props()
 </script>
 
@@ -16,7 +13,7 @@
     background: var(--lfds-semantic-background-secondary);
 
     @media (width < 30rem) {
-      border-radius: 0
+      border-radius: 0;
     }
   }
 </style>

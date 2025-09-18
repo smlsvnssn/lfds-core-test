@@ -1,7 +1,4 @@
 <script>
-  import '@lansforsakringar/core-components'
-  import '@lansforsakringar/core-components/index.css'
-
   let {
     titleLeft = 'Title Left',
     subtitleLeft = '',
@@ -37,13 +34,13 @@
     font-family: var(--lfds-typography-font-family-ibm);
     font-size: 0.875rem;
     cursor: pointer;
-    
+
     padding: 1rem 0.75rem;
     transition: all 0.3s;
-    
+
     border-bottom: 1px solid var(--lfds-semantic-border-primary);
     background: var(--lfds-semantic-background-secondary);
-    
+
     h5 {
       font-size: 1rem;
       font-weight: var(--lfds-typography-weight-semibold);

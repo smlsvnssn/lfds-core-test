@@ -1,9 +1,9 @@
 <script>
-  let { children } = $props()
+  let { children, padEnd } = $props()
 </script>
 
-<div class="row">
-  <h4>{@render children()}</h4>
+<div class="row" style="padding-right: {padEnd ? '1.25rem' : '.75rem'}">
+  {@render children()}
 </div>
 
 <style>
@@ -12,14 +12,11 @@
 
     padding: 1rem 0.75rem;
 
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+
     border-bottom: 1px solid var(--lfds-semantic-border-primary);
     background: var(--lfds-semantic-background-secondary);
-
-    h4 {
-      font-size: 1.125rem;
-      font-weight: var(--lfds-typography-weight-semibold);
-      color: var(--lfds-semantic-text-brand-primary);
-      margin: 0;
-    }
   }
 </style>

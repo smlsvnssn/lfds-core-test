@@ -1,7 +1,4 @@
 <script>
-  import '@lansforsakringar/core-components'
-  import '@lansforsakringar/core-components/index.css'
-
   let { children } = $props()
 </script>
 

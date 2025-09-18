@@ -1,14 +1,11 @@
 <script>
-  import '@lansforsakringar/core-components'
-  import '@lansforsakringar/core-components/index.css'
-
   let sheetIsOpen = $state(false)
 
   const toggle = () => (sheetIsOpen = !sheetIsOpen)
 </script>
 
 <lfui-typography-heading level="h1"
-  >Läskigt Få Designade Småbitar (LFDS)</lfui-typography-heading
+  >LF:s Designade Småbitar (LFDS)</lfui-typography-heading
 >
 
 <lfui-typography-heading level="h1">H1</lfui-typography-heading>
@@ -23,6 +20,7 @@
 </div>
 
 <lfui-button-shortcut
+  href="/new"
   label="Hemförsäkring"
   description="XXXXXXXX-XXXX"
   icon-id="house"

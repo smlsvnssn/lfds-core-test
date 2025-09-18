@@ -1,24 +1,29 @@
 <script>
+  import Sheet from './Sheet.svelte'
+
   import LFQD_Padding from './LFQD_Padding.svelte'
   import LFQD_Box from './LFQD_Box.svelte'
   import LFQD_BoxHeader from './LFQD_BoxHeader.svelte'
+  import LFQD_BoxFooter from './LFQD_BoxFooter.svelte'
   import LFQD_Row from './LFQD_Row.svelte'
+  import LFQD_Link from './LFQD_Link.svelte'
 
   import lörem from 'loerem'
   import * as ö from 'ouml'
-
-  import '@lansforsakringar/core-components'
-  import '@lansforsakringar/core-components/index.css'
 
   import bubbel from './bubbel.svg'
 
   import { pushState } from '$app/navigation'
   import { page } from '$app/state'
 
-  const closeSheet = () => (page.state.sheetIsOpen = false)
+  const closeSheet = () => {
+    pushState(``, {
+      sheetIsOpen: false,
+    })
+  }
 
   const renderSheet = data => {
-    pushState(data?.titleLeft, {
+    pushState(``, {
       sheetIsOpen: true,
       sheetData: {
         title: data?.titleLeft,
@@ -103,16 +108,37 @@
 
 <LFQD_Box>
   <LFQD_BoxHeader>Mina konton</LFQD_BoxHeader>
+
   {#each bankdata as item}
     <LFQD_Row {...item} onclick={() => renderSheet(item)} />
   {/each}
+
+  <LFQD_BoxFooter padEnd="true">
+    <LFQD_Link href="#">
+      <lfui-icon icon-id="coins" size="24"></lfui-icon>
+      Fyll konto
+    </LFQD_Link>
+
+    <LFQD_Link href="#">
+      <lfui-icon icon-id="wallet" size="24"></lfui-icon>
+      Töm konto
+    </LFQD_Link>
+  </LFQD_BoxFooter>
 </LFQD_Box>
 
 <LFQD_Box>
   <LFQD_BoxHeader>Mina försäkringar</LFQD_BoxHeader>
+
   {#each försäkringsdata as item}
     <LFQD_Row {...item} onclick={() => renderSheet(item)} />
   {/each}
+
+  <LFQD_BoxFooter>
+    <LFQD_Link href="#">
+      Alla försäkringar
+      <lfui-icon icon-id="chevron-right" size="24"></lfui-icon>
+    </LFQD_Link>
+  </LFQD_BoxFooter>
 </LFQD_Box>
 
 <LFQD_Box>
@@ -150,40 +176,4 @@
   </LFQD_Padding>
 </LFQD_Box>
 
-<lfui-dialog-side-sheet
-  size=""
-  open={page.state?.sheetIsOpen ? true : false}
-  onclose={closeSheet}
-  height=""
-  heading={page.state.sheetData?.title}
->
-  {#if page.state?.sheetData?.bubbel}
-    <div style="width:100%; display:grid; place-items:center; margin-top: 3rem">
-      <img src={page.state.sheetData.bubbel} alt="" />
-    </div>
-  {/if}
-
-  {#if page.state?.sheetData?.dummy}
-    <LFQD_Box>
-      {#each page.state.sheetData.dummy as item}
-        <LFQD_Row {...item} onclick={() => renderSheet(item)} />
-      {/each}
-    </LFQD_Box>
-  {/if}
-
-  <div class="spacer"></div>
-
-  {#if page.state?.sheetData?.text}
-    <LFQD_Box>
-      <LFQD_Padding>
-        {@html page.state.sheetData.text}
-      </LFQD_Padding>
-    </LFQD_Box>
-  {/if}
-</lfui-dialog-side-sheet>
-
-<style>
-  .spacer {
-    height: 1.5rem;
-  }
-</style>
+<Sheet state={page.state} render={renderSheet} close={closeSheet}></Sheet>
