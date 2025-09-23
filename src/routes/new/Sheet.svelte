@@ -1,7 +1,7 @@
 <script>
-  import LFQD_Padding from './LFQD_Padding.svelte'
-  import LFQD_Box from './LFQD_Box.svelte'
-  import LFQD_Row from './LFQD_Row.svelte'
+  import LFQD_Padding from '$lib/LFQD_Padding.svelte'
+  import LFQD_Box from '$lib/../lib/LFQD_Box.svelte'
+  import LFQD_Row from '$lib/LFQD_Row.svelte'
 
   let { state, render, close } = $props()
 

@@ -1,12 +1,12 @@
 <script>
   import Sheet from './Sheet.svelte'
 
-  import LFQD_Padding from './LFQD_Padding.svelte'
-  import LFQD_Box from './LFQD_Box.svelte'
-  import LFQD_BoxHeader from './LFQD_BoxHeader.svelte'
-  import LFQD_BoxFooter from './LFQD_BoxFooter.svelte'
-  import LFQD_Row from './LFQD_Row.svelte'
-  import LFQD_Link from './LFQD_Link.svelte'
+  import LFQD_Padding from '$lib/LFQD_Padding.svelte'
+  import LFQD_Box from '$lib/LFQD_Box.svelte'
+  import LFQD_BoxHeader from '$lib/LFQD_BoxHeader.svelte'
+  import LFQD_BoxFooter from '$lib/LFQD_BoxFooter.svelte'
+  import LFQD_Row from '$lib/LFQD_Row.svelte'
+  import LFQD_Link from '$lib/LFQD_Link.svelte'
 
   import lörem from 'loerem'
   import * as ö from 'ouml'
@@ -28,18 +28,16 @@
       sheetData: {
         title: data?.titleLeft,
         text: lörem({ numberOfParagraphs: 2, sentencesPerParagraph: 4 }),
-        dummy: getDummy(),
+        dummy: ö.times(ö.random(4) + 1, () => ({
+          titleLeft: lörem({ isName: true }),
+          subtitleLeft: ö.randomChars(),
+          titleRight:
+            ö.prettyNumber(Math.abs(ö.randomNormal(0, 50000))) + ' kr',
+          icon: 'user',
+        })),
       },
     })
   }
-
-  const getDummy = () =>
-    ö.times(ö.random(4) + 1, () => ({
-      titleLeft: lörem({ isName: true }),
-      subtitleLeft: ö.randomChars(),
-      titleRight: ö.prettyNumber(Math.abs(ö.randomNormal(0, 50000))) + ' kr',
-      icon: 'user',
-    }))
 
   const renderBubbel = () => {
     pushState('', {
