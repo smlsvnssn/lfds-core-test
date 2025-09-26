@@ -101,8 +101,12 @@
   header {
     display: grid;
     gap: 1.5rem;
-    padding: 5rem 3.5rem 2.5rem;
     place-items: center;
+    padding: 5rem 3.5rem 2.5rem;
+    @media (width < 30rem) {
+      gap: 1rem;
+      padding: 3rem 1rem 1.5rem;
+    }
   }
 
   h1 {
