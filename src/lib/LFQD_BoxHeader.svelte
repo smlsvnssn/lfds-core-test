@@ -2,12 +2,12 @@
   let { children } = $props()
 </script>
 
-<div class="row">
+<div class="boxHeader">
   <h4>{@render children()}</h4>
 </div>
 
 <style>
-  .row {
+  .boxHeader {
     font-family: var(--lfds-typography-font-family-ibm);
 
     padding: 1rem 0.75rem;

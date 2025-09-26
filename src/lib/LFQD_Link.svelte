@@ -1,9 +1,9 @@
 <script>
-  let { href, alt, icon, children } = $props()
+  let { href, rel, children } = $props()
 </script>
 
 <div>
-  <a {href} {alt}>{@render children()}</a>
+  <a {href} {rel}>{@render children()}</a>
 </div>
 
 <style>

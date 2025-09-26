@@ -5,11 +5,18 @@
     titleRight = '',
     subtitleRight = '',
     icon = 'bulb',
-    onclick,
+    onclick = v => v,
+    chevron = true,
+    rightCol = true,
   } = $props()
 </script>
 
-<div class="row" {onclick}>
+<div
+  class="row {chevron === true ? '' : 'noChevron'} {rightCol === true ? '' : (
+    'noRightCol'
+  )}"
+  {onclick}
+>
   <lfui-icon icon-id={icon} size="24"></lfui-icon>
 
   <div class="left">
@@ -17,12 +24,16 @@
     <p>{subtitleLeft}</p>
   </div>
 
-  <div class="right">
-    <h5>{titleRight}</h5>
-    <p>{subtitleRight}</p>
-  </div>
+  {#if rightCol === true}
+    <div class="right">
+      <h5>{titleRight}</h5>
+      <p>{subtitleRight}</p>
+    </div>
+  {/if}
 
-  <lfui-icon icon-id="chevron-right" size="24"></lfui-icon>
+  {#if chevron === true}
+    <lfui-icon icon-id="chevron-right" size="24"></lfui-icon>
+  {/if}
 </div>
 
 <style>
@@ -39,7 +50,18 @@
     transition: all 0.3s;
 
     border-bottom: 1px solid var(--lfds-semantic-border-primary);
-    background: var(--lfds-semantic-background-secondary);
+    /* background: var(--lfds-semantic-background-secondary); */
+     background: transparent;
+
+    &.noChevron {
+      grid: auto-flow / 1.5rem 1fr 1fr;
+      &.noRightCol {
+        grid: auto-flow / 1.5rem 1fr;
+      }
+    }
+    &.noRightCol {
+      grid: auto-flow / 1.5rem 1fr 1.5rem;
+    }
 
     h5 {
       font-size: 1rem;

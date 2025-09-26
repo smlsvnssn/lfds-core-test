@@ -2,12 +2,12 @@
   let { children } = $props()
 </script>
 
-<div>
+<div class=padding>
   {@render children()}
 </div>
 
 <style>
-  div {
+  .padding {
     padding: 1rem;
     display: grid;
     gap: 1.5rem;

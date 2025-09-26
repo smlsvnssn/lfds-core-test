@@ -2,12 +2,12 @@
   let { children, padEnd } = $props()
 </script>
 
-<div class="row" style="padding-right: {padEnd ? '1.25rem' : '.75rem'}">
+<div class="boxFooter" style="padding-right: {padEnd ? '1.25rem' : '.75rem'}">
   {@render children()}
 </div>
 
 <style>
-  .row {
+  .boxFooter {
     font-family: var(--lfds-typography-font-family-ibm);
 
     padding: 1rem 0.75rem;

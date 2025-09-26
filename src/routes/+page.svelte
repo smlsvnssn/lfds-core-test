@@ -27,7 +27,14 @@
 
     <lfui-button-shortcut
       href="/new"
-      label="Hemförsäkring"
+      label="Här finns lite tester"
+      description="XXXXXXXX-XXXX"
+      icon-id="house"
+    ></lfui-button-shortcut>
+
+    <lfui-button-shortcut
+      href="/bonus"
+      label="Här finns fler tester"
       description="XXXXXXXX-XXXX"
       icon-id="house"
     ></lfui-button-shortcut>
