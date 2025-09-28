@@ -17,6 +17,9 @@ importers:
       '@sveltejs/pancake':
         specifier: ^0.0.18
         version: 0.0.18
+      '@sveltejs/vite-plugin-svelte-inspector':
+        specifier: ^5.0.1
+        version: 5.0.1(@sveltejs/vite-plugin-svelte@6.2.0(svelte@5.38.10)(vite@7.1.5))(svelte@5.38.10)(vite@7.1.5)
       d3-hierarchy:
         specifier: ^3.1.2
         version: 3.1.2

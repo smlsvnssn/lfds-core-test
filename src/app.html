@@ -1,11 +1,26 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		%sveltekit.head%
-	</head>
-	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">%sveltekit.body%</div>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+    <script>
+      ;(() => {
+        // hack until it´s fixed in lfds
+        const setTheme = theme =>
+          document.querySelector('body').setAttribute('data-theme', theme)
+
+        const mq = window.matchMedia('(prefers-color-scheme: dark)')
+
+        const onThemeChange = () => setTheme(mq.matches ? 'dark' : 'light')
+
+        mq.addListener(onThemeChange)
+        onThemeChange()
+      })()
+    </script>
+  </body>
 </html>
+  

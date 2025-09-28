@@ -1,12 +1,12 @@
 <script>
   import Sheet from './Sheet.svelte'
 
-  import LFQD_Padding from '$lib/LFQD_Padding.svelte'
-  import LFQD_Box from '$lib/LFQD_Box.svelte'
-  import LFQD_BoxHeader from '$lib/LFQD_BoxHeader.svelte'
-  import LFQD_BoxFooter from '$lib/LFQD_BoxFooter.svelte'
-  import LFQD_Row from '$lib/LFQD_Row.svelte'
-  import LFQD_Link from '$lib/LFQD_Link.svelte'
+  import LFQDPadding from '$lib/LFQDPadding.svelte'
+  import LFQDBox from '$lib/LFQDBox.svelte'
+  import LFQDBoxHeader from '$lib/LFQDBoxHeader.svelte'
+  import LFQDBoxFooter from '$lib/LFQDBoxFooter.svelte'
+  import LFQDRow from '$lib/LFQDRow.svelte'
+  import LFQDLink from '$lib/LFQDLink.svelte'
 
   import lörem from 'loerem'
   import * as ö from 'ouml'
@@ -15,6 +15,7 @@
 
   import { pushState } from '$app/navigation'
   import { page } from '$app/state'
+  import LFQDLayout from '$lib/LFQDLayout.svelte'
 
   const closeSheet = () => {
     pushState(``, {
@@ -104,74 +105,76 @@
   ]
 </script>
 
-<LFQD_Box>
-  <LFQD_BoxHeader>Mina konton</LFQD_BoxHeader>
+<LFQDLayout>
+  <LFQDBox>
+    <LFQDBoxHeader>Mina konton</LFQDBoxHeader>
 
-  {#each bankdata as item}
-    <LFQD_Row {...item} onclick={() => renderSheet(item)} />
-  {/each}
+    {#each bankdata as item}
+      <LFQDRow {...item} onclick={() => renderSheet(item)} />
+    {/each}
 
-  <LFQD_BoxFooter padEnd="true">
-    <LFQD_Link href="#">
-      <lfui-icon icon-id="coins" size="24"></lfui-icon>
-      Fyll konto
-    </LFQD_Link>
+    <LFQDBoxFooter padEnd="true">
+      <LFQDLink href="#">
+        <lfui-icon icon-id="coins" size="24"></lfui-icon>
+        Fyll konto
+      </LFQDLink>
 
-    <LFQD_Link href="#">
-      <lfui-icon icon-id="wallet" size="24"></lfui-icon>
-      Töm konto
-    </LFQD_Link>
-  </LFQD_BoxFooter>
-</LFQD_Box>
+      <LFQDLink href="#">
+        <lfui-icon icon-id="wallet" size="24"></lfui-icon>
+        Töm konto
+      </LFQDLink>
+    </LFQDBoxFooter>
+  </LFQDBox>
 
-<LFQD_Box>
-  <LFQD_BoxHeader>Mina försäkringar</LFQD_BoxHeader>
+  <LFQDBox>
+    <LFQDBoxHeader>Mina försäkringar</LFQDBoxHeader>
 
-  {#each försäkringsdata as item}
-    <LFQD_Row {...item} onclick={() => renderSheet(item)} />
-  {/each}
+    {#each försäkringsdata as item}
+      <LFQDRow {...item} onclick={() => renderSheet(item)} />
+    {/each}
 
-  <LFQD_BoxFooter>
-    <LFQD_Link href="#">
-      Alla försäkringar
-      <lfui-icon icon-id="chevron-right" size="24"></lfui-icon>
-    </LFQD_Link>
-  </LFQD_BoxFooter>
-</LFQD_Box>
+    <LFQDBoxFooter>
+      <LFQDLink href="#">
+        Alla försäkringar
+        <lfui-icon icon-id="chevron-right" size="24"></lfui-icon>
+      </LFQDLink>
+    </LFQDBoxFooter>
+  </LFQDBox>
 
-<LFQD_Box>
-  <LFQD_BoxHeader>Mina uppgifter</LFQD_BoxHeader>
-  <LFQD_Padding>
-    <lfui-form-input
-      label="Personnummer"
-      type="number"
-      help-text="12 siffror (ÅÅÅÅMMDDNNNN)"
-    ></lfui-form-input>
+  <LFQDBox>
+    <LFQDBoxHeader>Mina uppgifter</LFQDBoxHeader>
+    <LFQDPadding>
+      <lfui-form-input
+        label="Personnummer"
+        type="number"
+        help-text="12 siffror (ÅÅÅÅMMDDNNNN)"
+      ></lfui-form-input>
 
-    <lfui-form-input
-      label="Vilken är din favoritkändis?"
-      help-text="Det kan vara en nu levande eller död kändis, det spelar ingen roll."
-    ></lfui-form-input>
+      <lfui-form-input
+        label="Vilken är din favoritkändis?"
+        help-text="Det kan vara en nu levande eller död kändis, det spelar ingen roll."
+      ></lfui-form-input>
 
-    <lfui-form-input label="Vilket formulärelement saknar du mest i LFDS?"
-    ></lfui-form-input>
+      <lfui-form-input label="Vilket formulärelement saknar du mest i LFDS?"
+      ></lfui-form-input>
 
-    <form style="display: grid; width: 100%;">
-      <p>
-        Älskar du att checkboxar ligger ovanpå varandra istället för bredvid?
-      </p>
-      <lfui-form-checkbox id="demo-example-checkbox-1" label="Ja">
-      </lfui-form-checkbox>
-      <lfui-form-checkbox id="demo-example-checkbox-2" label="Nej">
-      </lfui-form-checkbox>
-      <lfui-form-checkbox id="demo-example-checkbox-2" label="Kanske">
-      </lfui-form-checkbox>
-    </form>
+      <form style="display: grid; width: 100%;">
+        <p>
+          Älskar du att checkboxar ligger ovanpå varandra istället för bredvid?
+        </p>
+        <lfui-form-checkbox id="demo-example-checkbox-1" label="Ja">
+        </lfui-form-checkbox>
+        <lfui-form-checkbox id="demo-example-checkbox-2" label="Nej">
+        </lfui-form-checkbox>
+        <lfui-form-checkbox id="demo-example-checkbox-2" label="Kanske">
+        </lfui-form-checkbox>
+      </form>
 
-    <lfui-button type="button" onclick={() => renderBubbel()}>
-      Fyll mitt glas med bubbel
-    </lfui-button>
-  </LFQD_Padding>
-</LFQD_Box>
+      <lfui-button type="button" onclick={() => renderBubbel()}>
+        Fyll mitt glas med bubbel
+      </lfui-button>
+    </LFQDPadding>
+  </LFQDBox>
+</LFQDLayout>
 
 <Sheet state={page.state} render={renderSheet} close={closeSheet}></Sheet>

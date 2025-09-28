@@ -11,29 +11,22 @@
   <link rel="icon" href={favicon} />
 </svelte:head>
 
-<main>
-  {@render children?.()}
-</main>
+{@render children?.()}
 
 <style>
   :global(:root) {
     color-scheme: light dark;
   }
-  main {
-    display: grid;
-    gap: .5rem;
-    margin: auto;
-    max-width: 35rem;
-  }
 
   :global(body) {
-    margin: 6rem 1rem;
-    margin-top: 6rem;
+    margin: 1rem 1rem 10rem;
+    display: grid;
+    gap: 0.5rem;
     background: var(--lfds-semantic-background-primary);
     -webkit-font-smoothing: antialiased;
 
     @media (width < 30rem) {
-      margin: 3rem 0;
+      margin: 0 0 10rem;
     }
   }
   :global(p) {

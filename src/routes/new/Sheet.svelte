@@ -1,7 +1,7 @@
 <script>
-  import LFQD_Padding from '$lib/LFQD_Padding.svelte'
-  import LFQD_Box from '$lib/../lib/LFQD_Box.svelte'
-  import LFQD_Row from '$lib/LFQD_Row.svelte'
+  import LFQDPadding from '$lib/LFQDPadding.svelte'
+  import LFQDBox from '$lib/LFQDBox.svelte'
+  import LFQDRow from '$lib/LFQDRow.svelte'
 
   let { state, render, close } = $props()
 
@@ -21,21 +21,21 @@
   {/if}
 
   {#if state?.sheetData?.dummy}
-    <LFQD_Box>
+    <LFQDBox>
       {#each state.sheetData.dummy as item}
-        <LFQD_Row {...item} onclick={() => render(item)} />
+        <LFQDRow {...item} onclick={() => render(item)} />
       {/each}
-    </LFQD_Box>
+    </LFQDBox>
   {/if}
 
   <div class="spacer"></div>
 
   {#if state?.sheetData?.text}
-    <LFQD_Box>
-      <LFQD_Padding>
+    <LFQDBox>
+      <LFQDPadding>
         {@html state.sheetData.text}
-      </LFQD_Padding>
-    </LFQD_Box>
+      </LFQDPadding>
+    </LFQDBox>
   {/if}
 </lfui-dialog-side-sheet>
 

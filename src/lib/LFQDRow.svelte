@@ -71,7 +71,7 @@
     p {
       margin: 0;
       font-size: 0.875rem;
-      color: var(--lfds-primitives-color-neutral-400);
+      color: var(--lfds-semantic-text-secondary );
     }
 
     .left {
