@@ -6,7 +6,7 @@
   import LFQDLayoutArea from '$lib/LFQDLayoutArea.svelte'
   import LFQDPadding from '$lib/LFQDPadding.svelte'
 
-  import bonus from './bonus.svg'
+  import * as ö from 'ouml'
 </script>
 
 <LFQDLayout type="twocol-with-header">
@@ -29,9 +29,32 @@
 
   <LFQDLayoutArea type="aside">
     <LFQDBox>
-      <div class="placeholder">
-        <h2>Aside</h2>
+      <LFQDBoxHeader>För att bli guldkund behöver du:</LFQDBoxHeader>
+      <LFQDRow
+        icon="check-enclosed"
+        titleLeft="Hemförsäkring"
+        chevron="false"
+        rightCol="false"
+      ></LFQDRow>
+      <LFQDRow
+        icon="check-enclosed"
+        titleLeft="Aktivt lönekonto hos Länsförsäkringar"
+        chevron="false"
+        rightCol="false"
+      ></LFQDRow>
+      <div class="highlight">
+        <LFQDRow
+          icon="circle"
+          titleLeft="Sparande på minst 500 kr/mån eller minst 200 000 kr i sparkapital "
+          chevron="false"
+          rightCol="false"
+        ></LFQDRow>
       </div>
+      <LFQDPadding>
+        <lfui-button type="button" align="right">
+          Bli guldkund? Månadsspara!
+        </lfui-button>
+      </LFQDPadding>
     </LFQDBox>
   </LFQDLayoutArea>
 
@@ -132,6 +155,17 @@
     </LFQDBox>
   </LFQDLayoutArea>
 </LFQDLayout>
+
+<LFQDLayout type="masonry">
+  {#each ö.times(25) as i}
+    <LFQDBox>
+      <div class="placeholder" style="height: {ö.random(100, 300)}px">
+        <h2>{i}</h2>
+      </div>
+    </LFQDBox>
+  {/each}
+</LFQDLayout>
+
 
 <LFQDLayout type="onecol">
   <LFQDLayoutArea type="main">

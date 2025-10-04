@@ -1,6 +1,5 @@
 <script>
   import Sheet from './Sheet.svelte'
-
   import LFQDPadding from '$lib/LFQDPadding.svelte'
   import LFQDBox from '$lib/LFQDBox.svelte'
   import LFQDBoxHeader from '$lib/LFQDBoxHeader.svelte'

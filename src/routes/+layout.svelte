@@ -1,5 +1,7 @@
 <script>
-  import favicon from '$lib/assets/favicon.svg'
+  import LFQDMainNav from '../lib/LFQDMainNav.svelte'
+
+  import favicon from '$lib/assets/bullseye.png'
 
   import '@lansforsakringar/core-components'
   import '@lansforsakringar/core-components/index.css'
@@ -11,7 +13,19 @@
   <link rel="icon" href={favicon} />
 </svelte:head>
 
-{@render children?.()}
+<LFQDMainNav
+  links={[
+    { path: '/', icon: 'house', name: 'Översikt' },
+    { path: '/rows', icon: 'list', name: 'Rows' },
+    { path: '/bonus', icon: 'cup', name: 'Bonus' },
+    { path: '/layout', icon: 'edit', name: 'Layout' },
+    { path: '/more', icon: 'more-horizontal', name: 'Mer' },
+  ]}
+></LFQDMainNav>
+
+<main>
+  {@render children?.()}
+</main>
 
 <style>
   :global(:root) {
@@ -19,14 +33,17 @@
   }
 
   :global(body) {
-    margin: 1rem 1rem 10rem;
-    display: grid;
-    gap: 0.5rem;
+    margin: 0;
     background: var(--lfds-semantic-background-primary);
     -webkit-font-smoothing: antialiased;
 
-    @media (width < 30rem) {
-      margin: 0 0 10rem;
+    main {
+      display: grid;
+      gap: 0.5rem;
+      margin: 1.5rem 1.5rem 10rem;
+      @media (width < 30rem) {
+        margin: 0 0 10rem;
+      }
     }
   }
   :global(p) {
@@ -35,5 +52,12 @@
     font-size: 1rem;
     margin: 0;
     line-height: 1.5;
+  }
+
+  :global(a) {
+    color: var(--lfds-semantic-text-link);
+    &:hover {
+      color: var(--lfds-semantic-text-link-pressed);
+    }
   }
 </style>

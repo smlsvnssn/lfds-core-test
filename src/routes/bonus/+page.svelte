@@ -40,7 +40,7 @@
       <LFQDBoxHeader>Du får även:</LFQDBoxHeader>
       <LFQDRow
         icon="check-enclosed"
-        titleLeft="Bekväma vardagen (kort, privat- och sparkonto, bankapp, Swish och mobilt bank-ID) utan årsavgift"
+        titleLeft="Bekväma vardagen (kort, privat- och sparkonto, bankapp, Swish och mobilt bankID) utan årsavgift"
         chevron="false"
         rightCol="false"
       ></LFQDRow>
@@ -121,6 +121,7 @@
 
   p {
     font-size: 1.125rem;
+    max-width: 60ch;
     @media (width < 30rem) {
       font-size: 1rem;
     }

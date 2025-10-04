@@ -3,6 +3,8 @@
   import LFQDBox from '$lib/LFQDBox.svelte'
   import LFQDLayout from '$lib/LFQDLayout.svelte'
 
+  import mums from './mums.svg'
+
   let sheetIsOpen = $state(false)
 
   const openSheet = () => (sheetIsOpen = true)
@@ -11,21 +13,27 @@
 
 <LFQDLayout>
   <LFQDBox>
+    <header>
+      <img src={mums} alt="" />
+
+      <h1>LF:s Designade Småbitar</h1>
+      <p>
+        Här hittar du tester av allt mums som för tillfället finns i LFDS web, samt tester av mums som ännu inte finns i LFDS.
+        Repo: <a href="https://github.com/smlsvnssn/lfds-core-test">https://github.com/smlsvnssn/lfds-core-test</a>
+      </p>
+    </header>
+  </LFQDBox>
+
+  <LFQDBox>
     <LFQDPadding>
       <lfui-typography-heading level="h1"
         >LF:s Designade Småbitar (LFDS)</lfui-typography-heading
       >
 
-      <lfui-button-shortcut
-        href="/new"
-        label="Tester rows"
-        icon-id="money"
+      <lfui-button-shortcut href="/rows" label="Tester rows" icon-id="money"
       ></lfui-button-shortcut>
 
-      <lfui-button-shortcut
-        href="/bonus"
-        label="Bonusskiss"
-        icon-id="cup"
+      <lfui-button-shortcut href="/bonus" label="Bonusskiss" icon-id="cup"
       ></lfui-button-shortcut>
 
       <lfui-button-shortcut
@@ -33,7 +41,6 @@
         label="Tester layout"
         icon-id="picture"
       ></lfui-button-shortcut>
-
 
       <lfui-typography-heading level="h1">H1</lfui-typography-heading>
       <lfui-typography-heading level="h2">H2</lfui-typography-heading>
@@ -46,7 +53,6 @@
         <lfui-icon icon-id="payment-mc" size="48"></lfui-icon>
       </div>
 
-      
       <form
         style="display: grid; grid: auto-flow / 1fr 1fr; wrap; gap: 1.5rem;"
       >
@@ -176,3 +182,36 @@
     </LFQDPadding>
   </LFQDBox>
 </LFQDLayout>
+
+<style>
+  header {
+    display: grid;
+    gap: 1.5rem;
+    place-items: center;
+    padding: 5rem 3.5rem 3.5rem;
+    @media (width < 30rem) {
+      gap: 1rem;
+      padding: 3rem 1rem 1.5rem;
+    }
+  }
+
+  h1 {
+    font-family: var(--lfds-typography-font-family-lf);
+    font-weight: var(--lfds-typography-weight-medium);
+    color: var(--lfds-semantic-text-brand-primary);
+    font-size: 2rem;
+    margin: 0%;
+
+    @media (width < 30rem) {
+      font-size: 1.875rem;
+    }
+  }
+
+  p {
+    font-size: 1.125rem;
+    max-width: 60ch;
+    @media (width < 30rem) {
+      font-size: 1rem;
+    }
+  }
+</style>
