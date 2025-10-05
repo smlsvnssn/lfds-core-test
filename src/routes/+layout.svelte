@@ -1,5 +1,6 @@
 <script>
   import LFQDMainNav from '../lib/LFQDMainNav.svelte'
+  import { onNavigate } from '$app/navigation'
 
   import favicon from '$lib/assets/bullseye.png'
 
@@ -7,6 +8,19 @@
   import '@lansforsakringar/core-components/index.css'
 
   let { children } = $props()
+
+  onNavigate(navigation => {
+    if (!document.startViewTransition) return
+
+    return /** @type {Promise<void>} */ (
+      new Promise(resolve => {
+        document.startViewTransition(async () => {
+          resolve()
+          await navigation.complete
+        })
+      })
+    )
+  })
 </script>
 
 <svelte:head>
@@ -15,17 +29,19 @@
 
 <LFQDMainNav
   links={[
-    { path: '/', icon: 'house', name: 'Översikt' },
-    { path: '/rows', icon: 'list', name: 'Rows' },
+    { path: '/', icon: 'house', name: 'Start' },
+    { path: '/rows', icon: 'savings', name: 'Spara' },
     { path: '/bonus', icon: 'cup', name: 'Bonus' },
-    { path: '/layout', icon: 'edit', name: 'Layout' },
-    { path: '/more', icon: 'more-horizontal', name: 'Mer' },
+    { path: '/more', icon: 'umbrella', name: 'Försäkring' },
+    { path: '/layout', icon: 'more-horizontal', name: 'Mer' },
   ]}
 ></LFQDMainNav>
 
 <main>
   {@render children?.()}
 </main>
+
+<footer>här kan det vara en footer om man vill</footer>
 
 <style>
   :global(:root) {
@@ -39,7 +55,7 @@
 
     main {
       display: grid;
-      gap: 0.5rem;
+      gap: 1.5rem;
       margin: 1.5rem 1.5rem 10rem;
       @media (width < 30rem) {
         margin: 0 0 10rem;
@@ -59,5 +75,16 @@
     &:hover {
       color: var(--lfds-semantic-text-link-pressed);
     }
+  }
+
+  footer {
+    font-family: var(--lfds-typography-font-family-ibm);
+    font-weight: var(--lfds-typography-weight-regular);
+    color: var(--lfds-semantic-text-secondary);
+    font-size: 0.875rem;
+    width: 100%;
+    text-align: center;
+    margin: 5rem auto;
+    line-height: 1.5;
   }
 </style>

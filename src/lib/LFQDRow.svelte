@@ -16,6 +16,9 @@
     'noRightCol'
   )}"
   {onclick}
+  tabindex="0"
+  role="link"
+  onkeydown={e => e.key == 'Enter' && onclick()}
 >
   <lfui-icon icon-id={icon} size="24"></lfui-icon>
 
@@ -71,7 +74,7 @@
     p {
       margin: 0;
       font-size: 0.875rem;
-      color: var(--lfds-semantic-text-secondary );
+      color: var(--lfds-semantic-text-secondary);
     }
 
     .left {

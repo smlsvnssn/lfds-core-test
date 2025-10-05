@@ -169,7 +169,13 @@
         </lfui-form-checkbox>
       </form>
 
-      <lfui-button type="button" onclick={() => renderBubbel()}>
+      <lfui-button
+        type="button"
+        onclick={() => renderBubbel()}
+        tabindex="0"
+        role="link"
+        onkeydown={e => e.key == 'Enter' && renderBubbel()}
+      >
         Fyll mitt glas med bubbel
       </lfui-button>
     </LFQDPadding>

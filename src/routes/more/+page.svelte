@@ -1,13 +1,53 @@
 <script>
-  import LFQDBox from '$lib/LFQDBox.svelte'
-  import LFQDBoxHeader from '$lib/LFQDBoxHeader.svelte'
   import LFQDRow from '$lib/LFQDRow.svelte'
   import LFQDLayout from '$lib/LFQDLayout.svelte'
   import LFQDLayoutArea from '$lib/LFQDLayoutArea.svelte'
   import LFQDPadding from '$lib/LFQDPadding.svelte'
+
+  import LFQDBox from '$lib/LFQDBox.svelte'
+  import LFQDBoxHeader from '$lib/LFQDBoxHeader.svelte'
+  import LFQDBoxFooter from '$lib/LFQDBoxFooter.svelte'
+  import LFQDLink from '$lib/LFQDLink.svelte'
+
+  import * as ö from 'ouml'
+
+  let junk = ö
+    .times(4, () =>
+      ö.shuffle([
+        {
+          titleLeft: 'Villahemförsäkring',
+          subtitleLeft: 'Trumpeten 11',
+          titleRight: 'Betald 25 09 01',
+          subtitleRight: '419 kr/mån',
+          icon: 'house',
+        },
+        {
+          titleLeft: 'Personbil',
+          subtitleLeft: 'XXX 666',
+          titleRight: 'Obetald',
+          subtitleRight: '365 kr/mån',
+          icon: 'car',
+        },
+        {
+          titleLeft: 'Kattförsäkring',
+          subtitleLeft: 'Solveig',
+          subtitleRight: '212 kr/mån',
+          icon: 'dog',
+        },
+        {
+          titleLeft: 'Barnförsäkring',
+          subtitleLeft: 'Karl Karlsson, 6 år',
+          subtitleRight: '315 kr/mån',
+          icon: 'baby',
+        },
+      ]),
+    )
+    .flat()
+
+  const försäkringsdata = () => ö.sample(junk, ö.random(3) + 2)
 </script>
 
-<LFQDLayout type="twocol-with-header">
+<LFQDLayout type="header">
   <LFQDLayoutArea type="header">
     <LFQDBox>
       <header>
@@ -18,18 +58,24 @@
       </header>
     </LFQDBox>
   </LFQDLayoutArea>
+</LFQDLayout>
 
-  <LFQDLayoutArea type="main">
+<LFQDLayout type="masonry">
+  {#each ö.times(ö.random(6) + 3) as thing}
     <LFQDBox>
-      <LFQDBoxHeader>...</LFQDBoxHeader>
+      <LFQDBoxHeader>Mina försäkringar</LFQDBoxHeader>
+      {#each försäkringsdata() as item}
+        {console.log(item)}
+        <LFQDRow {...item} onclick={() => renderSheet(item)} />
+      {/each}
+      <LFQDBoxFooter>
+        <LFQDLink href="#">
+          Alla försäkringar
+          <lfui-icon icon-id="chevron-right" size="24"></lfui-icon>
+        </LFQDLink>
+      </LFQDBoxFooter>
     </LFQDBox>
-  </LFQDLayoutArea>
-
-  <LFQDLayoutArea type="aside">
-    <LFQDBox>
-      <LFQDBoxHeader>...</LFQDBoxHeader>
-    </LFQDBox>
-  </LFQDLayoutArea>
+  {/each}
 </LFQDLayout>
 
 <style>

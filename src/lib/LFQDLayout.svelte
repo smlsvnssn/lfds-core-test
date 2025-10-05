@@ -5,12 +5,22 @@
   let el, masonry
 
   $effect(() => {
+    // TODO: super unreliable masonry lib, use another
     if (type == 'masonry') {
-      masonry = new MiniMasonry({
+      let s = {
         container: el,
         baseWidth: 350,
         gutter: 24,
         surroundingGutter: false,
+      }
+      masonry = new MiniMasonry(s)
+
+      // Ugliest hack ever.
+      requestAnimationFrame(() => {
+        masonry.layout(s)
+        setTimeout(() => {
+          masonry.layout(s)
+        }, 25)
       })
     } else masonry?.destroy()
     return () => masonry?.destroy()
@@ -30,7 +40,7 @@
     display: grid;
     gap: 0.5rem;
     margin: auto;
-    margin-bottom: 5rem;
+    /* margin-bottom: 5rem; */
     width: 100%;
     max-width: var(--narrow);
 
@@ -40,6 +50,14 @@
       gap: 0.5rem;
       grid-template-columns: 1fr;
       border-radius: 0;
+    }
+
+    &.header {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      max-width: var(--wider);
+
+      grid-template-areas: 'header';
     }
 
     &.twocol {

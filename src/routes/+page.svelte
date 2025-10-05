@@ -1,6 +1,10 @@
 <script>
   import LFQDPadding from '$lib/LFQDPadding.svelte'
   import LFQDBox from '$lib/LFQDBox.svelte'
+  import LFQDBoxHeader from '$lib/LFQDBoxHeader.svelte'
+  import LFQDBoxFooter from '$lib/LFQDBoxFooter.svelte'
+  import LFQDRow from '$lib/LFQDRow.svelte'
+  import LFQDLink from '$lib/LFQDLink.svelte'
   import LFQDLayout from '$lib/LFQDLayout.svelte'
 
   import mums from './mums.svg'
@@ -9,27 +13,70 @@
 
   const openSheet = () => (sheetIsOpen = true)
   const closeSheet = () => (sheetIsOpen = false)
+
+  let försäkringsdata = [
+    {
+      titleLeft: 'Villahemförsäkring',
+      subtitleLeft: 'Trumpeten 11',
+      titleRight: 'Betald 25 09 01',
+      subtitleRight: '419 kr/mån',
+      icon: 'house',
+    },
+    {
+      titleLeft: 'Personbil',
+      subtitleLeft: 'XXX 666',
+      titleRight: 'Obetald',
+      subtitleRight: '365 kr/mån',
+      icon: 'car',
+    },
+    {
+      titleLeft: 'Kattförsäkring',
+      subtitleLeft: 'Solveig',
+      subtitleRight: '212 kr/mån',
+      icon: 'dog',
+    },
+    {
+      titleLeft: 'Barnförsäkring',
+      subtitleLeft: 'Karl Karlsson, 6 år',
+      subtitleRight: '315 kr/mån',
+      icon: 'baby',
+    },
+  ]
 </script>
 
-<LFQDLayout>
+<LFQDLayout type="masonry">
   <LFQDBox>
     <header>
       <img src={mums} alt="" />
 
       <h1>LF:s Designade Småbitar</h1>
       <p>
-        Här hittar du tester av allt mums som för tillfället finns i LFDS web, samt tester av mums som ännu inte finns i LFDS.
-        Repo: <a href="https://github.com/smlsvnssn/lfds-core-test">https://github.com/smlsvnssn/lfds-core-test</a>
+        Här hittar du tester av allt mums som för tillfället finns i LFDS web,
+        samt tester av mums som ännu inte finns i LFDS. Repo: <a
+          href="https://github.com/smlsvnssn/lfds-core-test"
+          >https://github.com/smlsvnssn/lfds-core-test</a
+        >
       </p>
     </header>
   </LFQDBox>
 
   <LFQDBox>
-    <LFQDPadding>
-      <lfui-typography-heading level="h1"
-        >LF:s Designade Småbitar (LFDS)</lfui-typography-heading
-      >
+    <LFQDBoxHeader>Mina försäkringar</LFQDBoxHeader>
 
+    {#each försäkringsdata as item}
+      <LFQDRow {...item} onclick={() => renderSheet(item)} />
+    {/each}
+
+    <LFQDBoxFooter>
+      <LFQDLink href="#">
+        Alla försäkringar
+        <lfui-icon icon-id="chevron-right" size="24"></lfui-icon>
+      </LFQDLink>
+    </LFQDBoxFooter>
+  </LFQDBox>
+
+  <LFQDBox>
+    <LFQDPadding>
       <lfui-button-shortcut href="/rows" label="Tester rows" icon-id="money"
       ></lfui-button-shortcut>
 
@@ -41,21 +88,31 @@
         label="Tester layout"
         icon-id="picture"
       ></lfui-button-shortcut>
+    </LFQDPadding>
+  </LFQDBox>
 
+  <LFQDBox>
+    <LFQDPadding>
       <lfui-typography-heading level="h1">H1</lfui-typography-heading>
       <lfui-typography-heading level="h2">H2</lfui-typography-heading>
       <lfui-typography-heading level="h3">H3</lfui-typography-heading>
       <lfui-typography-heading level="h4">H4</lfui-typography-heading>
+    </LFQDPadding>
+  </LFQDBox>
 
+  <LFQDBox>
+    <LFQDPadding>
       <div style="display: flex; gap: 2rem; align-items: center;">
         <lfui-icon icon-id="placeholder" size="40"></lfui-icon>
         <lfui-icon icon-id="arrow-right" size="32"></lfui-icon>
         <lfui-icon icon-id="payment-mc" size="48"></lfui-icon>
       </div>
+    </LFQDPadding>
+  </LFQDBox>
 
-      <form
-        style="display: grid; grid: auto-flow / 1fr 1fr; wrap; gap: 1.5rem;"
-      >
+  <LFQDBox>
+    <LFQDPadding>
+      <form class="cards">
         <lfui-form-radio-card
           name="animal"
           icon-id="horse"
@@ -112,7 +169,11 @@
         >
         </lfui-form-radio-card>
       </form>
+    </LFQDPadding>
+  </LFQDBox>
 
+  <LFQDBox>
+    <LFQDPadding>
       <lfui-form-checkbox-card
         icon-id="sustainability"
         id="checkbox-card-1"
@@ -120,7 +181,7 @@
         description="För framtiden"
       ></lfui-form-checkbox-card>
 
-      <form style="display: grid; width: 100%;">
+      <form>
         <lfui-form-checkbox id="demo-example-checkbox-1" label="Stockholm">
         </lfui-form-checkbox>
         <lfui-form-checkbox id="demo-example-checkbox-2" label="Göteborg">
@@ -147,7 +208,11 @@
         label="Vilken är din favoritkändis?"
         help-text="Det kan vara en nu levande eller död kändis, det spelar ingen roll."
       ></lfui-form-input>
+    </LFQDPadding>
+  </LFQDBox>
 
+  <LFQDBox>
+    <LFQDPadding>
       <lfui-button type="button" onclick={openSheet}>
         Open Side Sheet
       </lfui-button>
@@ -171,7 +236,19 @@
       >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </lfui-dialog-side-sheet>
+    </LFQDPadding>
+  </LFQDBox>
 
+  <lfui-notification-alert heading="Optional title.">
+    Provide users with non-disruptive feedback. <lfui-button
+      slot="button"
+      variant="secondary"
+      size="small">Button</lfui-button
+    >
+  </lfui-notification-alert>
+
+  <LFQDBox>
+    <LFQDPadding>
       <lfui-notification-alert heading="Optional title.">
         Provide users with non-disruptive feedback. <lfui-button
           slot="button"
@@ -195,11 +272,18 @@
     }
   }
 
+  form.cards {
+    display: grid;
+    grid: auto-flow / 1fr 1fr;
+    gap: 1rem;
+  }
+
   h1 {
     font-family: var(--lfds-typography-font-family-lf);
     font-weight: var(--lfds-typography-weight-medium);
     color: var(--lfds-semantic-text-brand-primary);
     font-size: 2rem;
+    text-align: center;
     margin: 0%;
 
     @media (width < 30rem) {
