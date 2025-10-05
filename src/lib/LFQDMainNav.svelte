@@ -16,25 +16,6 @@
     <LFQDLogo />
   </div>
 
-  <nav class="main">
-    <ul>
-      {#each links as { path, icon, name }}
-        <li>
-          <a href={path} class={path == page.url.pathname ? 'selected' : ''}>
-            <lfui-icon
-              icon-id={icon}
-              size="24"
-              color="var(--lfds-semantic-icon-{path == page.url.pathname ?
-                'selected'
-              : 'secondary'})"
-            ></lfui-icon>
-            {name}
-          </a>
-        </li>
-      {/each}
-    </ul>
-  </nav>
-
   <nav class="utils">
     <ul>
       <li>
@@ -46,7 +27,7 @@
           <lfui-icon
             icon-id="envelope"
             size="24"
-            color="var(--lfds-semantic-icon-secondary)"
+            color="var(--lfds-semantic-icon-primary)"
           ></lfui-icon>
           <span>Meddelanden</span>
         </a>
@@ -61,7 +42,7 @@
           <lfui-icon
             icon-id="edit"
             size="24"
-            color="var(--lfds-semantic-icon-secondary)"
+            color="var(--lfds-semantic-icon-primary)"
           ></lfui-icon>
           <span>Skriv nytt</span>
         </a>
@@ -75,7 +56,7 @@
           <lfui-icon
             icon-id="user"
             size="24"
-            color="var(--lfds-semantic-icon-secondary)"
+            color="var(--lfds-semantic-icon-primary)"
           ></lfui-icon>
           <span>Profil</span>
         </a>
@@ -85,7 +66,7 @@
           <lfui-icon
             icon-id="logout"
             size="24"
-            color="var(--lfds-semantic-icon-secondary)"
+            color="var(--lfds-semantic-icon-primary)"
           ></lfui-icon>
           <span>Logga ut</span>
         </a>
@@ -93,6 +74,25 @@
     </ul>
   </nav>
 </div>
+
+<nav class="main">
+  <ul>
+    {#each links as { path, icon, name }}
+      <li>
+        <a href={path} class={path == page.url.pathname ? 'selected' : ''}>
+          <lfui-icon
+            icon-id={icon}
+            size="24"
+            color="var(--lfds-semantic-icon-{path == page.url.pathname ?
+              'selected'
+            : 'secondary'})"
+          ></lfui-icon>
+          {name}
+        </a>
+      </li>
+    {/each}
+  </ul>
+</nav>
 
 <lfui-dialog-side-sheet
   size=""
@@ -109,7 +109,10 @@
     display: grid;
     grid: auto-flow / 1fr auto auto;
     place-items: stretch;
-    background: var(--lfds-semantic-background-secondary);
+    background: light-dark(
+      var(--lfds-primitives-color-blue-100),
+      var(--lfds-primitives-color-blue-950)
+    );
 
     z-index: 1000;
     position: sticky;
@@ -142,40 +145,6 @@
     font-size: 0.6875rem;
 
     background: var(--lfds-semantic-background-secondary);
-
-    &.main {
-      /* li:last-child a {
-        padding-right: 4rem;
-      } */
-      @media (width < 60rem) {
-        margin: 0;
-        width: 100%;
-        position: fixed;
-        top: auto;
-        bottom: 0;
-
-        a {
-          border-bottom: none;
-          border-top: var(--lfds-semantic-sizes-border-width-medium) solid
-            var(--lfds-semantic-border-secondary);
-
-          &:hover {
-            border-top-color: var(--lfds-semantic-border-hover);
-          }
-        }
-      }
-    }
-
-    &.utils {
-      @media (width < 30rem) {
-        a {
-          border-bottom: none;
-        }
-        span {
-          display: none;
-        }
-      }
-    }
 
     ul {
       display: grid;
@@ -214,6 +183,73 @@
             border-bottom-color: var(--lfds-semantic-border-selected);
             color: var(--lfds-semantic-text-selected);
           }
+        }
+      }
+    }
+
+    &.main {
+      /* li:last-child a {
+        padding-right: 4rem;
+        } */
+
+      ul {
+        justify-content: center;
+        grid-auto-flow: column;
+      }
+
+      a {
+        font-size: 0.875rem;
+        grid-auto-flow: column;
+        padding: 0.75rem 1.5rem;
+        border-bottom: none;
+        gap: 0.75rem;
+        font-weight: var(--lfds-typography-weight-regular);
+      }
+
+      @media (width < 60rem) {
+        margin: 0;
+        width: 100%;
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        z-index: 1000;
+        background: var(--lfds-semantic-background-secondary);
+
+        ul {
+          justify-content: stretch;
+        }
+        a {
+          font-size: 0.6875rem;
+          font-weight: var(--lfds-typography-weight-medium);
+
+          gap: 0.5rem;
+          grid-auto-flow: unset;
+          padding: 0.75rem;
+          border-bottom: none;
+          border-top: var(--lfds-semantic-sizes-border-width-medium) solid
+            var(--lfds-semantic-border-secondary);
+
+          &:hover {
+            border-top-color: var(--lfds-semantic-border-hover);
+          }
+        }
+      }
+    }
+
+    &.utils {
+      background: light-dark(
+        var(--lfds-primitives-color-blue-100),
+        var(--lfds-primitives-color-blue-950)
+      );
+      a {
+        color: var(--lfds-semantic-text-link);
+      }
+      @media (width < 30rem) {
+        a {
+          border-bottom: none;
+        }
+        span {
+          display: none;
         }
       }
     }

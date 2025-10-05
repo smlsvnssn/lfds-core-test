@@ -70,11 +70,11 @@
     }
   }
   .blue {
-    fill: var(--lfds-semantic-border-brand-primary);
+    fill: light-dark(var(--lfds-primitives-color-blue-700), var(--lfds-primitives-color-neutral-0));
   }
 
   .red {
-    fill: var(--lfds-semantic-border-brand-secondary);
+    fill: light-dark(var(--lfds-primitives-color-red-500), var(--lfds-primitives-color-neutral-0));
   }
 
   .text {

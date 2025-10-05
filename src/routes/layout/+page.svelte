@@ -7,6 +7,7 @@
   import LFQDPadding from '$lib/LFQDPadding.svelte'
 
   import * as ö from 'ouml'
+  import LFQDSectionHeader from '$lib/LFQDSectionHeader.svelte'
 </script>
 
 <LFQDLayout type="twocol-with-header">
@@ -20,6 +21,14 @@
   </LFQDLayoutArea>
 
   <LFQDLayoutArea type="main">
+    <LFQDBox>
+      <div class="placeholder">
+        <h2>Main</h2>
+      </div>
+    </LFQDBox>
+
+    <LFQDSectionHeader>Section header</LFQDSectionHeader>
+
     <LFQDBox>
       <div class="placeholder">
         <h2>Main</h2>
@@ -166,7 +175,6 @@
   {/each}
 </LFQDLayout>
 
-
 <LFQDLayout type="onecol">
   <LFQDLayoutArea type="main">
     <LFQDBox>
@@ -256,15 +264,15 @@
   }
 
   h2 {
-    font-family: var(--lfds-typography-font-family-lf);
-    font-weight: var(--lfds-typography-weight-medium);
+    font-family: var(--lfds-typography-font-family-ibm);
+    font-weight: var(--lfds-typography-weight-semibold);
     color: var(--lfds-semantic-text-brand-primary);
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin: 0%;
 
-    @media (width < 30rem) {
+    /* @media (width < 30rem) {
       font-size: 1.25rem;
-    }
+    } */
   }
 
   p {

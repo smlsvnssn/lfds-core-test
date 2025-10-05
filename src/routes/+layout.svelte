@@ -9,17 +9,17 @@
 
   let { children } = $props()
 
+  let innerWidth = $state(0)
+
   onNavigate(navigation => {
     if (!document.startViewTransition) return
 
-    return /** @type {Promise<void>} */ (
-      new Promise(resolve => {
-        document.startViewTransition(async () => {
-          resolve()
-          await navigation.complete
-        })
+    return new Promise(resolve => {
+      document.startViewTransition(async () => {
+        resolve()
+        await navigation.complete
       })
-    )
+    })
   })
 </script>
 
@@ -27,14 +27,27 @@
   <link rel="icon" href={favicon} />
 </svelte:head>
 
+<svelte:window bind:innerWidth />
+
 <LFQDMainNav
-  links={[
-    { path: '/', icon: 'house', name: 'Start' },
-    { path: '/rows', icon: 'savings', name: 'Spara' },
-    { path: '/bonus', icon: 'cup', name: 'Bonus' },
-    { path: '/more', icon: 'umbrella', name: 'Försäkring' },
-    { path: '/layout', icon: 'more-horizontal', name: 'Mer' },
-  ]}
+  links={innerWidth < 16 * 60 ?
+    [
+      { path: '/', icon: 'house', name: 'Start' },
+      { path: '/rows', icon: 'savings', name: 'Spara' },
+      //´{ path: '/bonus', icon: 'cup', name: 'Bonus' },
+      { path: '/more', icon: 'umbrella', name: 'Försäkring' },
+      { path: '/layout', icon: 'more-horizontal', name: 'Mer' },
+    ]
+  : [
+      { path: '/', icon: 'house', name: 'Start' },
+      { path: '/rows', icon: 'savings', name: 'Spara' },
+      //´{ path: '/bonus', icon: 'cup', name: 'Bonus' },
+      { path: '/more', icon: 'umbrella', name: 'Försäkring' },
+      { path: '/bonus', icon: 'card', name: 'Konton och kort' },
+      { path: '/more', icon: 'mortgage', name: 'Lån' },
+      { path: '/more', icon: 'pension', name: 'Pension' },
+      { path: '/layout', icon: 'more-horizontal', name: 'Mer' },
+    ]}
 ></LFQDMainNav>
 
 <main>

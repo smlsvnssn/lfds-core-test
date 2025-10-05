@@ -1,5 +1,5 @@
 <script>
-  import Header from './Header.svelte';
+  import Header from './Header.svelte'
 
   import LFQDPadding from '$lib/LFQDPadding.svelte'
   import LFQDBox from '$lib/LFQDBox.svelte'
@@ -8,9 +8,9 @@
   import LFQDRow from '$lib/LFQDRow.svelte'
   import LFQDLink from '$lib/LFQDLink.svelte'
   import LFQDLayout from '$lib/LFQDLayout.svelte'
+  import LFQDLayoutArea from '$lib/LFQDLayoutArea.svelte'
 
   import mums from './mums.svg'
-  import lisa from './lisa.png'
 
   let sheetIsOpen = $state(false)
 
@@ -290,6 +290,17 @@
   </LFQDBox>
 </LFQDLayout>
 
+<LFQDLayout type="threecol-with-header">
+  <LFQDLayoutArea type="header">
+    <LFQDBox>
+      <header>
+        <lfui-icon icon-id="chicken" size="72"></lfui-icon>
+        <h1>Här han det vara en annan layout om man vill</h1>
+      </header>
+    </LFQDBox>
+  </LFQDLayoutArea>
+</LFQDLayout>
+
 <style>
   header {
     display: grid;
@@ -301,8 +312,6 @@
       padding: 3rem 1rem 1.5rem;
     }
   }
-
-  
 
   form.cards {
     display: grid;
