@@ -1,4 +1,6 @@
 <script>
+  import Header from './Header.svelte';
+
   import LFQDPadding from '$lib/LFQDPadding.svelte'
   import LFQDBox from '$lib/LFQDBox.svelte'
   import LFQDBoxHeader from '$lib/LFQDBoxHeader.svelte'
@@ -8,6 +10,7 @@
   import LFQDLayout from '$lib/LFQDLayout.svelte'
 
   import mums from './mums.svg'
+  import lisa from './lisa.png'
 
   let sheetIsOpen = $state(false)
 
@@ -43,6 +46,8 @@
     },
   ]
 </script>
+
+<Header />
 
 <LFQDLayout type="masonry">
   <LFQDBox>
@@ -86,6 +91,31 @@
       <lfui-button-shortcut
         href="/layout"
         label="Tester layout"
+        icon-id="picture"
+      ></lfui-button-shortcut>
+    </LFQDPadding>
+  </LFQDBox>
+
+  <LFQDBox>
+    <LFQDPadding>
+      <lfui-button-shortcut
+        href="/rows"
+        label="Tester rows"
+        layout="vertical"
+        icon-id="money"
+      ></lfui-button-shortcut>
+
+      <lfui-button-shortcut
+        href="/bonus"
+        label="Bonusskiss"
+        layout="vertical"
+        icon-id="cup"
+      ></lfui-button-shortcut>
+
+      <lfui-button-shortcut
+        href="/layout"
+        label="Tester layout"
+        layout="vertical"
         icon-id="picture"
       ></lfui-button-shortcut>
     </LFQDPadding>
@@ -271,6 +301,8 @@
       padding: 3rem 1rem 1.5rem;
     }
   }
+
+  
 
   form.cards {
     display: grid;

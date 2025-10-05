@@ -53,7 +53,7 @@
       <header>
         <lfui-icon icon-id="rabbit" size="72"></lfui-icon>
 
-        <h1>Annat</h1>
+        <h1>Dina försäkringar</h1>
         <p>...</p>
       </header>
     </LFQDBox>
@@ -63,7 +63,7 @@
 <LFQDLayout type="masonry">
   {#each ö.times(ö.random(6) + 3) as thing}
     <LFQDBox>
-      <LFQDBoxHeader>Mina försäkringar</LFQDBoxHeader>
+      <LFQDBoxHeader>Försäkringar</LFQDBoxHeader>
       {#each försäkringsdata() as item}
         {console.log(item)}
         <LFQDRow {...item} onclick={() => renderSheet(item)} />

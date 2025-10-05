@@ -20,7 +20,7 @@
         masonry.layout(s)
         setTimeout(() => {
           masonry.layout(s)
-        }, 25)
+        }, 50)
       })
     } else masonry?.destroy()
     return () => masonry?.destroy()

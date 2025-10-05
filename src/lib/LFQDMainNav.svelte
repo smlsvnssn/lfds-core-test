@@ -38,8 +38,11 @@
   <nav class="utils">
     <ul>
       <li>
-        <a href="#" onclick={() => openSheet('Dina meddelanden')}
-          onkeydown={e => e.key == 'Enter' && openSheet('Dina meddelanden')}>
+        <a
+          href="#"
+          onclick={() => openSheet('Dina meddelanden')}
+          onkeydown={e => e.key == 'Enter' && openSheet('Dina meddelanden')}
+        >
           <lfui-icon
             icon-id="envelope"
             size="24"
@@ -49,8 +52,12 @@
         </a>
       </li>
       <li>
-        <a href="#" onclick={() => openSheet('Skriv nytt meddelande')}
-          onkeydown={e => e.key == 'Enter' && openSheet('Skriv nytt meddelande')}>
+        <a
+          href="#"
+          onclick={() => openSheet('Skriv nytt meddelande')}
+          onkeydown={e =>
+            e.key == 'Enter' && openSheet('Skriv nytt meddelande')}
+        >
           <lfui-icon
             icon-id="edit"
             size="24"
@@ -137,6 +144,9 @@
     background: var(--lfds-semantic-background-secondary);
 
     &.main {
+      /* li:last-child a {
+        padding-right: 4rem;
+      } */
       @media (width < 60rem) {
         margin: 0;
         width: 100%;
@@ -148,6 +158,7 @@
           border-bottom: none;
           border-top: var(--lfds-semantic-sizes-border-width-medium) solid
             var(--lfds-semantic-border-secondary);
+
           &:hover {
             border-top-color: var(--lfds-semantic-border-hover);
           }
