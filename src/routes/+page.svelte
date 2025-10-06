@@ -295,7 +295,7 @@
     <LFQDBox>
       <header>
         <lfui-icon icon-id="chicken" size="72"></lfui-icon>
-        <h1>Här han det vara en annan layout om man vill</h1>
+        <h1>Här kan det vara en annan layout om man vill</h1>
       </header>
     </LFQDBox>
   </LFQDLayoutArea>

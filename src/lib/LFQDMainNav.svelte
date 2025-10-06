@@ -106,14 +106,17 @@
 
 <style>
   .mainNav {
-    display: grid;
-    grid: auto-flow / 1fr auto auto;
-    place-items: stretch;
-    background: light-dark(
+    --bg: light-dark(
       var(--lfds-primitives-color-blue-100),
       var(--lfds-primitives-color-blue-950)
     );
 
+    display: grid;
+    grid: auto-flow / 1fr auto auto;
+    place-items: stretch;
+
+    background: oklch(from var(--bg) l c h / 0.95);
+    backdrop-filter: blur(10px);
     z-index: 1000;
     position: sticky;
     top: 0;
@@ -130,8 +133,7 @@
     place-items: center start;
     padding-left: 0.75em;
 
-    border-bottom: var(--lfds-semantic-sizes-border-width-medium) solid
-      var(--lfds-semantic-border-secondary);
+    border-bottom: 1px solid var(--lfds-semantic-border-secondary);
 
     @media (width < 30rem) {
       padding-left: 0.5em;
@@ -164,8 +166,7 @@
 
           transition: all 0.3s;
 
-          border-bottom: var(--lfds-semantic-sizes-border-width-medium) solid
-            var(--lfds-semantic-border-secondary);
+          border-bottom: 1px solid var(--lfds-semantic-border-secondary);
 
           color: var(--lfds-semantic-text-secondary);
 
@@ -241,6 +242,8 @@
         var(--lfds-primitives-color-blue-100),
         var(--lfds-primitives-color-blue-950)
       );
+      background: none;
+
       a {
         color: var(--lfds-semantic-text-link);
       }
