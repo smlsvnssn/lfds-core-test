@@ -85,7 +85,7 @@
       <lfui-button-shortcut href="/rows" label="Tester rows" icon-id="money"
       ></lfui-button-shortcut>
 
-      <lfui-button-shortcut href="/bonus" label="Bonusskiss" icon-id="cup"
+      <lfui-button-shortcut href="/layout" label="Bonusskiss" icon-id="cup"
       ></lfui-button-shortcut>
 
       <lfui-button-shortcut
@@ -106,7 +106,7 @@
       ></lfui-button-shortcut>
 
       <lfui-button-shortcut
-        href="/bonus"
+        href="/layout"
         label="Bonusskiss"
         layout="vertical"
         icon-id="cup"
@@ -296,6 +296,17 @@
       <header>
         <lfui-icon icon-id="chicken" size="72"></lfui-icon>
         <h1>Här kan det vara en annan layout om man vill</h1>
+
+        <!-- <h1 style='font-size: 5rem'>layout</h1>
+        <h1 style='font-size: 5rem'>Just say nay boy</h1>
+        <h1 style='font-size: 5rem'>div tid</h1>
+        <h1 style='font-size: 5rem'>vid liv</h1>
+        <h1 style='font-size: 5rem'>ek ir</h1>
+        <h1 style='font-size: 5rem'>syfte</h1>
+        <h1 style='font-size: 5rem'>gi gj gl</h1>
+        <h1 style='font-size: 5rem'>gjort glass</h1>
+        <h1 style='font-size: 5rem'>vc ve</h1>
+        <h1 style='font-size: 5rem'>ät räv</h1> -->
       </header>
     </LFQDBox>
   </LFQDLayoutArea>

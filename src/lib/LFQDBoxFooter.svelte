@@ -3,7 +3,7 @@
 </script>
 
 <div class="boxFooter" style="padding-right: {padEnd ? '1.25rem' : '.75rem'}">
-  {@render children()}
+  {@render children?.()}
 </div>
 
 <style>

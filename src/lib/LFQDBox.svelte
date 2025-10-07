@@ -3,7 +3,7 @@
 </script>
 
 <div class="box">
-  {@render children()}
+  {@render children?.()}
 </div>
 
 <style>
@@ -11,7 +11,6 @@
     overflow: hidden;
     border-radius: var(--lfds-semantic-sizes-radius-md);
     background: var(--lfds-semantic-background-secondary);
-
 
     /* box-shadow: 0 .125rem .125rem #00000005, 0 .25rem .5rem #00000003; */
 

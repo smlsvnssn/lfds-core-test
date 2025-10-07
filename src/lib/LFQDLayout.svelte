@@ -28,7 +28,7 @@
 </script>
 
 <div class="layout {type}" bind:this={el}>
-  {@render children()}
+  {@render children?.()}
 </div>
 
 <style>

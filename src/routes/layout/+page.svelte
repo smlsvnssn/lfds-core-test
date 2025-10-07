@@ -5,10 +5,93 @@
   import LFQDLayout from '$lib/LFQDLayout.svelte'
   import LFQDLayoutArea from '$lib/LFQDLayoutArea.svelte'
   import LFQDPadding from '$lib/LFQDPadding.svelte'
+  import LFQDSectionHeader from '$lib/LFQDSectionHeader.svelte'
+
+  import bonus from './bonus.svg'
 
   import * as ö from 'ouml'
-  import LFQDSectionHeader from '$lib/LFQDSectionHeader.svelte'
 </script>
+<LFQDLayout type="twocol-with-header">
+  <LFQDLayoutArea type="header">
+    <LFQDBox>
+      <header>
+        <img src={bonus} alt="" />
+        <h1>Bonus och förmåner</h1>
+        <p>
+          Ju mer av din ekonomi och dina försäkringar du samlar hos oss, desto
+          mer kan vi hjälpa dig fatta bra beslut. Samlar du din hemförsäkring,
+          ditt lönekonto och ditt sparande hos oss får du dessutom 15 procent
+          rabatt.
+        </p>
+      </header>
+    </LFQDBox>
+  </LFQDLayoutArea>
+
+  <LFQDLayoutArea type="main">
+    <LFQDBox>
+      <LFQDBoxHeader>Din bonusnivå är:</LFQDBoxHeader>
+      <LFQDRow
+        icon="cup"
+        titleLeft="Silverkund"
+        titleRight="10% rabatt"
+        subtitleRight="på dina sakförsäkringar"
+        chevron="false"
+      ></LFQDRow>
+    </LFQDBox>
+    <LFQDBox>
+      <LFQDBoxHeader>Du får även:</LFQDBoxHeader>
+      <LFQDRow
+        icon="check-enclosed"
+        titleLeft="Bekväma vardagen (kort, privat- och sparkonto, bankapp, Swish och mobilt bankID) utan årsavgift"
+        chevron="false"
+        rightCol="false"
+      ></LFQDRow>
+      <LFQDRow
+        icon="check-enclosed"
+        titleLeft="Ingen årsavgift på kreditkortet"
+        chevron="false"
+        rightCol="false"
+      ></LFQDRow>
+      <LFQDRow
+        icon="check-enclosed"
+        titleLeft="1 500 kronor i rabatt på självrisken vid din första skada"
+        chevron="false"
+        rightCol="false"
+      ></LFQDRow>
+    </LFQDBox>
+  </LFQDLayoutArea>
+
+  <LFQDLayoutArea type="aside">
+    <LFQDBox>
+      <LFQDBoxHeader>För att bli guldkund behöver du:</LFQDBoxHeader>
+      <LFQDRow
+        icon="check-enclosed"
+        titleLeft="Hemförsäkring"
+        chevron="false"
+        rightCol="false"
+      ></LFQDRow>
+      <LFQDRow
+        icon="check-enclosed"
+        titleLeft="Aktivt lönekonto hos Länsförsäkringar"
+        chevron="false"
+        rightCol="false"
+      ></LFQDRow>
+      <div class="highlight">
+        <LFQDRow
+          icon="circle"
+          titleLeft="Sparande på minst 500 kr/mån eller minst 200 000 kr i sparkapital "
+          chevron="false"
+          rightCol="false"
+        ></LFQDRow>
+      </div>
+      <LFQDPadding>
+        <lfui-button type="button" align="right">
+          Bli guldkund? Månadsspara!
+        </lfui-button>
+      </LFQDPadding>
+    </LFQDBox>
+  </LFQDLayoutArea>
+</LFQDLayout>
 
 <LFQDLayout type="twocol-with-header">
   <LFQDLayoutArea type="header">

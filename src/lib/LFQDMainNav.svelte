@@ -1,6 +1,7 @@
 <script>
   import LFQDLogo from './LFQDLogo.svelte'
   import { page } from '$app/state'
+  import LFQDDialog from './LFQDDialog.svelte'
 
   let { links = [] } = $props()
 
@@ -9,6 +10,9 @@
 
   const openSheet = heading => ((sheetIsOpen = true), (sheetHeading = heading))
   const closeSheet = () => (sheetIsOpen = false)
+
+  let dialog = $state()
+  const openDialog = () => dialog.showModal()
 </script>
 
 <div class="mainNav">
@@ -62,7 +66,11 @@
         </a>
       </li>
       <li>
-        <a href="#">
+        <a
+          href="#"
+          onclick={openDialog}
+          onkeydown={e => e.key == 'Enter' && openDialog()}
+        >
           <lfui-icon
             icon-id="logout"
             size="24"
@@ -94,6 +102,57 @@
   </ul>
 </nav>
 
+<LFQDDialog bind:dialog>
+  <lfui-typography-heading level="h2">Information</lfui-typography-heading>
+  <p>Vill du logga ut?</p>
+
+  <div class="btns">
+    <lfui-button
+      type="button"
+      role="button"
+      tabindex="0"
+      variant="primary"
+      onclick={() => dialog.close()}
+      onkeydown={e => e.key == 'Enter' && dialog.close()}
+    >
+      Stäng
+    </lfui-button>
+
+    <lfui-button
+      type="button"
+      role="button"
+      tabindex="0"
+      variant="secondary"
+      onclick={() => dialog.close()}
+      onkeydown={e => e.key == 'Enter' && dialog.close()}
+    >
+      Avbryt
+    </lfui-button>
+
+    <lfui-button
+      type="button"
+      role="button"
+      tabindex="0"
+      variant="tertiary"
+      onclick={() => dialog.close()}
+      onkeydown={e => e.key == 'Enter' && dialog.close()}
+    >
+      Avsluta
+    </lfui-button>
+
+    <lfui-button
+      type="button"
+      role="button"
+      tabindex="0"
+      variant="tertiary"
+      onclick={() => dialog.close()}
+      onkeydown={e => e.key == 'Enter' && dialog.close()}
+    >
+      Ja.
+    </lfui-button>
+  </div>
+</LFQDDialog>
+
 <lfui-dialog-side-sheet
   size=""
   open={sheetIsOpen}
@@ -117,6 +176,7 @@
 
     background: oklch(from var(--bg) l c h / 0.95);
     backdrop-filter: blur(10px);
+
     z-index: 1000;
     position: sticky;
     top: 0;
@@ -153,6 +213,7 @@
       grid-auto-flow: column;
       padding: 0;
       margin: 0;
+
       li {
         list-style: none;
 
@@ -256,5 +317,10 @@
         }
       }
     }
+  }
+
+  .btns {
+    display: flex;
+    gap: 1rem;
   }
 </style>

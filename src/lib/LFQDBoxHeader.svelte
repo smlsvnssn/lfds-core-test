@@ -3,7 +3,7 @@
 </script>
 
 <div class="boxHeader">
-  <h4>{@render children()}</h4>
+  <h4>{@render children?.()}</h4>
 </div>
 
 <style>

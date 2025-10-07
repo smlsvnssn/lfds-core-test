@@ -6,6 +6,8 @@
   import LFQDBoxFooter from '$lib/LFQDBoxFooter.svelte'
   import LFQDRow from '$lib/LFQDRow.svelte'
   import LFQDLink from '$lib/LFQDLink.svelte'
+  import LFQDLayout from '$lib/LFQDLayout.svelte'
+  import LFQDLayoutArea from '$lib/LFQDLayoutArea.svelte'
 
   import lörem from 'loerem'
   import * as ö from 'ouml'
@@ -14,7 +16,6 @@
 
   import { pushState } from '$app/navigation'
   import { page } from '$app/state'
-  import LFQDLayout from '$lib/LFQDLayout.svelte'
 
   const closeSheet = () => {
     pushState(``, {
@@ -104,6 +105,16 @@
   ]
 </script>
 
+<LFQDLayout type="header">
+    <LFQDBox>
+      <header>
+        <lfui-icon icon-id="rabbit" size="72"></lfui-icon>
+
+        <h1>Ditt sparande</h1>
+      </header>
+    </LFQDBox>
+</LFQDLayout>
+
 <LFQDLayout>
   <LFQDBox>
     <LFQDBoxHeader>Mina konton</LFQDBoxHeader>
@@ -183,3 +194,47 @@
 </LFQDLayout>
 
 <Sheet state={page.state} render={renderSheet} close={closeSheet}></Sheet>
+
+<style>
+  header {
+    display: grid;
+    gap: 1.5rem;
+    place-items: center;
+    padding: 5rem 3.5rem 3.5rem;
+    @media (width < 30rem) {
+      gap: 1rem;
+      padding: 3rem 1rem 1.5rem;
+    }
+  }
+
+  h1 {
+    font-family: var(--lfds-typography-font-family-lf);
+    font-weight: var(--lfds-typography-weight-medium);
+    color: var(--lfds-semantic-text-brand-primary);
+    font-size: 2rem;
+    margin: 0%;
+
+    @media (width < 30rem) {
+      font-size: 1.875rem;
+    }
+  }
+
+  h2 {
+    font-family: var(--lfds-typography-font-family-ibm);
+    font-weight: var(--lfds-typography-weight-semibold);
+    color: var(--lfds-semantic-text-brand-primary);
+    font-size: 1rem;
+    margin: 0%;
+
+    /* @media (width < 30rem) {
+      font-size: 1.25rem;
+    } */
+  }
+
+  p {
+    font-size: 1.125rem;
+    @media (width < 30rem) {
+      font-size: 1rem;
+    }
+  }
+</style>

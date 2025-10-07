@@ -2,8 +2,8 @@
   let { children } = $props()
 </script>
 
-<div class=padding>
-  {@render children()}
+<div class="padding">
+  {@render children?.()}
 </div>
 
 <style>

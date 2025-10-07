@@ -35,17 +35,17 @@
       { path: '/', icon: 'house', name: 'Start' },
       { path: '/rows', icon: 'savings', name: 'Spara' },
       //´{ path: '/bonus', icon: 'cup', name: 'Bonus' },
-      { path: '/more', icon: 'umbrella', name: 'Försäkring' },
+      { path: '/forsakring', icon: 'umbrella', name: 'Försäkring' },
       { path: '/layout', icon: 'more-horizontal', name: 'Mer' },
     ]
   : [
       { path: '/', icon: 'house', name: 'Start' },
+      { path: '/konton', icon: 'card', name: 'Konton och kort' },
       { path: '/rows', icon: 'savings', name: 'Spara' },
+      { path: '/lan', icon: 'mortgage', name: 'Lån' },
       //´{ path: '/bonus', icon: 'cup', name: 'Bonus' },
-      { path: '/more', icon: 'umbrella', name: 'Försäkring' },
-      { path: '/bonus', icon: 'card', name: 'Konton och kort' },
-      { path: '/more', icon: 'mortgage', name: 'Lån' },
-      { path: '/more', icon: 'pension', name: 'Pension' },
+      { path: '/forsakring', icon: 'umbrella', name: 'Försäkring' },
+      { path: '/pension', icon: 'pension', name: 'Pension' },
       { path: '/layout', icon: 'more-horizontal', name: 'Mer' },
     ]}
 ></LFQDMainNav>
