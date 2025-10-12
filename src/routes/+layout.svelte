@@ -1,6 +1,7 @@
 <script>
-  import LFQDMainNav from '../lib/LFQDMainNav.svelte'
+  import LFQDMainNav from './MainNav.svelte'
   import { onNavigate } from '$app/navigation'
+  import { isSmallScreen } from '$lib/utils.svelte'
 
   import favicon from '$lib/assets/bullseye.png'
 
@@ -11,16 +12,17 @@
 
   let innerWidth = $state(0)
 
-  onNavigate(navigation => {
-    if (!document.startViewTransition) return
-
-    return new Promise(resolve => {
-      document.startViewTransition(async () => {
-        resolve()
-        await navigation.complete
+  // Basic global view transition
+  onNavigate(navigation =>
+    document.startViewTransition ?
+      new Promise(resolve => {
+        document.startViewTransition(async () => {
+          resolve()
+          await navigation.complete
+        })
       })
-    })
-  })
+    : undefined,
+  )
 </script>
 
 <svelte:head>
@@ -30,23 +32,23 @@
 <svelte:window bind:innerWidth />
 
 <LFQDMainNav
-  links={innerWidth < 16 * 60 ?
+  links={isSmallScreen(innerWidth) ?
     [
       { path: '/', icon: 'house', name: 'Start' },
-      { path: '/rows', icon: 'savings', name: 'Spara' },
+      { path: '/spara', icon: 'savings', name: 'Spara' },
       //´{ path: '/bonus', icon: 'cup', name: 'Bonus' },
       { path: '/forsakring', icon: 'umbrella', name: 'Försäkring' },
-      { path: '/layout', icon: 'more-horizontal', name: 'Mer' },
+      { path: '/mer', icon: 'more-horizontal', name: 'Mer' },
     ]
   : [
       { path: '/', icon: 'house', name: 'Start' },
       { path: '/konton', icon: 'card', name: 'Konton och kort' },
-      { path: '/rows', icon: 'savings', name: 'Spara' },
+      { path: '/spara', icon: 'savings', name: 'Spara' },
       { path: '/lan', icon: 'mortgage', name: 'Lån' },
       //´{ path: '/bonus', icon: 'cup', name: 'Bonus' },
       { path: '/forsakring', icon: 'umbrella', name: 'Försäkring' },
       { path: '/pension', icon: 'pension', name: 'Pension' },
-      { path: '/layout', icon: 'more-horizontal', name: 'Mer' },
+      { path: '/mer', icon: 'more-horizontal', name: 'Mer' },
     ]}
 ></LFQDMainNav>
 
@@ -54,7 +56,11 @@
   {@render children?.()}
 </main>
 
-<footer>här kan det vara en footer om man vill</footer>
+<footer>
+  <a href="https://github.com/smlsvnssn/lfds-core-test"
+    >https://github.com/smlsvnssn/lfds-core-test</a
+  >
+</footer>
 
 <style>
   :global(:root) {

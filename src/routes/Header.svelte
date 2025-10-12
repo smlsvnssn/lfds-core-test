@@ -38,8 +38,12 @@
       place-self: end center;
       width: 100%;
       max-width: var(--wider);
-      padding: 3rem 1.5rem;
+      padding: 3rem 1rem;
       box-sizing: border-box;
+      
+      @media (width < 85rem) {
+        padding: 3rem 1.5rem;
+      }
 
       @media (width < 30rem) {
         padding: 6rem 1rem 1rem;

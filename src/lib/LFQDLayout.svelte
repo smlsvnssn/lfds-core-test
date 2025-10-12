@@ -1,5 +1,13 @@
 <script>
   import MiniMasonry from 'minimasonry'
+
+  /**
+   * @import { Snippet } from 'svelte'
+   * @type {{
+   *   type?: 'onecol' | 'twocol' | 'header' | 'twocol-with-header' | 'threecol' | 'threecol-with-header' | 'masonry'
+   *   children?: Snippet
+   * }}
+   */
   let { type = 'onecol', children } = $props()
 
   let el, masonry
@@ -7,19 +15,19 @@
   $effect(() => {
     // TODO: super unreliable masonry lib, use another
     if (type == 'masonry') {
-      let s = {
+      let settings = {
         container: el,
         baseWidth: 350,
         gutter: 24,
         surroundingGutter: false,
       }
-      masonry = new MiniMasonry(s)
+      masonry = new MiniMasonry(settings)
 
       // Ugliest hack ever.
       requestAnimationFrame(() => {
-        masonry.layout(s)
+        masonry.layout(settings)
         setTimeout(() => {
-          masonry.layout(s)
+          masonry.layout(settings)
         }, 100)
       })
     } else masonry?.destroy()
@@ -129,23 +137,23 @@
       }
     }
 
-    :global(.layout-area) {
+    :global(> .layout-area) {
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
     }
 
-    :global(.aside) {
+    :global(> .aside) {
       grid-area: aside;
     }
-    :global(.main) {
+    :global(> .main) {
       grid-area: main;
     }
-    :global(.secondary) {
+    :global(> .secondary) {
       /* padding-top: 6rem; */
       grid-area: secondary;
     }
-    :global(.header) {
+    :global(> .header) {
       grid-area: header;
     }
   }

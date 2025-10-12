@@ -1,4 +1,12 @@
 <script>
+  /**
+   * @import { Snippet } from 'svelte'
+   * @type {{
+   *   href?: string
+   *   rel?: string
+   *   children?: Snippet
+   * }}
+   */
   let { href, rel, children } = $props()
 </script>
 

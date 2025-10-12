@@ -1,14 +1,25 @@
 <script>
-  import LFQDLogo from './LFQDLogo.svelte'
+  import LFQDLogo from '../lib/LFQDLogo.svelte'
+  import LFQDDialog from '../lib/LFQDDialog.svelte'
   import { page } from '$app/state'
-  import LFQDDialog from './LFQDDialog.svelte'
+  import { Enum } from 'ouml'
+  import Profile from './Profile.svelte'
 
   let { links = [] } = $props()
 
+  const sheets = Enum({
+    readmessage: Symbol('readmessage'),
+    writemessage: Symbol('writemessage'),
+    profile: Symbol('profile'),
+  })
+
   let sheetIsOpen = $state(false)
   let sheetHeading = $state('')
+  let sheetType = $state()
 
-  const openSheet = heading => ((sheetIsOpen = true), (sheetHeading = heading))
+  const openSheet = (heading, type) => (
+    (sheetIsOpen = true), (sheetHeading = heading), (sheetType = type)
+  )
   const closeSheet = () => (sheetIsOpen = false)
 
   let dialog = $state()
@@ -25,13 +36,12 @@
       <li>
         <a
           href="#"
-          onclick={() => openSheet('Dina meddelanden')}
-          onkeydown={e => e.key == 'Enter' && openSheet('Dina meddelanden')}
+          onclick={() => openSheet('Dina meddelanden', sheets.readmessage)}
+          onkeydown={e =>
+            e.key == 'Enter' &&
+            openSheet('Dina meddelanden', sheets.readmessage)}
         >
-          <lfui-icon
-            icon-id="envelope"
-            size="24"
-            color="var(--lfds-semantic-icon-primary)"
+          <lfui-icon icon-id="envelope" size="24" color="var(--iconClr)"
           ></lfui-icon>
           <span>Meddelanden</span>
         </a>
@@ -39,14 +49,13 @@
       <li>
         <a
           href="#"
-          onclick={() => openSheet('Skriv nytt meddelande')}
+          onclick={() =>
+            openSheet('Skriv nytt meddelande', sheets.writemessage)}
           onkeydown={e =>
-            e.key == 'Enter' && openSheet('Skriv nytt meddelande')}
+            e.key == 'Enter' &&
+            openSheet('Skriv nytt meddelande', sheets.writemessage)}
         >
-          <lfui-icon
-            icon-id="edit"
-            size="24"
-            color="var(--lfds-semantic-icon-primary)"
+          <lfui-icon icon-id="edit" size="24" color="var(--iconClr)"
           ></lfui-icon>
           <span>Skriv nytt</span>
         </a>
@@ -54,13 +63,11 @@
       <li>
         <a
           href="#"
-          onclick={() => openSheet('Profil')}
-          onkeydown={e => e.key == 'Enter' && openSheet('Profil')}
+          onclick={() => openSheet('Profil', sheets.profile)}
+          onkeydown={e =>
+            e.key == 'Enter' && openSheet('Profil', sheets.profile)}
         >
-          <lfui-icon
-            icon-id="user"
-            size="24"
-            color="var(--lfds-semantic-icon-primary)"
+          <lfui-icon icon-id="user" size="24" color="var(--iconClr)"
           ></lfui-icon>
           <span>Profil</span>
         </a>
@@ -71,10 +78,7 @@
           onclick={openDialog}
           onkeydown={e => e.key == 'Enter' && openDialog()}
         >
-          <lfui-icon
-            icon-id="logout"
-            size="24"
-            color="var(--lfds-semantic-icon-primary)"
+          <lfui-icon icon-id="logout" size="24" color="var(--iconClr)"
           ></lfui-icon>
           <span>Logga ut</span>
         </a>
@@ -88,12 +92,7 @@
     {#each links as { path, icon, name }}
       <li>
         <a href={path} class={path == page.url.pathname ? 'selected' : ''}>
-          <lfui-icon
-            icon-id={icon}
-            size="24"
-            color="var(--lfds-semantic-icon-{path == page.url.pathname ?
-              'selected'
-            : 'secondary'})"
+          <lfui-icon icon-id={icon} size="24" color="var(--iconClr)"
           ></lfui-icon>
           {name}
         </a>
@@ -107,17 +106,6 @@
   <p>Vill du logga ut?</p>
 
   <div class="btns">
-    <lfui-button
-      type="button"
-      role="button"
-      tabindex="0"
-      variant="primary"
-      onclick={() => dialog.close()}
-      onkeydown={e => e.key == 'Enter' && dialog.close()}
-    >
-      Stäng
-    </lfui-button>
-
     <lfui-button
       type="button"
       role="button"
@@ -137,18 +125,7 @@
       onclick={() => dialog.close()}
       onkeydown={e => e.key == 'Enter' && dialog.close()}
     >
-      Avsluta
-    </lfui-button>
-
-    <lfui-button
-      type="button"
-      role="button"
-      tabindex="0"
-      variant="tertiary"
-      onclick={() => dialog.close()}
-      onkeydown={e => e.key == 'Enter' && dialog.close()}
-    >
-      Ja.
+      Ja
     </lfui-button>
   </div>
 </LFQDDialog>
@@ -160,7 +137,11 @@
   height=""
   heading={sheetHeading || 'Hej.'}
 >
-  ...
+  {#if sheetType == sheets.profile}
+    <Profile />
+  {:else}
+    ...
+  {/if}
 </lfui-dialog-side-sheet>
 
 <style>
@@ -230,6 +211,7 @@
           border-bottom: 1px solid var(--lfds-semantic-border-secondary);
 
           color: var(--lfds-semantic-text-secondary);
+          --iconClr: var(--lfds-semantic-icon-secondary);
 
           @media (width < 30rem) {
             min-width: unset;
@@ -239,11 +221,13 @@
             background: var(--lfds-semantic-background-hover);
             border-bottom-color: var(--lfds-semantic-border-hover);
             color: var(--lfds-semantic-text-hover);
+            color: var(--lfds-semantic-text-link-pressed);
+            --iconClr: var(--lfds-semantic-icon-primary);
           }
-
           &.selected {
             border-bottom-color: var(--lfds-semantic-border-selected);
             color: var(--lfds-semantic-text-selected);
+            --iconClr: var(--lfds-semantic-icon-primary);
           }
         }
       }
@@ -307,6 +291,7 @@
 
       a {
         color: var(--lfds-semantic-text-link);
+        --iconClr: var(--lfds-semantic-icon-primary);
       }
       @media (width < 30rem) {
         a {

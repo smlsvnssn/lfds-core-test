@@ -7,10 +7,10 @@
   import LFQDBoxFooter from '$lib/LFQDBoxFooter.svelte'
   import LFQDRow from '$lib/LFQDRow.svelte'
   import LFQDLink from '$lib/LFQDLink.svelte'
+  import LFQDBadge from '$lib/LFQDBadge.svelte'
   import LFQDLayout from '$lib/LFQDLayout.svelte'
   import LFQDLayoutArea from '$lib/LFQDLayoutArea.svelte'
-
-  import mums from './mums.svg'
+  import LFQDRowProgressBar from '$lib/LFQDRowProgressBar.svelte'
 
   let sheetIsOpen = $state(false)
 
@@ -51,22 +51,52 @@
 
 <LFQDLayout type="masonry">
   <LFQDBox>
-    <header>
-      <img src={mums} alt="" />
+    <LFQDBoxHeader>Att göra just nu</LFQDBoxHeader>
 
-      <h1>LF:s Designade Småbitar</h1>
-      <p>
-        Här hittar du tester av allt mums som för tillfället finns i LFDS web,
-        samt tester av mums som ännu inte finns i LFDS. Repo: <a
-          href="https://github.com/smlsvnssn/lfds-core-test"
-          >https://github.com/smlsvnssn/lfds-core-test</a
-        >
-      </p>
-    </header>
+    <LFQDRow
+      titleLeft="Du har ett digitalt möte om 12 minuter"
+      subtitleLeft="Anslut till mötet"
+      icon="calendar"
+    ></LFQDRow>
+
+    <LFQDRow titleLeft="Du har nya e-fakturor">
+      {#snippet icon()}
+        <LFQDBadge>3</LFQDBadge>
+      {/snippet}
+    </LFQDRow>
+
+    <LFQDRow
+      titleLeft="Du har ett nytt dokument"
+      subtitleLeft="Försäkringsavtal Villahemförsäkring"
+    >
+      {#snippet icon()}
+        <LFQDBadge type="secondary">1</LFQDBadge>
+      {/snippet}
+    </LFQDRow>
+
+    
+
+    <LFQDRowProgressBar
+      titleLeft="Ditt skadeärende"
+      subtitleLeft="Komplettera med uppgifter"
+      titleRight="Pågående"
+      percent="33"
+    ></LFQDRowProgressBar>
   </LFQDBox>
 
   <LFQDBox>
-    <LFQDBoxHeader>Mina försäkringar</LFQDBoxHeader>
+    <div class="highlight placeholder">
+      <p>Viktig sak vi vill påminna om.</p>
+    </div>
+  </LFQDBox>
+
+  <LFQDBox>
+    <LFQDBoxHeader>Betala och överföra</LFQDBoxHeader>
+    <div class="placeholder"></div>
+  </LFQDBox>
+
+  <LFQDBox>
+    <LFQDBoxHeader>Försäkringar</LFQDBoxHeader>
 
     {#each försäkringsdata as item}
       <LFQDRow {...item} onclick={() => renderSheet(item)} />
@@ -81,235 +111,37 @@
   </LFQDBox>
 
   <LFQDBox>
-    <LFQDPadding>
-      <lfui-button-shortcut href="/rows" label="Tester rows" icon-id="money"
-      ></lfui-button-shortcut>
-
-      <lfui-button-shortcut href="/layout" label="Bonusskiss" icon-id="cup"
-      ></lfui-button-shortcut>
-
-      <lfui-button-shortcut
-        href="/layout"
-        label="Tester layout"
-        icon-id="picture"
-      ></lfui-button-shortcut>
-    </LFQDPadding>
+    <LFQDBoxHeader>Bolån</LFQDBoxHeader>
+    <div class="placeholder"></div>
   </LFQDBox>
 
   <LFQDBox>
-    <LFQDPadding>
-      <lfui-button-shortcut
-        href="/rows"
-        label="Tester rows"
-        layout="vertical"
-        icon-id="money"
-      ></lfui-button-shortcut>
-
-      <lfui-button-shortcut
-        href="/layout"
-        label="Bonusskiss"
-        layout="vertical"
-        icon-id="cup"
-      ></lfui-button-shortcut>
-
-      <lfui-button-shortcut
-        href="/layout"
-        label="Tester layout"
-        layout="vertical"
-        icon-id="picture"
-      ></lfui-button-shortcut>
-    </LFQDPadding>
+    <LFQDBoxHeader>Kommande transaktioner</LFQDBoxHeader>
+    <div class="placeholder"></div>
   </LFQDBox>
 
   <LFQDBox>
-    <LFQDPadding>
-      <lfui-typography-heading level="h1">H1</lfui-typography-heading>
-      <lfui-typography-heading level="h2">H2</lfui-typography-heading>
-      <lfui-typography-heading level="h3">H3</lfui-typography-heading>
-      <lfui-typography-heading level="h4">H4</lfui-typography-heading>
-    </LFQDPadding>
+    <LFQDBoxHeader>Pension</LFQDBoxHeader>
+    <div class="placeholder"></div>
   </LFQDBox>
 
   <LFQDBox>
-    <LFQDPadding>
-      <div style="display: flex; gap: 2rem; align-items: center;">
-        <lfui-icon icon-id="placeholder" size="40"></lfui-icon>
-        <lfui-icon icon-id="arrow-right" size="32"></lfui-icon>
-        <lfui-icon icon-id="payment-mc" size="48"></lfui-icon>
-      </div>
-    </LFQDPadding>
+    <LFQDBoxHeader>Sparande</LFQDBoxHeader>
+    <div class="placeholder"></div>
   </LFQDBox>
 
   <LFQDBox>
-    <LFQDPadding>
-      <form class="cards">
-        <lfui-form-radio-card
-          name="animal"
-          icon-id="horse"
-          checked
-          id="example-radio-card"
-          label="Häst"
-          description="Vår bästa vän"
-        >
-        </lfui-form-radio-card>
-
-        <lfui-form-radio-card
-          name="animal"
-          icon-id="dog"
-          id="example-radio-card"
-          label="Hund"
-          description="Vår näst bästa vän"
-        >
-        </lfui-form-radio-card>
-
-        <lfui-form-radio-card
-          name="animal"
-          icon-id="cat"
-          id="example-radio-card"
-          label="Lejon"
-          description="Vår tertiära bästa vän"
-        >
-        </lfui-form-radio-card>
-
-        <lfui-form-radio-card
-          name="animal"
-          icon-id="fish"
-          id="example-radio-card"
-          label="Lax"
-          description="Också en bra vän"
-        >
-          Vad händer här?
-        </lfui-form-radio-card>
-
-        <lfui-form-radio-card
-          name="animal"
-          icon-id="chicken"
-          id="example-radio-card"
-          label="Höna"
-          description="Medioker som vän betraktad"
-        >
-        </lfui-form-radio-card>
-
-        <lfui-form-radio-card
-          name="animal"
-          icon-id="cow"
-          id="example-radio-card"
-          label="Ko"
-          description="Ett helt ok djur"
-        >
-        </lfui-form-radio-card>
-      </form>
-    </LFQDPadding>
-  </LFQDBox>
-
-  <LFQDBox>
-    <LFQDPadding>
-      <lfui-form-checkbox-card
-        icon-id="sustainability"
-        id="checkbox-card-1"
-        label="Hållbarhet"
-        description="För framtiden"
-      ></lfui-form-checkbox-card>
-
-      <form>
-        <lfui-form-checkbox id="demo-example-checkbox-1" label="Stockholm">
-        </lfui-form-checkbox>
-        <lfui-form-checkbox id="demo-example-checkbox-2" label="Göteborg">
-        </lfui-form-checkbox>
-        <lfui-form-checkbox id="demo-example-checkbox-2" label="Borås">
-        </lfui-form-checkbox>
-      </form>
-
-      <form style="display: grid; width: 100%; ">
-        <lfui-form-radio name="betalsatt" checked id="example" label="E-faktura"
-        ></lfui-form-radio>
-
-        <lfui-form-radio name="betalsatt" id="example" label="Autogiro"
-        ></lfui-form-radio>
-      </form>
-
-      <lfui-form-input
-        label="Personnummer"
-        type="number"
-        help-text="12 siffror (ÅÅÅÅMMDDNNNN)"
-      ></lfui-form-input>
-
-      <lfui-form-input
-        label="Vilken är din favoritkändis?"
-        help-text="Det kan vara en nu levande eller död kändis, det spelar ingen roll."
-      ></lfui-form-input>
-    </LFQDPadding>
-  </LFQDBox>
-
-  <LFQDBox>
-    <LFQDPadding>
-      <lfui-button type="button" onclick={openSheet}>
-        Open Side Sheet
-      </lfui-button>
-
-      <lfui-button type="button" variant="secondary" onclick={openSheet}>
-        Open Side Sheet
-      </lfui-button>
-
-      <lfui-button type="button" variant="tertiary" onclick={openSheet}>
-        Open Side Sheet
-        <lfui-spinner slot="trailing" color="currentcolor" size="20"
-        ></lfui-spinner>
-      </lfui-button>
-
-      <lfui-dialog-side-sheet
-        size=""
-        open={sheetIsOpen}
-        onclose={closeSheet}
-        height=""
-        heading="Side sheet header"
-      >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      </lfui-dialog-side-sheet>
-    </LFQDPadding>
-  </LFQDBox>
-
-  <lfui-notification-alert heading="Optional title.">
-    Provide users with non-disruptive feedback. <lfui-button
-      slot="button"
-      variant="secondary"
-      size="small">Button</lfui-button
-    >
-  </lfui-notification-alert>
-
-  <LFQDBox>
-    <LFQDPadding>
-      <lfui-notification-alert heading="Optional title.">
-        Provide users with non-disruptive feedback. <lfui-button
-          slot="button"
-          variant="secondary"
-          size="small">Button</lfui-button
-        >
-      </lfui-notification-alert>
-    </LFQDPadding>
+    <div class="highlight placeholder">
+      <p>Guldkund? Guldkund!</p>
+      <lfui-button>Månadsspara</lfui-button>
+    </div>
   </LFQDBox>
 </LFQDLayout>
 
-<LFQDLayout type="threecol-with-header">
-  <LFQDLayoutArea type="header">
-    <LFQDBox>
-      <header>
-        <lfui-icon icon-id="chicken" size="72"></lfui-icon>
-        <h1>Här kan det vara en annan layout om man vill</h1>
-
-        <!-- <h1 style='font-size: 5rem'>layout</h1>
-        <h1 style='font-size: 5rem'>Just say nay boy</h1>
-        <h1 style='font-size: 5rem'>div tid</h1>
-        <h1 style='font-size: 5rem'>vid liv</h1>
-        <h1 style='font-size: 5rem'>ek ir</h1>
-        <h1 style='font-size: 5rem'>syfte</h1>
-        <h1 style='font-size: 5rem'>gi gj gl</h1>
-        <h1 style='font-size: 5rem'>gjort glass</h1>
-        <h1 style='font-size: 5rem'>vc ve</h1>
-        <h1 style='font-size: 5rem'>ät räv</h1> -->
-      </header>
-    </LFQDBox>
-  </LFQDLayoutArea>
+<LFQDLayout type="header">
+  <LFQDBox>
+    <header><p>Här kan kommunikationsytor ligga</p></header>
+  </LFQDBox>
 </LFQDLayout>
 
 <style>
@@ -322,6 +154,23 @@
       gap: 1rem;
       padding: 3rem 1rem 1.5rem;
     }
+  }
+
+  .placeholder {
+    height: 10rem;
+    background: var(--lfds-semantic-background-secondary);
+    padding: 1rem;
+    display: grid;
+    place-content: center;
+    place-items: center;
+    gap: 1rem;
+    p {
+      font-size: 0.875rem;
+    }
+  }
+
+  .highlight {
+    background: var(--lfds-semantic-background-highlight-primary);
   }
 
   form.cards {

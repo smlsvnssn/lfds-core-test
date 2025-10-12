@@ -1,24 +1,27 @@
 <script>
-  import { isFunc } from 'ouml'
+  import LFQDProgressBar from './LFQDProgressBar.svelte'
   /**
-   * @import { Snippet } from 'svelte'
+   * @import { MouseEventHandler } from 'svelte/elements'
    * @type {{
-   *   titleLeft: string
-   *   subtitleLeft?: string
-   *   titleRight?: string
-   *   subtitleRight?: string
-   *   icon?: string | Snippet
-   *   onclick?: function
-   *   chevron?: boolean
+   *   titleLeft: string,
+   *   subtitleLeft?: string,
+   *   titleRight?: string,
+   *   subtitleRight?: string,
+   *   percent: number,
+   *   type?: "primary" | "secondary" | "tertiary" | "success" | "error" | "info" | "warning"
+   *   onclick?: MouseEventHandler<T>,
+   *   chevron?: boolean,
    * }}
    */
+
   let {
     titleLeft = 'Title Left',
     subtitleLeft = '',
     titleRight = '',
     subtitleRight = '',
-    icon = 'placeholder',
+    percent = 50,
     onclick = v => v,
+    type,
     chevron = true,
   } = $props()
 
@@ -34,22 +37,16 @@
   role="link"
   onkeydown={e => e.key == 'Enter' && onclick()}
 >
-  {#if isFunc(icon)}
-    {@render icon()}
-  {:else}
-    <lfui-icon icon-id={icon} size="24"></lfui-icon>
-  {/if}
+  <h5 class="left">{titleLeft}</h5>
+  <p class="left">{subtitleLeft}</p>
 
-  <div class="left">
-    <h5>{titleLeft}</h5>
-    <p>{subtitleLeft}</p>
+  <div class="progress">
+    <LFQDProgressBar {percent} {type} />
   </div>
 
   {#if hasRightCol}
-    <div class="right">
-      <h5>{titleRight}</h5>
-      <p>{subtitleRight}</p>
-    </div>
+    <h5 class="right">{titleRight}</h5>
+    <p class="right">{subtitleRight}</p>
   {/if}
 
   {#if chevron === true}
@@ -60,13 +57,18 @@
 <style>
   .row {
     display: grid;
-    grid: auto-flow / 1.5rem 1fr 1fr 1.5rem;
+    grid:
+      'titleLeft    titleRight    chevron'
+      'progress     progress      chevron'
+      'subtitleLeft subtitleRight chevron'
+      / 1fr 1fr 1.5rem;
+
     place-items: center start;
     font-family: var(--lfds-typography-font-family-ibm);
     font-size: 0.875rem;
     cursor: pointer;
 
-    gap: 0.75rem;
+    gap: 0.25rem 0.75rem;
     padding: 1rem 0.75rem;
 
     @media (width < 30rem) {
@@ -81,29 +83,49 @@
     background: transparent;
 
     &.noChevron {
-      grid: auto-flow / 1.5rem 1fr 1fr;
+      grid:
+        'titleLeft    titleRight   '
+        'progress     progress     '
+        'subtitleLeft subtitleRight'
+        / 1fr 1fr;
+
       &.noRightCol {
-        grid: auto-flow / 1.5rem 1fr;
+        grid:
+          'titleLeft    '
+          'progress     '
+          'subtitleLeft '
+          / 1fr;
       }
     }
     &.noRightCol {
-      grid: auto-flow / 1.5rem 1fr 1.5rem;
+      grid:
+        'titleLeft    chevron'
+        'progress     chevron'
+        'subtitleLeft chevron'
+        / 1fr 1.5rem;
     }
 
     h5 {
       font-size: 1rem;
       font-weight: var(--lfds-typography-weight-semibold);
       margin: 0;
+      &.left {
+        font-weight: var(--lfds-typography-weight-regular);
+        grid-area: titleLeft;
+      }
+      &.right {
+        grid-area: titleRight;
+      }
     }
     p {
       margin: 0;
       font-size: 0.875rem;
       color: var(--lfds-semantic-text-secondary);
-    }
-
-    .left {
-      h5 {
-        font-weight: var(--lfds-typography-weight-regular);
+      &.left {
+        grid-area: subtitleLeft;
+      }
+      &.right {
+        grid-area: subtitleRight;
       }
     }
 
@@ -112,7 +134,13 @@
       text-align: end;
     }
 
+    .progress {
+      width: 100%;
+      grid-area: progress;
+    }
+
     lfui-icon[icon-id='chevron-right'] {
+      grid-area: chevron;
       transition: all 0.3s;
     }
 

@@ -1,0 +1,1 @@
+export const isSmallScreen = innerWidth => innerWidth < 16 * 60

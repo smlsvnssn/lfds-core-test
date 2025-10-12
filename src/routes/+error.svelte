@@ -1,8 +1,6 @@
 <script>
   import LFQDBox from '$lib/LFQDBox.svelte'
 
-  import mums from './mums.svg'
-
   import { page } from '$app/state'
   import LFQDLayout from '$lib/LFQDLayout.svelte'
 </script>

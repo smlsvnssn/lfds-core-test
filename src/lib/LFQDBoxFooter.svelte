@@ -1,4 +1,11 @@
 <script>
+  /**
+   * @import { Snippet } from 'svelte'
+   * @type {{
+   *   padEnd?: boolean,
+   *   children?: Snippet
+   * }}
+   */
   let { children, padEnd } = $props()
 </script>
 

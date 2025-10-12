@@ -10,6 +10,6 @@
   .padding {
     padding: 1rem;
     display: grid;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 </style>

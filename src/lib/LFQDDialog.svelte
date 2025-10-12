@@ -1,7 +1,13 @@
 <script>
+  /**
+   * @import { Snippet } from 'svelte'
+   * @type {{
+   *   dialog: HTMLElement
+   *   open?: boolean
+   *   children?: Snippet
+   * }}
+   */
   let { dialog = $bindable(), open = false, children } = $props()
-  $inspect(dialog.open)
-  $effect(() => console.log(dialog, dialog.open))
 </script>
 
 <dialog bind:this={dialog} closedby="any" {open}>
