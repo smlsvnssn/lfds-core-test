@@ -1,9 +1,10 @@
 <script>
   import LFQDBox from '$lib/LFQDBox.svelte'
   import LFQDLayout from '$lib/LFQDLayout.svelte'
-  import LFQDPadding from '$lib/LFQDPadding.svelte'
+  import LFQDBadge from '$lib/LFQDBadge.svelte'
   import LFQDRow from '$lib/LFQDRow.svelte'
   import LFQDSectionHeader from '$lib/LFQDSectionHeader.svelte'
+  import { goto } from '$app/navigation'
 </script>
 
 <LFQDLayout>
@@ -15,8 +16,17 @@
     <LFQDRow titleLeft="Kontaktuppgifter" icon="user-glow"></LFQDRow>
     <LFQDRow titleLeft="Konto för in- och utbetalning" icon="payment"></LFQDRow>
     <LFQDRow titleLeft="Kundkännedom" icon="balance"></LFQDRow>
-    <LFQDRow titleLeft="Förmåner" icon="cup"></LFQDRow>
+    <LFQDRow
+      titleLeft="Bonus och förmåner"
+      icon="cup"
+      onclick={() => goto('/mer/bonus')}
+    ></LFQDRow>
     <LFQDRow titleLeft="Avtal och dokument" icon="documents"></LFQDRow>
+    {#if true}
+      <span class="badge">
+        <LFQDBadge size="circle"></LFQDBadge>
+      </span>
+    {/if}
   </LFQDBox>
 
   <LFQDSectionHeader padding={false} size="medium">
@@ -25,6 +35,7 @@
 
   <LFQDBox>
     <LFQDRow titleLeft="BankID" icon="placeholder"></LFQDRow>
+
     <LFQDRow titleLeft="Swish" icon="placeholder"></LFQDRow>
     <LFQDRow titleLeft="Bedrägeriskydd" icon="shield"></LFQDRow>
     <LFQDRow titleLeft="(App) Snabbsaldo & snabböverföring" icon="transfer"
@@ -44,30 +55,14 @@
     <LFQDRow titleLeft="Utseende (App (och web?))" icon="sun"></LFQDRow>
   </LFQDBox>
 </LFQDLayout>
-<!-- 
- Profil
-Karin Svensson
 
-DINA UPPGIFTER
-Kontaktuppgifter
-Konto för in- och utbetalning
-Kundkännedom
-Förmåner
-Avtal och dokument
-
-BANKTJÄNSTER
-BankID
-Swish
-Bedrägeriskydd
-*Snabbsaldo & snabböverföring
-
-INSTÄLLNINGAR
-Nyhetsbrev och andra utskick
-Notiser 
-Samtycken
-(E-fakturor)?
-Hur vill du ha din post?(Ta emot dokument)
-
-*Utseende
-*Datainsamling i appen 
--->
+<style>
+  .badge {
+    position: relative;
+    display: block;
+    width: 0;
+    height: 0;
+    top: -3.25rem;
+    left: 2rem;
+  }
+</style>

@@ -90,6 +90,11 @@
     </div>
   </LFQDBox>
 
+<LFQDBox>
+    <LFQDBoxHeader>Konton och kort</LFQDBoxHeader>
+    <div class="placeholder"></div>
+  </LFQDBox>
+
   <LFQDBox>
     <LFQDBoxHeader>Betala och överföra</LFQDBoxHeader>
     <div class="placeholder"></div>

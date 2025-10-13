@@ -55,7 +55,7 @@
     grid-template-areas: 'main' 'aside' 'secondary';
 
     @media (width < 30rem) {
-      gap: 0.5rem;
+      gap: 0.5rem !important;
       grid-template-columns: 1fr;
       border-radius: 0;
     }

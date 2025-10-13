@@ -4,6 +4,7 @@
   import { page } from '$app/state'
   import { Enum } from 'ouml'
   import Profile from './Profile.svelte'
+  import LFQDBadge from '$lib/LFQDBadge.svelte'
 
   let { links = [] } = $props()
 
@@ -44,8 +45,14 @@
           <lfui-icon icon-id="envelope" size="24" color="var(--iconClr)"
           ></lfui-icon>
           <span>Meddelanden</span>
+          {#if true}
+            <span class="badge">
+              <LFQDBadge size="circle"></LFQDBadge>
+            </span>
+          {/if}
         </a>
       </li>
+
       <li>
         <a
           href="#"
@@ -60,6 +67,7 @@
           <span>Skriv nytt</span>
         </a>
       </li>
+
       <li>
         <a
           href="#"
@@ -70,8 +78,14 @@
           <lfui-icon icon-id="user" size="24" color="var(--iconClr)"
           ></lfui-icon>
           <span>Profil</span>
+          {#if true}
+            <span class="badge">
+              <LFQDBadge size="circle"></LFQDBadge>
+            </span>
+          {/if}
         </a>
       </li>
+
       <li>
         <a
           href="#"
@@ -205,6 +219,7 @@
           padding: 0.75rem;
           place-items: center;
           text-decoration: none;
+          position: relative;
 
           transition: all 0.3s;
 
@@ -228,6 +243,13 @@
             border-bottom-color: var(--lfds-semantic-border-selected);
             color: var(--lfds-semantic-text-selected);
             --iconClr: var(--lfds-semantic-icon-primary);
+          }
+
+          .badge {
+            position: absolute;
+            top: 0.5rem;
+            left: 50%;
+            translate: 0.4375rem;
           }
         }
       }
