@@ -11,6 +11,7 @@
   import LFQDLayout from '$lib/LFQDLayout.svelte'
   import LFQDLayoutArea from '$lib/LFQDLayoutArea.svelte'
   import LFQDRowProgressBar from '$lib/LFQDRowProgressBar.svelte'
+  import { random } from 'ouml'
 
   let sheetIsOpen = $state(false)
 
@@ -45,6 +46,9 @@
       icon: 'baby',
     },
   ]
+
+  let percent = $state(33)
+  const progressHasBeenMade = () => percent = (percent + random(33)) % 100;
 </script>
 
 <Header />
@@ -74,13 +78,12 @@
       {/snippet}
     </LFQDRow>
 
-    
-
     <LFQDRowProgressBar
       titleLeft="Ditt skadeärende"
       subtitleLeft="Komplettera med uppgifter"
       titleRight="Pågående"
-      percent="33"
+      onclick={progressHasBeenMade}
+      {percent}
     ></LFQDRowProgressBar>
   </LFQDBox>
 
@@ -90,7 +93,7 @@
     </div>
   </LFQDBox>
 
-<LFQDBox>
+  <LFQDBox>
     <LFQDBoxHeader>Konton och kort</LFQDBoxHeader>
     <div class="placeholder"></div>
   </LFQDBox>

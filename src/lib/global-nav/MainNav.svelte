@@ -1,6 +1,6 @@
 <script>
-  import LFQDLogo from '../lib/LFQDLogo.svelte'
-  import LFQDDialog from '../lib/LFQDDialog.svelte'
+  import LFQDLogo from './Logo.svelte'
+  import LFQDDialog from '../LFQDDialog.svelte'
   import { page } from '$app/state'
   import { Enum } from 'ouml'
   import Profile from './Profile.svelte'

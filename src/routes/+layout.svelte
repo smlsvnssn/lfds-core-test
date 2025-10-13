@@ -1,5 +1,5 @@
 <script>
-  import LFQDMainNav from './MainNav.svelte'
+  import LFQDMainNav from '../lib/global-nav/MainNav.svelte'
   import { onNavigate } from '$app/navigation'
   import { isSmallScreen } from '$lib/utils.svelte'
 
@@ -66,7 +66,7 @@
   :global(:root) {
     color-scheme: light dark;
   }
-
+  
   :global(body) {
     margin: 0;
     background: var(--lfds-semantic-background-primary);

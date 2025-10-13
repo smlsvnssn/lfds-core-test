@@ -38,7 +38,14 @@
   onkeydown={e => e.key == 'Enter' && onclick()}
 >
   <h5 class="left">{titleLeft}</h5>
-  <p class="left">{subtitleLeft}</p>
+  <p
+    class="left"
+    style={subtitleRight == '' ?
+      'grid-area: subtitleLeft / subtitleLeft / subtitleRight / subtitleRight'
+    : ''}
+  >
+    {subtitleLeft}
+  </p>
 
   <div class="progress">
     <LFQDProgressBar {percent} {type} />

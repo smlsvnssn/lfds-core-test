@@ -15,7 +15,7 @@
     --percent: 50%;
     width: 100%;
     height: 0.5rem;
-    background: var(--lfds-semantic-background-primary);
+    background: var(--lfds-semantic-background-tertiary);
     border-radius: var(--lfds-semantic-sizes-radius-md);
     overflow: hidden;
 
@@ -25,6 +25,7 @@
       height: 100%;
       width: var(--percent);
       border-radius: var(--lfds-semantic-sizes-radius-md);
+      transition: all .3s;
     }
 
     &.primary::after {

@@ -10,9 +10,7 @@
   let { href, rel, children } = $props()
 </script>
 
-<div>
-  <a {href} {rel}>{@render children?.()}</a>
-</div>
+<a {href} {rel}>{@render children?.()}</a>
 
 <style>
   a {

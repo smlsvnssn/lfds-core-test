@@ -20,6 +20,7 @@
         baseWidth: 350,
         gutter: 24,
         surroundingGutter: false,
+        ultimateGutter: 8
       }
       masonry = new MiniMasonry(settings)
 
