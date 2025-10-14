@@ -2,9 +2,9 @@
   let { children } = $props()
 </script>
 
-<div class="box">
+<article class="box">
   {@render children?.()}
-</div>
+</article>
 
 <style>
   .box {
@@ -12,7 +12,7 @@
     border-radius: var(--lfds-semantic-sizes-radius-md);
     background: var(--lfds-semantic-background-secondary);
 
-    /* box-shadow: 0 .125rem .125rem #00000005, 0 .25rem .5rem #00000003; */
+    box-shadow: var(--lfqd-box-shadow);
 
     @media (width < 30rem) {
       border-radius: 0;

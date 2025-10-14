@@ -36,9 +36,9 @@
   })
 </script>
 
-<div class="layout {type}" bind:this={el}>
+<section class="layout {type}" bind:this={el}>
   {@render children?.()}
-</div>
+</section>
 
 <style>
   .layout {

@@ -7,6 +7,7 @@
 
   import '@lansforsakringar/core-components'
   import '@lansforsakringar/core-components/index.css'
+  import '$lib/lfqd.css'
 
   let { children } = $props()
 
@@ -57,16 +58,16 @@
 </main>
 
 <footer>
-  <a href="https://github.com/smlsvnssn/lfds-core-test"
-    >https://github.com/smlsvnssn/lfds-core-test</a
-  >
+  <a href="https://github.com/smlsvnssn/lfds-core-test">
+    https://github.com/smlsvnssn/lfds-core-test
+  </a>
 </footer>
 
 <style>
   :global(:root) {
     color-scheme: light dark;
   }
-  
+
   :global(body) {
     margin: 0;
     background: var(--lfds-semantic-background-primary);
@@ -75,12 +76,14 @@
     main {
       display: grid;
       gap: 1.5rem;
-      margin: 1.5rem 1.5rem 10rem;
+      padding: 1.5rem 1.5rem 10rem;
+
       @media (width < 30rem) {
-        margin: 0 0 10rem;
+        padding: 0 0 10rem;
       }
     }
   }
+
   :global(p) {
     font-family: var(--lfds-typography-font-family-ibm);
     font-weight: var(--lfds-typography-weight-regular);
@@ -103,7 +106,7 @@
     font-size: 0.875rem;
     width: 100%;
     text-align: center;
-    margin: 5rem auto;
+    margin: 5rem auto 8rem;
     line-height: 1.5;
   }
 </style>

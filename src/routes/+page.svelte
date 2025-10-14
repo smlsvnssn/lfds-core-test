@@ -1,6 +1,6 @@
 <script>
   import Header from './Header.svelte'
-
+  import LFQDAmountHeader from '$lib/LFQDAmountHeader.svelte'
   import LFQDPadding from '$lib/LFQDPadding.svelte'
   import LFQDBox from '$lib/LFQDBox.svelte'
   import LFQDBoxHeader from '$lib/LFQDBoxHeader.svelte'
@@ -11,44 +11,20 @@
   import LFQDLayout from '$lib/LFQDLayout.svelte'
   import LFQDLayoutArea from '$lib/LFQDLayoutArea.svelte'
   import LFQDRowProgressBar from '$lib/LFQDRowProgressBar.svelte'
-  import { random } from 'ouml'
+  import LFQDDialogTakeover from '$lib/LFQDDialogTakeover.svelte'
+
+  import { prettyNumber, random, sum } from 'ouml'
+
+  import { bankdata, försäkringsdata } from '$lib/mockdata'
 
   let sheetIsOpen = $state(false)
-
   const openSheet = () => (sheetIsOpen = true)
   const closeSheet = () => (sheetIsOpen = false)
 
-  let försäkringsdata = [
-    {
-      titleLeft: 'Villahemförsäkring',
-      subtitleLeft: 'Trumpeten 11',
-      titleRight: 'Betald 25 09 01',
-      subtitleRight: '419 kr/mån',
-      icon: 'house',
-    },
-    {
-      titleLeft: 'Personbil',
-      subtitleLeft: 'XXX 666',
-      titleRight: 'Obetald',
-      subtitleRight: '365 kr/mån',
-      icon: 'car',
-    },
-    {
-      titleLeft: 'Kattförsäkring',
-      subtitleLeft: 'Solveig',
-      subtitleRight: '212 kr/mån',
-      icon: 'dog',
-    },
-    {
-      titleLeft: 'Barnförsäkring',
-      subtitleLeft: 'Karl Karlsson, 6 år',
-      subtitleRight: '315 kr/mån',
-      icon: 'baby',
-    },
-  ]
+  let dialog = $state()
 
   let percent = $state(33)
-  const progressHasBeenMade = () => percent = (percent + random(33)) % 100;
+  const progressHasBeenMade = () => (percent = (percent + random(33)) % 100)
 </script>
 
 <Header />
@@ -95,7 +71,29 @@
 
   <LFQDBox>
     <LFQDBoxHeader>Konton och kort</LFQDBoxHeader>
-    <div class="placeholder"></div>
+
+    <LFQDAmountHeader
+      amount={prettyNumber(
+        sum(bankdata.map(v => +v.titleRight.replace(/[^\d-]/g, ''))),
+      ) + ' kr'}
+      subtitle="12% mindre än samma tid förra månaden"
+    ></LFQDAmountHeader>
+
+    {#each bankdata as item}
+      <LFQDRow {...item} onclick={() => renderSheet(item)} />
+    {/each}
+
+    <LFQDBoxFooter padEnd="true">
+      <LFQDLink href="#">
+        <lfui-icon icon-id="payment" size="24"></lfui-icon>
+        Ny betalning
+      </LFQDLink>
+
+      <LFQDLink href="#">
+        <lfui-icon icon-id="transfer" size="24"></lfui-icon>
+        Ny överföring
+      </LFQDLink>
+    </LFQDBoxFooter>
   </LFQDBox>
 
   <LFQDBox>
@@ -141,7 +139,7 @@
   <LFQDBox>
     <div class="highlight placeholder">
       <p>Guldkund? Guldkund!</p>
-      <lfui-button>Månadsspara</lfui-button>
+      <lfui-button onclick={() => dialog.showModal()}>Månadsspara</lfui-button>
     </div>
   </LFQDBox>
 </LFQDLayout>
@@ -151,6 +149,12 @@
     <header><p>Här kan kommunikationsytor ligga</p></header>
   </LFQDBox>
 </LFQDLayout>
+
+<LFQDDialogTakeover bind:dialog>
+  <p>Hej.</p>
+  <p>Så här skulle vi kunna göra med vyer som kräver lite utrymme.</p>
+  <lfui-button onclick={() => dialog.close()}>Stäng</lfui-button>
+</LFQDDialogTakeover>
 
 <style>
   header {
@@ -179,6 +183,13 @@
 
   .highlight {
     background: var(--lfds-semantic-background-highlight-primary);
+    border: 1px solid var(--lfds-semantic-border-on-highlight-primary);
+    border-radius: var(--lfds-semantic-sizes-radius-md);
+
+    @media (width < 30rem) {
+      border-radius: 0;
+      border: none;
+    }
   }
 
   form.cards {

@@ -23,7 +23,7 @@
     @media (width < 30rem) {
       margin: 0;
       margin-top: -.5rem;
-      margin-bottom: -1.25rem;
+      margin-bottom: -1rem;
     }
 
     img {

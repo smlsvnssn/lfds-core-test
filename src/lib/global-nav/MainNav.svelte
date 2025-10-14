@@ -1,6 +1,7 @@
 <script>
   import LFQDLogo from './Logo.svelte'
   import LFQDDialog from '../LFQDDialog.svelte'
+  import LFQDDialogTakeover from '../LFQDDialogTakeover.svelte'
   import { page } from '$app/state'
   import { Enum } from 'ouml'
   import Profile from './Profile.svelte'
@@ -24,7 +25,7 @@
   const closeSheet = () => (sheetIsOpen = false)
 
   let dialog = $state()
-  const openDialog = () => dialog.showModal()
+  const openDialog = () => dialog?.showModal()
 </script>
 
 <div class="mainNav">
@@ -176,6 +177,8 @@
     position: sticky;
     top: 0;
 
+    box-shadow: var(--lfqd-box-shadow);
+
     @media (width < 30rem) {
       position: relative;
       /* padding-top: 0.5rem; */
@@ -259,6 +262,7 @@
       /* li:last-child a {
         padding-right: 4rem;
         } */
+      /* box-shadow: var(--lfqd-box-shadow); */
 
       ul {
         justify-content: center;

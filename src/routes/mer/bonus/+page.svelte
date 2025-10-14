@@ -11,6 +11,7 @@
 
   import * as ö from 'ouml'
 </script>
+
 <LFQDLayout type="twocol-with-header">
   <LFQDLayoutArea type="header">
     <LFQDBox>
@@ -44,19 +45,16 @@
         icon="check-enclosed"
         titleLeft="Bekväma vardagen (kort, privat- och sparkonto, bankapp, Swish och mobilt bankID) utan årsavgift"
         chevron="false"
-        rightCol="false"
       ></LFQDRow>
       <LFQDRow
         icon="check-enclosed"
         titleLeft="Ingen årsavgift på kreditkortet"
         chevron="false"
-        rightCol="false"
       ></LFQDRow>
       <LFQDRow
         icon="check-enclosed"
         titleLeft="1 500 kronor i rabatt på självrisken vid din första skada"
         chevron="false"
-        rightCol="false"
       ></LFQDRow>
     </LFQDBox>
   </LFQDLayoutArea>
@@ -64,24 +62,18 @@
   <LFQDLayoutArea type="aside">
     <LFQDBox>
       <LFQDBoxHeader>För att bli guldkund behöver du:</LFQDBoxHeader>
-      <LFQDRow
-        icon="check-enclosed"
-        titleLeft="Hemförsäkring"
-        chevron="false"
-        rightCol="false"
+      <LFQDRow icon="check-enclosed" titleLeft="Hemförsäkring" chevron="false"
       ></LFQDRow>
       <LFQDRow
         icon="check-enclosed"
         titleLeft="Aktivt lönekonto hos Länsförsäkringar"
         chevron="false"
-        rightCol="false"
       ></LFQDRow>
       <div class="highlight">
         <LFQDRow
           icon="circle"
           titleLeft="Sparande på minst 500 kr/mån eller minst 200 000 kr i sparkapital "
           chevron="false"
-          rightCol="false"
         ></LFQDRow>
       </div>
       <LFQDPadding>
@@ -92,8 +84,6 @@
     </LFQDBox>
   </LFQDLayoutArea>
 </LFQDLayout>
-
-
 
 <style>
   .highlight {

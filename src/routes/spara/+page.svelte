@@ -11,6 +11,7 @@
 
   import lörem from 'loerem'
   import * as ö from 'ouml'
+  import {bankdata, försäkringsdata} from '$lib/mockdata'
 
   import bubbel from './bubbel.svg'
 
@@ -47,62 +48,7 @@
     })
   }
 
-  let bankdata = [
-    {
-      titleLeft: 'Lönekonto',
-      subtitleLeft: '9022.01.21.66',
-      titleRight: '13 649 kr',
-      icon: 'atv',
-    },
-    {
-      titleLeft: 'Bönekonto',
-      subtitleLeft: '9022.01.21.99',
-      titleRight: '2 912 kr',
-      icon: 'bulb',
-    },
-    {
-      titleLeft: 'Din mammas konto',
-      subtitleLeft: '9022.01.21.33',
-      titleRight: '461 kr',
-      icon: 'pregnant',
-    },
-    {
-      titleLeft: 'Din pappas kreditkort',
-      subtitleLeft: '6666 6666 6666 6666',
-      titleRight: '-32 901 kr',
-      subtitleRight: 'Kvar att spendera: 17 099 kr ',
-      icon: 'card',
-    },
-  ]
-
-  let försäkringsdata = [
-    {
-      titleLeft: 'Villahemförsäkring',
-      subtitleLeft: 'Trumpeten 11',
-      titleRight: 'Betald 25 09 01',
-      subtitleRight: '419 kr/mån',
-      icon: 'house',
-    },
-    {
-      titleLeft: 'Personbil',
-      subtitleLeft: 'XXX 666',
-      titleRight: 'Obetald',
-      subtitleRight: '365 kr/mån',
-      icon: 'car',
-    },
-    {
-      titleLeft: 'Kattförsäkring',
-      subtitleLeft: 'Solveig',
-      subtitleRight: '212 kr/mån',
-      icon: 'dog',
-    },
-    {
-      titleLeft: 'Barnförsäkring',
-      subtitleLeft: 'Karl Karlsson, 6 år',
-      subtitleRight: '315 kr/mån',
-      icon: 'baby',
-    },
-  ]
+  
 </script>
 
 <LFQDLayout type="header">
@@ -111,6 +57,7 @@
         <lfui-icon icon-id="rabbit" size="72"></lfui-icon>
 
         <h1>Ditt sparande</h1>
+        <p>Här testar vi också hur navigation bakåt skulle kunna funka med sheets.</p>
       </header>
     </LFQDBox>
 </LFQDLayout>

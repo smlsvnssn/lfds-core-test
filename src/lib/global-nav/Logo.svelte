@@ -70,11 +70,17 @@
     }
   }
   .blue {
-    fill: light-dark(var(--lfds-primitives-color-blue-700), var(--lfds-primitives-color-neutral-0));
+    fill: light-dark(
+      var(--lfds-primitives-color-blue-700),
+      var(--lfds-primitives-color-neutral-0)
+    );
   }
 
   .red {
-    fill: light-dark(var(--lfds-primitives-color-red-500), var(--lfds-primitives-color-neutral-0));
+    fill: light-dark(
+      var(--lfds-primitives-color-red-500),
+      var(--lfds-primitives-color-neutral-0)
+    );
   }
 
   .text {
