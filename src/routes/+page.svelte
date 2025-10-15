@@ -17,10 +17,6 @@
 
   import { bankdata, försäkringsdata } from '$lib/mockdata'
 
-  let sheetIsOpen = $state(false)
-  const openSheet = () => (sheetIsOpen = true)
-  const closeSheet = () => (sheetIsOpen = false)
-
   let dialog = $state()
 
   let percent = $state(33)
@@ -139,7 +135,7 @@
   <LFQDBox>
     <div class="highlight placeholder">
       <p>Guldkund? Guldkund!</p>
-      <lfui-button onclick={() => dialog.showModal()}>Månadsspara</lfui-button>
+      <lfui-button onclick={() => dialog.showModal()}>Månadsspara </lfui-button>
     </div>
   </LFQDBox>
 </LFQDLayout>

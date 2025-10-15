@@ -19,13 +19,16 @@
   let sheetHeading = $state('')
   let sheetType = $state()
 
-  const openSheet = (heading, type) => (
-    (sheetIsOpen = true), (sheetHeading = heading), (sheetType = type)
+  const openSheet = (heading, type, e) => (
+    e?.preventDefault(),
+    (sheetIsOpen = true),
+    (sheetHeading = heading),
+    (sheetType = type)
   )
   const closeSheet = () => (sheetIsOpen = false)
 
   let dialog = $state()
-  const openDialog = () => dialog?.showModal()
+  const openDialog = e => (e.preventDefault(), dialog?.showModal())
 </script>
 
 <div class="mainNav">
@@ -38,10 +41,10 @@
       <li>
         <a
           href="#"
-          onclick={() => openSheet('Dina meddelanden', sheets.readmessage)}
+          onclick={e => openSheet('Dina meddelanden', sheets.readmessage, e)}
           onkeydown={e =>
             e.key == 'Enter' &&
-            openSheet('Dina meddelanden', sheets.readmessage)}
+            openSheet('Dina meddelanden', sheets.readmessage, e)}
         >
           <lfui-icon icon-id="envelope" size="24" color="var(--iconClr)"
           ></lfui-icon>
@@ -57,11 +60,11 @@
       <li>
         <a
           href="#"
-          onclick={() =>
-            openSheet('Skriv nytt meddelande', sheets.writemessage)}
+          onclick={e =>
+            openSheet('Skriv nytt meddelande', sheets.writemessage, e)}
           onkeydown={e =>
             e.key == 'Enter' &&
-            openSheet('Skriv nytt meddelande', sheets.writemessage)}
+            openSheet('Skriv nytt meddelande', sheets.writemessage, e)}
         >
           <lfui-icon icon-id="edit" size="24" color="var(--iconClr)"
           ></lfui-icon>
@@ -72,9 +75,9 @@
       <li>
         <a
           href="#"
-          onclick={() => openSheet('Profil', sheets.profile)}
+          onclick={e => openSheet('Profil', sheets.profile, e)}
           onkeydown={e =>
-            e.key == 'Enter' && openSheet('Profil', sheets.profile)}
+            e.key == 'Enter' && openSheet('Profil', sheets.profile, e)}
         >
           <lfui-icon icon-id="user" size="24" color="var(--iconClr)"
           ></lfui-icon>
@@ -117,8 +120,8 @@
 </nav>
 
 <LFQDDialog bind:dialog>
-  <lfui-typography-heading level="h2">Information</lfui-typography-heading>
-  <p>Vill du logga ut?</p>
+  <lfui-typography-heading level="h4">Vill du logga ut?</lfui-typography-heading
+  >
 
   <div class="btns">
     <lfui-button
@@ -129,7 +132,7 @@
       onclick={() => dialog.close()}
       onkeydown={e => e.key == 'Enter' && dialog.close()}
     >
-      Avbryt
+      Nej
     </lfui-button>
 
     <lfui-button
@@ -146,7 +149,7 @@
 </LFQDDialog>
 
 <lfui-dialog-side-sheet
-  size=""
+  size="small"
   open={sheetIsOpen}
   onclose={closeSheet}
   height=""

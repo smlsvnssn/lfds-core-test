@@ -24,3 +24,4 @@ vite.config.ts.timestamp-*
 
 # Custom
 /src/lib/tokens.css
+bun.lockb

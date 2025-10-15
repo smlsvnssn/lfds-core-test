@@ -11,39 +11,11 @@
 
   import * as ö from 'ouml'
 
-  let junk = ö
-    .times(4, () =>
-      ö.shuffle([
-    {
-      titleLeft: 'Lönekonto',
-      subtitleLeft: '9022.01.21.66',
-      titleRight: '13 649 kr',
-      icon: 'atv',
-    },
-    {
-      titleLeft: 'Bönekonto',
-      subtitleLeft: '9022.01.21.99',
-      titleRight: '2 912 kr',
-      icon: 'bulb',
-    },
-    {
-      titleLeft: 'Din mammas konto',
-      subtitleLeft: '9022.01.21.33',
-      titleRight: '461 kr',
-      icon: 'pregnant',
-    },
-    {
-      titleLeft: 'Din pappas kreditkort',
-      subtitleLeft: '6666 6666 6666 6666',
-      titleRight: '-32 901 kr',
-      subtitleRight: 'Kvar att spendera: 17 099 kr ',
-      icon: 'card',
-    },
-  ]),
-    )
-    .flat()
+  import { bankdata } from '$lib/mockdata'
 
-  const försäkringsdata = () => ö.sample(junk, ö.random(3) + 2)
+  const dummydata = () =>
+    ö.sample(ö.times(4, () => ö.shuffle(bankdata)).flat(), ö.random(3) + 2)
+
 </script>
 
 <LFQDLayout type="header">
@@ -62,7 +34,7 @@
   {#each ö.times(ö.random(6) + 3) as thing}
     <LFQDBox>
       <LFQDBoxHeader>Konton och kort</LFQDBoxHeader>
-      {#each försäkringsdata() as item}
+      {#each dummydata() as item}
         {console.log(item)}
         <LFQDRow {...item} onclick={() => renderSheet(item)} />
       {/each}

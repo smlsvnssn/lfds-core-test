@@ -183,12 +183,6 @@
     }
   }
 
-  form.cards {
-    display: grid;
-    grid: auto-flow / 1fr 1fr;
-    gap: 1rem;
-  }
-
   h1 {
     font-family: var(--lfds-typography-font-family-lf);
     font-weight: var(--lfds-typography-weight-medium);

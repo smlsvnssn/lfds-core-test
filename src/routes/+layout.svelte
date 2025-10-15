@@ -37,7 +37,6 @@
     [
       { path: '/', icon: 'house', name: 'Start' },
       { path: '/spara', icon: 'savings', name: 'Spara' },
-      //´{ path: '/bonus', icon: 'cup', name: 'Bonus' },
       { path: '/forsakring', icon: 'umbrella', name: 'Försäkring' },
       { path: '/mer', icon: 'more-horizontal', name: 'Mer' },
     ]
@@ -46,7 +45,6 @@
       { path: '/konton', icon: 'card', name: 'Konton och kort' },
       { path: '/spara', icon: 'savings', name: 'Spara' },
       { path: '/lan', icon: 'mortgage', name: 'Lån' },
-      //´{ path: '/bonus', icon: 'cup', name: 'Bonus' },
       { path: '/forsakring', icon: 'umbrella', name: 'Försäkring' },
       { path: '/pension', icon: 'pension', name: 'Pension' },
       { path: '/mer', icon: 'more-horizontal', name: 'Mer' },
@@ -55,13 +53,14 @@
 
 <main>
   {@render children?.()}
+  
+  <footer>
+    <a href="https://github.com/smlsvnssn/lfds-core-test">
+      https://github.com/smlsvnssn/lfds-core-test
+    </a>
+  </footer>
 </main>
 
-<footer>
-  <a href="https://github.com/smlsvnssn/lfds-core-test">
-    https://github.com/smlsvnssn/lfds-core-test
-  </a>
-</footer>
 
 <style>
   :global(:root) {

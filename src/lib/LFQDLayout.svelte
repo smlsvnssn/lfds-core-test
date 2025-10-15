@@ -20,7 +20,7 @@
         baseWidth: 350,
         gutter: 24,
         surroundingGutter: false,
-        ultimateGutter: 8
+        ultimateGutter: 8,
       }
       masonry = new MiniMasonry(settings)
 
@@ -139,8 +139,9 @@
     }
 
     :global(> .layout-area) {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      justify-items: stretch;
+      align-items: start;
       gap: 0.5rem;
     }
 
@@ -151,7 +152,6 @@
       grid-area: main;
     }
     :global(> .secondary) {
-      /* padding-top: 6rem; */
       grid-area: secondary;
     }
     :global(> .header) {

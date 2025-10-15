@@ -9,42 +9,13 @@
   import LFQDLayoutArea from '$lib/LFQDLayoutArea.svelte'
 
   import mums from './mums.svg'
+  import { försäkringsdata } from '$lib/mockdata'
 
   let sheetIsOpen = $state(false)
 
   const openSheet = () => (sheetIsOpen = true)
   const closeSheet = () => (sheetIsOpen = false)
-
-  let försäkringsdata = [
-    {
-      titleLeft: 'Villahemförsäkring',
-      subtitleLeft: 'Trumpeten 11',
-      titleRight: 'Betald 25 09 01',
-      subtitleRight: '419 kr/mån',
-      icon: 'house',
-    },
-    {
-      titleLeft: 'Personbil',
-      subtitleLeft: 'XXX 666',
-      titleRight: 'Obetald',
-      subtitleRight: '365 kr/mån',
-      icon: 'car',
-    },
-    {
-      titleLeft: 'Kattförsäkring',
-      subtitleLeft: 'Solveig',
-      subtitleRight: '212 kr/mån',
-      icon: 'dog',
-    },
-    {
-      titleLeft: 'Barnförsäkring',
-      subtitleLeft: 'Karl Karlsson, 6 år',
-      subtitleRight: '315 kr/mån',
-      icon: 'baby',
-    },
-  ]
 </script>
-
 
 <LFQDLayout type="masonry">
   <LFQDBox>
@@ -76,8 +47,6 @@
       </LFQDLink>
     </LFQDBoxFooter>
   </LFQDBox>
-
-  
 
   <LFQDBox>
     <LFQDPadding>

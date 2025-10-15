@@ -19,7 +19,7 @@ export let bankdata = [
   },
   {
     titleLeft: 'Din pappas kreditkort',
-    subtitleLeft: '6666 6666 6666 6666',
+    subtitleLeft: '1234 5436 8573 4953',
     titleRight: '-32 901 kr',
     subtitleRight: 'Att spendera: 17 099 kr ',
     icon: 'card',
