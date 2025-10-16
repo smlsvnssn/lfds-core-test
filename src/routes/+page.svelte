@@ -18,6 +18,7 @@
   import { bankdata, försäkringsdata } from '$lib/mockdata'
 
   let dialog = $state()
+  let sheet = $state()
 
   let efakturor = $state(true)
 
@@ -28,7 +29,7 @@
   import { page } from '$app/state'
   import löremIpsum from 'loerem'
 
-  const closeSheet = () => history.back()
+  const onCloseSheet = () => history.back()
 
   const renderSheet = data => {
     log(data)
@@ -44,22 +45,23 @@
 <lfui-dialog-side-sheet
   size={page.state.sheetData?.size ?? 'small'}
   open={page.state?.sheetIsOpen ? true : false}
-  onclose={closeSheet}
+  onclose={onCloseSheet}
   height=""
+  bind:this={sheet}
   heading={page.state.sheetData?.title ?? page.state.sheetData?.titleLeft}
 >
   {#if page.state.sheetData?.content == 'möte'}
     <LFQDBox>
       <LFQDPadding>
         <p>{löremIpsum()}</p>
-        <lfui-button onclick={closeSheet}>Anslut till mötet</lfui-button>
+        <lfui-button onclick={()=>sheet.close()}>Anslut till mötet</lfui-button>
       </LFQDPadding>
     </LFQDBox>
   {:else if page.state.sheetData?.content == 'dok'}
     <LFQDBox>
       <LFQDPadding>
         {@html löremIpsum({ numberOfParagraphs: 10 })}
-        <lfui-button onclick={closeSheet}>
+        <lfui-button onclick={()=>sheet.close()}>
           Gör något som en konsekvens av dokumentet
         </lfui-button>
       </LFQDPadding>
@@ -74,7 +76,7 @@
 
     <lfui-button
       onclick={() => {
-        closeSheet()
+        sheet.close()
         efakturor = false
       }}
       style="margin-top: 1rem"
