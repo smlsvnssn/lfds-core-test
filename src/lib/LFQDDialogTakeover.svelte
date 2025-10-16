@@ -17,14 +17,16 @@
 <style>
   :global(body main) {
     @media (width < 30rem) {
-      transition: all 0.3s;
+      /* Buggy in mobile webkit, some rendering optimisation bug  */
+      /* transition: translate 0.3s; */
     }
   }
+
   :global(body:has(dialog.takeover[open])) {
     overflow: hidden;
     @media (width < 30rem) {
       :global(main) {
-        translate: -3rem 0;
+        /* translate: -3rem 0; */
       }
     }
   }

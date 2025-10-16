@@ -19,7 +19,7 @@
     place-items: center;
 
     background: var(--lfds-semantic-background-notification-primary);
-    border-radius: var(--lfds-semantic-sizes-radius-sm);
+    border-radius: var(--lfds-semantic-sizes-radius-l);
 
     font-family: var(--lfds-typography-font-family-ibm);
     font-size: 0.8125rem;

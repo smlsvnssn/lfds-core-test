@@ -326,7 +326,7 @@
         a {
           border-bottom: none;
         }
-        span {
+        span:not(.badge) {
           display: none;
         }
       }

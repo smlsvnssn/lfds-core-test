@@ -13,17 +13,80 @@
   import LFQDRowProgressBar from '$lib/LFQDRowProgressBar.svelte'
   import LFQDDialogTakeover from '$lib/LFQDDialogTakeover.svelte'
 
-  import { prettyNumber, random, sum } from 'ouml'
+  import { log, prettyNumber, random, sum } from 'ouml'
 
   import { bankdata, försäkringsdata } from '$lib/mockdata'
 
   let dialog = $state()
 
+  let efakturor = $state(true)
+
   let percent = $state(33)
   const progressHasBeenMade = () => (percent = (percent + random(33)) % 100)
+
+  import { pushState } from '$app/navigation'
+  import { page } from '$app/state'
+  import löremIpsum from 'loerem'
+
+  const closeSheet = () => history.back()
+
+  const renderSheet = data => {
+    log(data)
+    pushState(``, {
+      sheetIsOpen: true,
+      sheetData: data,
+    })
+  }
 </script>
 
 <Header />
+
+<lfui-dialog-side-sheet
+  size={page.state.sheetData?.size ?? 'small'}
+  open={page.state?.sheetIsOpen ? true : false}
+  onclose={closeSheet}
+  height=""
+  heading={page.state.sheetData?.title ?? page.state.sheetData?.titleLeft}
+>
+  {#if page.state.sheetData?.content == 'möte'}
+    <LFQDBox>
+      <LFQDPadding>
+        <p>{löremIpsum()}</p>
+        <lfui-button onclick={closeSheet}>Anslut till mötet</lfui-button>
+      </LFQDPadding>
+    </LFQDBox>
+  {:else if page.state.sheetData?.content == 'dok'}
+    <LFQDBox>
+      <LFQDPadding>
+        {@html löremIpsum({ numberOfParagraphs: 10 })}
+        <lfui-button onclick={closeSheet}>
+          Gör något som en konsekvens av dokumentet
+        </lfui-button>
+      </LFQDPadding>
+    </LFQDBox>
+  {:else if page.state.sheetData?.content == 'efakturor'}
+    <LFQDBox>
+      <LFQDRow titleLeft="Kundklubb" titleRight="100 kr" icon="e-invoice"
+      ></LFQDRow>
+      <LFQDRow titleLeft="Hundklubb" titleRight="100 kr" icon="e-invoice"
+      ></LFQDRow>
+    </LFQDBox>
+
+    <lfui-button
+      onclick={() => {
+        closeSheet()
+        efakturor = false
+      }}
+      style="margin-top: 1rem"
+    >
+      Gör din grej
+    </lfui-button>
+  {:else}
+    <LFQDBox>
+      <LFQDRow {...page.state.sheetData} />
+    </LFQDBox>
+  {/if}
+</lfui-dialog-side-sheet>
 
 <LFQDLayout type="masonry">
   <LFQDBox>
@@ -31,18 +94,31 @@
 
     <LFQDRow
       titleLeft="Du har ett digitalt möte om 12 minuter"
+      onclick={() =>
+        renderSheet({ title: 'Detaljer om ditt möte', content: 'möte' })}
       subtitleLeft="Anslut till mötet"
       icon="calendar"
     ></LFQDRow>
-
-    <LFQDRow titleLeft="Du har nya e-fakturor">
-      {#snippet icon()}
-        <LFQDBadge>3</LFQDBadge>
-      {/snippet}
-    </LFQDRow>
+    {#if efakturor}
+      <LFQDRow
+        titleLeft="Du har nya e-fakturor"
+        onclick={() =>
+          renderSheet({ title: 'Nya e-fakturor', content: 'efakturor' })}
+      >
+        {#snippet icon()}
+          <LFQDBadge>3</LFQDBadge>
+        {/snippet}
+      </LFQDRow>
+    {/if}
 
     <LFQDRow
       titleLeft="Du har ett nytt dokument"
+      onclick={() =>
+        renderSheet({
+          title: 'Försäkringsavtal Villahemförsäkring',
+          size: 'medium',
+          content: 'dok',
+        })}
       subtitleLeft="Försäkringsavtal Villahemförsäkring"
     >
       {#snippet icon()}
@@ -105,7 +181,7 @@
     {/each}
 
     <LFQDBoxFooter>
-      <LFQDLink href="#">
+      <LFQDLink href="/forsakring">
         Alla försäkringar
         <lfui-icon icon-id="chevron-right" size="24"></lfui-icon>
       </LFQDLink>
@@ -188,12 +264,6 @@
     }
   }
 
-  form.cards {
-    display: grid;
-    grid: auto-flow / 1fr 1fr;
-    gap: 1rem;
-  }
-
   h1 {
     font-family: var(--lfds-typography-font-family-lf);
     font-weight: var(--lfds-typography-weight-medium);
@@ -204,14 +274,6 @@
 
     @media (width < 30rem) {
       font-size: 1.875rem;
-    }
-  }
-
-  p {
-    font-size: 1.125rem;
-    max-width: 60ch;
-    @media (width < 30rem) {
-      font-size: 1rem;
     }
   }
 </style>

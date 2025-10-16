@@ -1,8 +1,9 @@
 <script>
+  import { autoAnimate } from '@formkit/auto-animate';
   let { children } = $props()
 </script>
 
-<article class="box">
+<article class="box" use:autoAnimate>
   {@render children?.()}
 </article>
 
