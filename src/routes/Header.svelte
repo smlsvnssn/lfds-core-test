@@ -13,7 +13,7 @@
 <style>
   header.start {
     display: grid;
-    --wider: 85rem;
+    --lfqd-layout-wider: 85rem;
 
     place-items: stretch;
     padding: 0;
@@ -22,7 +22,7 @@
 
     @media (width < 30rem) {
       margin: 0;
-      margin-top: -.5rem;
+      margin-top: -0.5rem;
       margin-bottom: -1rem;
     }
 
@@ -37,10 +37,10 @@
     div {
       place-self: end center;
       width: 100%;
-      max-width: var(--wider);
+      max-width: var(--lfqd-layout-wider);
       padding: 3rem 1rem;
       box-sizing: border-box;
-      
+
       @media (width < 85rem) {
         padding: 3rem 1.5rem;
       }

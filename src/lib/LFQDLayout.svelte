@@ -42,18 +42,14 @@
 
 <style>
   .layout {
-    --narrow: 35rem;
-    --wide: 65rem;
-    --wider: 85rem;
-
     display: grid;
-    gap: 0.5rem;
     margin: auto;
-    /* margin-bottom: 5rem; */
     width: 100%;
-    max-width: var(--narrow);
 
-    grid-template-areas: 'main' 'aside' 'secondary';
+    grid: 'main' 'aside' 'secondary' / 1fr;
+
+    gap: 0.5rem;
+    max-width: var(--lfqd-layout-narrow);
 
     @media (width < 30rem) {
       gap: 0.5rem !important;
@@ -62,76 +58,69 @@
     }
 
     &.header {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      max-width: var(--wider);
+      grid: 'header' / 1fr;
 
-      grid-template-areas: 'header';
+      gap: 1.5rem;
+      max-width: var(--lfqd-layout-wider);
     }
 
     &.twocol {
-      grid-template-columns: 2fr 1fr;
-      gap: 1.5rem;
-      max-width: var(--wide);
+      grid:
+        'main      aside'
+        'secondary aside'
+        / 2fr 1fr;
 
-      grid-template-areas:
-        'main aside'
-        'secondary aside';
+      gap: 1.5rem;
+      max-width: var(--lfqd-layout-wide);
 
       @media (width < 30rem) {
-        grid-template-columns: 1fr;
-        grid-template-areas: 'main' 'aside' 'secondary ';
+        grid: 'main' 'aside' 'secondary' / 1fr;
       }
     }
 
     &.twocol-with-header {
-      grid-template-columns: 2fr 1fr;
-      gap: 1.5rem;
-      max-width: var(--wide);
+      grid:
+        'header    header'
+        'main      aside'
+        'secondary aside'
+        / 2fr 1fr;
 
-      grid-template-areas:
-        'header header'
-        'main aside'
-        'secondary aside';
+      gap: 1.5rem;
+      max-width: var(--lfqd-layout-wide);
 
       @media (width < 30rem) {
-        grid-template-columns: 1fr;
-        grid-template-areas: 'header' 'main' 'aside' 'secondary ';
+        grid: 'header' 'main' 'aside' 'secondary' / 1fr;
       }
     }
 
     &.threecol {
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1.5rem;
-      max-width: var(--wider);
+      grid: 'main aside secondary' / 1fr 1fr 1fr;
 
-      grid-template-areas: 'main aside secondary';
+      gap: 1.5rem;
+      max-width: var(--lfqd-layout-wider);
 
       @media (width < 30rem) {
-        grid-template-columns: 1fr;
-        grid-template-areas: 'main' 'aside' 'secondary';
+        grid: 'main' 'aside' 'secondary' / 1fr;
       }
     }
 
     &.threecol-with-header {
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1.5rem;
-      max-width: var(--wider);
-
-      grid-template-areas:
+      grid:
         'header header header'
-        'main aside secondary';
+        'main aside secondary' / 1fr 1fr 1fr;
+
+      gap: 1.5rem;
+      max-width: var(--lfqd-layout-wider);
 
       @media (width < 30rem) {
-        grid-template-columns: 1fr;
-        grid-template-areas: 'header' 'main' 'aside' 'secondary ';
+        grid: 'header' 'main' 'aside' 'secondary ' / 1fr;
       }
     }
 
     &.masonry {
       position: relative;
       display: block;
-      max-width: var(--wider);
+      max-width: var(--lfqd-layout-wider);
 
       :global(> *) {
         position: absolute;
