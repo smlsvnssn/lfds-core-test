@@ -1,5 +1,6 @@
 <script>
   import MiniMasonry from 'minimasonry'
+  import { debounce } from 'ouml'
 
   /**
    * @import { Snippet } from 'svelte'
@@ -10,29 +11,27 @@
    */
   let { type = 'onecol', children } = $props()
 
-  let el, masonry
+  let el, masonry, resizeSniffer
+
+  const destroy = () => {
+    resizeSniffer?.disconnect()
+    masonry?.destroy()
+  }
 
   $effect(() => {
-    // TODO: super unreliable masonry lib, use another
-    if (type == 'masonry') {
-      let settings = {
+    if (type == 'masonry' && el) {
+      masonry ??= new MiniMasonry({
         container: el,
         baseWidth: 350,
         gutter: 24,
         surroundingGutter: false,
         ultimateGutter: 8,
-      }
-      masonry = new MiniMasonry(settings)
-
-      // Ugliest hack ever.
-      requestAnimationFrame(() => {
-        masonry.layout(settings)
-        setTimeout(() => {
-          masonry.layout(settings)
-        }, 100)
       })
-    } else masonry?.destroy()
-    return () => masonry?.destroy()
+
+      resizeSniffer ??= new ResizeObserver(debounce(() => masonry.layout(), 10))
+      ;[...el.children].forEach(element => resizeSniffer.observe(element))
+    } else destroy()
+    return destroy
   })
 </script>
 
@@ -107,7 +106,7 @@
     &.threecol-with-header {
       grid:
         'header header header'
-        'main aside secondary' / 1fr 1fr 1fr;
+        'main   aside  secondary' / 1fr 1fr 1fr;
 
       gap: 1.5rem;
       max-width: var(--lfqd-layout-wider);

@@ -38,7 +38,7 @@
       place-self: end center;
       width: 100%;
       max-width: var(--lfqd-layout-wider);
-      padding: 3rem 1rem;
+      padding: 3rem .75rem;
       box-sizing: border-box;
 
       @media (width < 85rem) {
