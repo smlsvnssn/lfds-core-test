@@ -3,11 +3,12 @@
   import LFQDBox from '$lib/LFQDBox.svelte'
   import LFQDRow from '$lib/LFQDRow.svelte'
   import { onCloseSheet } from '$lib/utils.svelte'
+  import LFQDDialogSheet from '$lib/LFQDDialogSheet.svelte'
 
   let { state, render } = $props()
 </script>
 
-<lfui-dialog-side-sheet
+<LFQDDialogSheet
   size=""
   open={state?.sheetIsOpen ? true : false}
   onclose={onCloseSheet}
@@ -28,8 +29,6 @@
     </LFQDBox>
   {/if}
 
-  <div class="spacer"></div>
-
   {#if state?.sheetData?.text}
     <LFQDBox>
       <LFQDPadding>
@@ -37,10 +36,5 @@
       </LFQDPadding>
     </LFQDBox>
   {/if}
-</lfui-dialog-side-sheet>
+</LFQDDialogSheet>
 
-<style>
-  .spacer {
-    height: 1.5rem;
-  }
-</style>

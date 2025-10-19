@@ -184,7 +184,7 @@
         ></lfui-spinner>
       </lfui-button>
 
-      <lfui-dialog-side-sheet
+      <LFQDDialogSheet
         size=""
         open={sheetIsOpen}
         onclose={closeSheet}
@@ -192,7 +192,7 @@
         heading="Side sheet header"
       >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      </lfui-dialog-side-sheet>
+      </LFQDDialogSheet>
     </LFQDPadding>
   </LFQDBox>
 

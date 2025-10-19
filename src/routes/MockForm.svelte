@@ -6,7 +6,7 @@
   import löremIpsum from 'loerem'
   import { random, times } from 'ouml'
 
-  let { close } = $props()
+  let { close, buttontext = 'Skicka' } = $props()
 
   const heading = () =>
     löremIpsum({
@@ -55,7 +55,7 @@
       role="link"
       onkeydown={e => e.key == 'Enter' && close()}
     >
-      Skicka
+      {buttontext}
     </lfui-button>
   </LFQDPadding>
 </LFQDBox>

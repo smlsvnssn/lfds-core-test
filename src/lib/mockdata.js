@@ -8,13 +8,13 @@ export let bankdata = [
   {
     titleLeft: 'Sparkonto',
     subtitleLeft: '9022.01.21.99',
-    titleRight: '2 912 kr',
+    titleRight: '85 912 kr',
     icon: 'bulb',
   },
   {
     titleLeft: 'Din mammas konto',
     subtitleLeft: '9022.01.21.33',
-    titleRight: '461 kr',
+    titleRight: '46 119 kr',
     icon: 'savings',
   },
   {

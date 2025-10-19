@@ -1,28 +1,16 @@
 <script>
-  import LFQDRow from '$lib/LFQDRow.svelte'
   import LFQDLayout from '$lib/LFQDLayout.svelte'
   import LFQDLayoutArea from '$lib/LFQDLayoutArea.svelte'
-  import LFQDPadding from '$lib/LFQDPadding.svelte'
-
   import LFQDBox from '$lib/LFQDBox.svelte'
-  import LFQDBoxHeader from '$lib/LFQDBoxHeader.svelte'
-  import LFQDBoxFooter from '$lib/LFQDBoxFooter.svelte'
-  import LFQDLink from '$lib/LFQDLink.svelte'
 
-  import * as ö from 'ouml'
-
-  import { bankdata } from '$lib/mockdata'
-
-  const dummydata = () =>
-    ö.sample(ö.times(4, () => ö.shuffle(bankdata)).flat(), ö.random(3) + 2)
-
+  import { random, times } from 'ouml'
 </script>
 
 <LFQDLayout type="header">
   <LFQDLayoutArea type="header">
     <LFQDBox>
       <header>
-        <lfui-icon icon-id="rabbit" size="72"></lfui-icon>
+        <lfui-icon icon-id="mortgage" size="72"></lfui-icon>
 
         <h1>Dina lån</h1>
         <p>...</p>
@@ -32,19 +20,9 @@
 </LFQDLayout>
 
 <LFQDLayout type="masonry">
-  {#each ö.times(ö.random(6) + 3) as thing}
+  {#each times(random(6) + 3) as thing}
     <LFQDBox>
-      <LFQDBoxHeader>Lån</LFQDBoxHeader>
-      {#each dummydata() as item}
-        {console.log(item)}
-        <LFQDRow {...item} onclick={() => renderSheet(item)} />
-      {/each}
-      <LFQDBoxFooter>
-        <LFQDLink href="#">
-          Alla lån
-          <lfui-icon icon-id="chevron-right" size="24"></lfui-icon>
-        </LFQDLink>
-      </LFQDBoxFooter>
+      <div class="placeholder"></div>
     </LFQDBox>
   {/each}
 </LFQDLayout>

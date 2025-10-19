@@ -54,7 +54,7 @@
 <LFQDLayout type="header">
     <LFQDBox>
       <header>
-        <lfui-icon icon-id="rabbit" size="72"></lfui-icon>
+        <lfui-icon icon-id="savings" size="72"></lfui-icon>
 
         <h1>Ditt sparande</h1>
         <p>Här testar vi också hur navigation bakåt skulle kunna funka med sheets.</p>

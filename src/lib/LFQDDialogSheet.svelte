@@ -10,6 +10,7 @@
    *   open?: boolean
    *   heading: string
    *   size: 'small' | 'medium' | 'large'
+   *   onclose: function
    *   children?: Snippet
    * }}
    */
@@ -17,7 +18,7 @@
     dialog = $bindable(),
     open = false,
     heading = 'Heading',
-    size = 'small',
+    size,
     onclose,
     children,
   } = $props()
@@ -41,7 +42,7 @@
   const delayClose = () => wait(500, onclose)
 
   $effect(() => {
-    mq ??= matchMedia('(hover), (width < 30rem)') 
+    mq ??= matchMedia('(hover), (width < 30rem)')
 
     mq.addEventListener('change', onMediaQueryChange)
     onMediaQueryChange(mq)
@@ -57,7 +58,7 @@
 </script>
 
 <dialog
-  class="sheet size-{size}"
+  class="sheet size-{size || 'small'}"
   id="sheet"
   bind:this={dialog}
   closedby="any"
@@ -103,6 +104,7 @@
       }
     }
   }
+
   button {
     font-family: 'IBM Plex Sans';
     border: 2px solid var(--blue);

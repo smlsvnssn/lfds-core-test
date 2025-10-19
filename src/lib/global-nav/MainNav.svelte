@@ -6,6 +6,7 @@
   import { Enum } from 'ouml'
   import Profile from './Profile.svelte'
   import LFQDBadge from '$lib/LFQDBadge.svelte'
+  import LFQDDialogSheet from '$lib/LFQDDialogSheet.svelte'
 
   let { links = [] } = $props()
 
@@ -148,7 +149,7 @@
   </div>
 </LFQDDialog>
 
-<lfui-dialog-side-sheet
+<LFQDDialogSheet
   size="small"
   open={sheetIsOpen}
   onclose={closeSheet}
@@ -160,7 +161,7 @@
   {:else}
     ...
   {/if}
-</lfui-dialog-side-sheet>
+</LFQDDialogSheet>
 
 <style>
   .mainNav {

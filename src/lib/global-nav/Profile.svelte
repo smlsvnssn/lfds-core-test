@@ -13,20 +13,20 @@
   </LFQDSectionHeader>
 
   <LFQDBox>
-    <LFQDRow titleLeft="Kontaktuppgifter" icon="user-glow"></LFQDRow>
-    <LFQDRow titleLeft="Konto för in- och utbetalning" icon="payment"></LFQDRow>
-    <LFQDRow titleLeft="Kundkännedom" icon="balance"></LFQDRow>
+    <LFQDRow titleLeft="Kontaktuppgifter" icon="user-glow" />
     <LFQDRow
       titleLeft="Bonus och förmåner"
       icon="cup"
       onclick={() => goto('/mer/bonus')}
-    ></LFQDRow>
-    <LFQDRow titleLeft="Avtal och dokument" icon="documents"></LFQDRow>
+    />
+    <LFQDRow titleLeft="Avtal och dokument" icon="documents" />
     {#if true}
       <span class="badge">
         <LFQDBadge size="circle"></LFQDBadge>
       </span>
     {/if}
+    <LFQDRow titleLeft="Konto för in- och utbetalning" icon="payment" />
+    <LFQDRow titleLeft="Kundkännedom" icon="balance" />
   </LFQDBox>
 
   <LFQDSectionHeader padding={false} size="medium">
@@ -34,12 +34,11 @@
   </LFQDSectionHeader>
 
   <LFQDBox>
-    <LFQDRow titleLeft="BankID" icon="placeholder"></LFQDRow>
+    <LFQDRow titleLeft="BankID" icon="placeholder" />
 
-    <LFQDRow titleLeft="Swish" icon="placeholder"></LFQDRow>
-    <LFQDRow titleLeft="Bedrägeriskydd" icon="shield"></LFQDRow>
-    <LFQDRow titleLeft="(App) Snabbsaldo & snabböverföring" icon="transfer"
-    ></LFQDRow>
+    <LFQDRow titleLeft="Swish" icon="placeholder" />
+    <LFQDRow titleLeft="Bedrägeriskydd" icon="shield" />
+    <LFQDRow titleLeft="(App) Snabbsaldo & snabböverföring" icon="transfer" />
   </LFQDBox>
 
   <LFQDSectionHeader padding={false} size="medium">
@@ -47,12 +46,12 @@
   </LFQDSectionHeader>
 
   <LFQDBox>
-    <LFQDRow titleLeft="Notiser" icon="bell"></LFQDRow>
-    <LFQDRow titleLeft="Nyhetsbrev och andra utskick" icon="heart"></LFQDRow>
-    <LFQDRow titleLeft="Samtycken och datadelning" icon="share-alt"></LFQDRow>
-    <LFQDRow titleLeft="(E-fakturor?)" icon="e-invoice"></LFQDRow>
-    <LFQDRow titleLeft="Hur vill du ha din post?" icon="snailmail"></LFQDRow>
-    <LFQDRow titleLeft="Utseende (App (och web?))" icon="sun"></LFQDRow>
+    <LFQDRow titleLeft="Notiser" icon="bell" />
+    <LFQDRow titleLeft="Nyhetsbrev och andra utskick" icon="heart" />
+    <LFQDRow titleLeft="Samtycken och datadelning" icon="share-alt" />
+    <LFQDRow titleLeft="(E-fakturor?)" icon="e-invoice" />
+    <LFQDRow titleLeft="Hur vill du ha din post?" icon="snailmail" />
+    <LFQDRow titleLeft="Utseende (App (och web?))" icon="sun" />
   </LFQDBox>
 </LFQDLayout>
 

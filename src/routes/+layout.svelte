@@ -98,6 +98,20 @@
     }
   }
 
+  
+  :global(.placeholder) {
+    height: 10rem;
+    background: var(--lfds-semantic-background-secondary);
+    padding: 1rem;
+    display: grid;
+    place-content: center;
+    place-items: center;
+    gap: 1rem;
+    p {
+      font-size: 0.875rem;
+    }
+  }
+
   footer {
     font-family: var(--lfds-typography-font-family-ibm);
     font-weight: var(--lfds-typography-weight-regular);

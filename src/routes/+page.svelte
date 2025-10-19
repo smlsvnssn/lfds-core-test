@@ -20,7 +20,7 @@
   let dialog = $state()
 
   let efakturor = $state(true)
-
+  let skada = $state(true)
 
   $inspect(page.state?.sheetIsOpen)
 </script>
@@ -28,11 +28,20 @@
 <Header />
 
 <LFQDLayout type="masonry">
-  <Todos {efakturor} />
+  <Todos {efakturor} {skada} />
 
   <LFQDBox>
     <div class="highlight placeholder">
       <p>Viktig sak vi vill påminna om.</p>
+    </div>
+  </LFQDBox>
+
+  <LFQDBox>
+    <div class="placeholder">
+      <p>Lisa Flitig AB</p>
+      <p>Lisa Flitig HB</p>
+      <p>Lars Flitig (6 år)</p>
+      <p>Leonora Flitig (17 år)</p>
     </div>
   </LFQDBox>
 
@@ -54,12 +63,17 @@
   </LFQDBox>
 
   <LFQDBox>
-    <LFQDBoxHeader>Bolån</LFQDBoxHeader>
+    <LFQDBoxHeader>Lån</LFQDBoxHeader>
     <div class="placeholder"></div>
   </LFQDBox>
 
   <LFQDBox>
     <LFQDBoxHeader>Kommande transaktioner</LFQDBoxHeader>
+    <div class="placeholder"></div>
+  </LFQDBox>
+
+  <LFQDBox>
+    <LFQDBoxHeader>Pengakollen</LFQDBoxHeader>
     <div class="placeholder"></div>
   </LFQDBox>
 
@@ -98,6 +112,7 @@
   data={page.state?.sheetData}
   open={page.state?.sheetIsOpen}
   bind:efakturor
+  bind:skada
 />
 
 <LFQDDialogTakeover bind:dialog>
@@ -122,19 +137,6 @@
     @media (width < 30rem) {
       gap: 1rem;
       padding: 3rem 1rem 1.5rem;
-    }
-  }
-
-  .placeholder {
-    height: 10rem;
-    background: var(--lfds-semantic-background-secondary);
-    padding: 1rem;
-    display: grid;
-    place-content: center;
-    place-items: center;
-    gap: 1rem;
-    p {
-      font-size: 0.875rem;
     }
   }
 

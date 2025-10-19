@@ -32,7 +32,7 @@
           e.preventDefault()
           renderSheet({
             title: 'Lägg till betalning',
-            size: 'large',
+            size: 'medium',
             content: 'mock',
           })
         }}
@@ -48,7 +48,7 @@
           e.preventDefault()
           renderSheet({
             title: 'Gör överföring',
-            size: 'large',
+            size: 'medium',
             content: 'mock',
           })
         }}

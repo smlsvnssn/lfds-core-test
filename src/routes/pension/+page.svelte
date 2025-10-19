@@ -14,7 +14,7 @@
   <LFQDLayoutArea type="header">
     <LFQDBox>
       <header>
-        <lfui-icon icon-id="chicken" size="72"></lfui-icon>
+        <lfui-icon icon-id="pension" size="72"></lfui-icon>
         <h1>Pension</h1>
       </header>
     </LFQDBox>

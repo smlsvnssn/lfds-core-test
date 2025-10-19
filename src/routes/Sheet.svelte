@@ -8,7 +8,7 @@
   import { onCloseSheet } from '$lib/utils.svelte'
   import LFQDDialogSheet from '$lib/LFQDDialogSheet.svelte'
 
-  let { data, open, efakturor = $bindable() } = $props()
+  let { data, open, efakturor = $bindable(), skada = $bindable() } = $props()
 
   let sheet = $state()
 </script>
@@ -18,7 +18,6 @@
   {open}
   onclose={onCloseSheet}
   height=""
-  bind:dialog={sheet}
   heading={data?.title ?? data?.titleLeft}
 >
   {#if data?.content == 'möte'}
@@ -66,12 +65,20 @@
     >
       Lägg till efakturor
     </lfui-button>
+  {:else if data?.content == 'skada'}
+    <MockForm
+      close={() => {
+        onCloseSheet()
+        skada = false
+      }}
+      buttontext="Komplettera din skada"
+    ></MockForm>
+  {:else if data?.content == 'mock'}
+    <MockForm close={() => onCloseSheet()}></MockForm>
   {:else if data?.titleLeft}
     <LFQDBox>
       <LFQDRow {...data} />
     </LFQDBox>
-  {:else if data?.content == 'mock'}
-    <MockForm close={() => onCloseSheet()}></MockForm>
   {:else}
     <p>...</p>
   {/if}

@@ -8,12 +8,11 @@
   import { random, wait } from 'ouml'
   import { renderSheet } from '$lib/utils.svelte'
 
-  let { efakturor } = $props()
+  let { efakturor, skada } = $props()
 
   let möte = $state(true)
   let dok = $state(true)
-  let percent = $state(33)
-  const progressHasBeenMade = () => (percent = (percent + random(5, 33)) % 100)
+  let percent = $derived(skada ? 33 : 50)
 </script>
 
 <LFQDBox>
@@ -25,28 +24,28 @@
       onclick={() => {
         wait(1000, () => (möte = false))
         renderSheet({ title: 'Detaljer om ditt möte', content: 'möte' })
-	}}
+      }}
       subtitleLeft="Anslut till mötet"
       icon="calendar"
-	  ></LFQDRow>
-	  {/if}
-	  {#if efakturor}
-	  <LFQDRow
+    ></LFQDRow>
+  {/if}
+  {#if efakturor}
+    <LFQDRow
       titleLeft="Du har nya e-fakturor"
       onclick={() =>
         renderSheet({ title: 'Nya e-fakturor', content: 'efakturor' })}
     >
-	{#snippet icon()}
-	<LFQDBadge>3</LFQDBadge>
-	{/snippet}
-</LFQDRow>
-{/if}
+      {#snippet icon()}
+        <LFQDBadge>3</LFQDBadge>
+      {/snippet}
+    </LFQDRow>
+  {/if}
 
-{#if dok}
-<LFQDRow
-titleLeft="Du har ett nytt dokument"
-onclick={() => {
-		  wait(1000, () => (dok = false))
+  {#if dok}
+    <LFQDRow
+      titleLeft="Du har ett nytt dokument"
+      onclick={() => {
+        wait(1000, () => (dok = false))
         renderSheet({
           title: 'Försäkringsavtal Villahemförsäkring',
           size: 'medium',
@@ -62,13 +61,15 @@ onclick={() => {
   {/if}
   <LFQDRowProgressBar
     titleLeft="Ditt skadeärende"
-    subtitleLeft="Komplettera med uppgifter"
+    subtitleLeft={skada ?
+      'Komplettera med uppgifter'
+    : 'Vi tittar på din komplettering'}
     titleRight="Pågående"
     onclick={() => {
-      progressHasBeenMade()
       renderSheet({
         title: 'Din skada',
         size: 'medium',
+        content: 'skada'
       })
     }}
     {percent}
