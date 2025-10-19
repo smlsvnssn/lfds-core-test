@@ -1,4 +1,5 @@
 <script>
+  import { wait } from 'ouml'
   import LFQDSectionHeader from './LFQDSectionHeader.svelte'
   import { addSwipeEvent } from './swipeEvent'
 
@@ -37,16 +38,20 @@
     }
   }
 
+  const delayClose = () => wait(500, onclose)
+
   $effect(() => {
-    mq = matchMedia('(hover), (width < 30rem)')
+    mq ??= matchMedia('(hover), (width < 30rem)') 
 
     mq.addEventListener('change', onMediaQueryChange)
     onMediaQueryChange(mq)
+
+    return () => mq.removeEventListener('change', onMediaQueryChange)
   })
 
   $effect(() => {
-    if (open != false && open != prevId) dialog.showModal()
-    else dialog.close()
+    if (open != false && open != prevId) dialog?.showModal()
+    else dialog?.close()
     prevId = open
   })
 </script>
@@ -56,7 +61,7 @@
   id="sheet"
   bind:this={dialog}
   closedby="any"
-  {onclose}
+  onclose={delayClose}
 >
   <header bind:this={header}>
     <button class="close" onclick={() => dialog.close()}> Stäng </button>
@@ -77,7 +82,7 @@
     width: 100%;
     position: fixed;
     background: var(--bg);
-    
+
     &:before {
       content: '';
       width: 20vw;
@@ -90,7 +95,7 @@
       translate: -50% 0;
       margin: 1.75rem auto 0;
     }
-    
+
     @media (hover), (width > 600px) {
       background: transparent;
       &:before {
@@ -236,6 +241,7 @@
       box-sizing: border-box;
       padding: var(--padding);
       padding-top: var(--paddingTop);
+      padding-bottom: var(--paddingTop);
       overflow-y: auto;
       max-height: 100%;
       position: relative;
