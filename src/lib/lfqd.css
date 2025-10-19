@@ -4,4 +4,10 @@
   --lfqd-layout-narrow: 35rem;
   --lfqd-layout-wide: 65rem;
   --lfqd-layout-wider: 85rem;
+
+  --lfqd-transition-bounce: cubic-bezier(0.615, 1.361, 0.661, 1);
+
+  --lfqd-time-default: 0.3s;
+  --lfqd-time-long: 0.5s;
+  --lfqd-time-instant: 0s;
 }

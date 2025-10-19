@@ -5,18 +5,20 @@
   import LFQDBox from '$lib/LFQDBox.svelte'
   import LFQDRow from '$lib/LFQDRow.svelte'
   import löremIpsum from 'loerem'
+  import { onCloseSheet } from '$lib/utils.svelte'
+  import LFQDDialogSheet from '$lib/LFQDDialogSheet.svelte'
 
-  let { data, open, onclose, efakturor = $bindable() } = $props()
+  let { data, open, efakturor = $bindable() } = $props()
 
   let sheet = $state()
 </script>
 
-<lfui-dialog-side-sheet
+<LFQDDialogSheet
   size={data?.size ?? 'small'}
   {open}
-  {onclose}
+  onclose={onCloseSheet}
   height=""
-  bind:this={sheet}
+  bind:dialog={sheet}
   heading={data?.title ?? data?.titleLeft}
 >
   {#if data?.content == 'möte'}
@@ -26,8 +28,8 @@
         <lfui-button
           tabindex="0"
           role="button"
-          onkeydown={e => e.key == 'Enter' && sheet.close()}
-          onclick={() => sheet.close()}>Anslut till mötet</lfui-button
+          onkeydown={e => e.key == 'Enter' && sheet?.close()}
+          onclick={() => sheet?.close()}>Anslut till mötet</lfui-button
         >
       </LFQDPadding>
     </LFQDBox>
@@ -38,8 +40,8 @@
         <lfui-button
           tabindex="0"
           role="button"
-          onkeydown={e => e.key == 'Enter' && sheet.close()}
-          onclick={() => sheet.close()}
+          onkeydown={e => e.key == 'Enter' && sheet?.close()}
+          onclick={() => sheet?.close()}
         >
           Gör något som en konsekvens av dokumentet
         </lfui-button>
@@ -47,18 +49,17 @@
     </LFQDBox>
   {:else if data?.content == 'efakturor'}
     <LFQDBox>
-      <LFQDRow titleLeft="Kundklubb" titleRight="100 kr" icon="e-invoice"
-      ></LFQDRow>
-      <LFQDRow titleLeft="Hundklubb" titleRight="100 kr" icon="e-invoice"
-      ></LFQDRow>
+      <LFQDRow titleLeft="Kundklubb" titleRight="116 kr" icon="e-invoice" />
+      <LFQDRow titleLeft="Hundklubb" titleRight="89 kr" icon="e-invoice" />
+      <LFQDRow titleLeft="Grundklubb" titleRight="312 kr" icon="e-invoice" />
     </LFQDBox>
 
     <lfui-button
       tabindex="0"
       role="button"
-      onkeydown={e => e.key == 'Enter' && sheet.close()}
+      onkeydown={e => e.key == 'Enter' && sheet?.close()}
       onclick={() => {
-        sheet.close()
+        sheet?.close()
         efakturor = false
       }}
       style="margin-top: 1rem"
@@ -70,6 +71,6 @@
       <LFQDRow {...data} />
     </LFQDBox>
   {:else}
-    <MockForm close={() => sheet.close()}></MockForm>
+    <MockForm close={() => sheet?.close()}></MockForm>
   {/if}
-</lfui-dialog-side-sheet>
+</LFQDDialogSheet>

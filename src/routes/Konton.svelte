@@ -10,8 +10,8 @@
   import { log, prettyNumber, random, sum } from 'ouml'
 
   import { bankdata } from '$lib/mockdata'
+  import { renderSheet } from '$lib/utils.svelte'
 
-  let { renderSheet } = $props()
 </script>
 
 <LFQDBox>

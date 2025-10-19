@@ -12,28 +12,21 @@
   import LFQDLayout from '$lib/LFQDLayout.svelte'
   import LFQDDialogTakeover from '$lib/LFQDDialogTakeover.svelte'
 
-  import { pushState } from '$app/navigation'
   import { page } from '$app/state'
 
   import { försäkringsdata } from '$lib/mockdata'
+  import { renderSheet } from '$lib/utils.svelte'
+  import LFQDDialogSheet from '$lib/LFQDDialogSheet.svelte'
 
   let dialog = $state()
 
   let efakturor = $state(true)
-
-  const onCloseSheet = () => (page.state?.sheetIsOpen ? history.back() : null)
-  const renderSheet = data => {
-    pushState(``, {
-      sheetIsOpen: true,
-      sheetData: data,
-    })
-  }
 </script>
 
 <Header />
 
 <LFQDLayout type="masonry">
-  <Todos {renderSheet} {efakturor} />
+  <Todos {efakturor} />
 
   <LFQDBox>
     <div class="highlight placeholder">
@@ -41,7 +34,7 @@
     </div>
   </LFQDBox>
 
-  <Konton {renderSheet} />
+  <Konton />
 
   <LFQDBox>
     <LFQDBoxHeader>Försäkringar</LFQDBoxHeader>
@@ -102,7 +95,6 @@
 <Sheet
   data={page.state?.sheetData}
   open={page.state?.sheetIsOpen ? true : false}
-  onclose={onCloseSheet}
   bind:efakturor
 />
 

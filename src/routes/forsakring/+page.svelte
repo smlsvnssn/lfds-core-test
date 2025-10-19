@@ -9,12 +9,12 @@
   import LFQDBoxFooter from '$lib/LFQDBoxFooter.svelte'
   import LFQDLink from '$lib/LFQDLink.svelte'
 
-  import * as ö from 'ouml'
+  import {times, random, sample, shuffle} from 'ouml'
 
   import { försäkringsdata } from '$lib/mockdata'
 
   const dummydata = () =>
-    ö.sample(ö.times(4, () => ö.shuffle(försäkringsdata)).flat(), ö.random(3) + 2)
+    sample(times(4, () => shuffle(försäkringsdata)).flat(), random(3) + 2)
 
 </script>
 
@@ -32,7 +32,7 @@
 </LFQDLayout>
 
 <LFQDLayout type="masonry">
-  {#each ö.times(ö.random(6) + 3) as thing}
+  {#each times(random(6) + 3) as thing}
     <LFQDBox>
       <LFQDBoxHeader>Försäkringar</LFQDBoxHeader>
       {#each dummydata() as item}

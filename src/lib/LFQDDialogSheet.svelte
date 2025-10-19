@@ -1,0 +1,271 @@
+<script>
+  import LFQDSectionHeader from './LFQDSectionHeader.svelte'
+  import { addSwipeEvent } from './swipeEvent'
+  import { onCloseSheet } from './utils.svelte'
+
+  /**
+   * @import { Snippet } from 'svelte'
+   * @type {{
+   *   dialog: HTMLElement
+   *   open?: boolean
+   *   heading: string
+   *   size: 'small' | 'medium' | 'large'
+   *   children?: Snippet
+   * }}
+   */
+  let {
+    dialog = $bindable(),
+    open = false,
+    heading = 'Heading',
+    size = 'small',
+    children,
+  } = $props()
+
+  //
+  //
+
+  let swipeEvent, mq
+
+  const onMediaQueryChange = e => {
+    if (e.matches) {
+      swipeEvent = addSwipeEvent(dialog, 'swipedown')
+      //dialog.addEventListener('swipedown', e => e.target.hidePopover())
+      dialog.addEventListener('swipedown', e => e.target?.close())
+    } else {
+      swipeEvent?.destroy()
+    }
+  }
+
+  $effect(() => {
+    mq = matchMedia('(hover), (width < 30rem)')
+
+    mq.addEventListener('change', onMediaQueryChange)
+    onMediaQueryChange(mq)
+  })
+
+  $inspect(open)
+  $effect(() => (open == true ? dialog.showModal() : dialog.close()))
+</script>
+
+<dialog
+  class="sheet size-{size}"
+  id="sheet"
+  bind:this={dialog}
+  closedby="any"
+  onclose={onCloseSheet}
+>
+  <button class="close" onclick={() => dialog.close()}> Stäng </button>
+  <div class="scrollWrapper">
+    <LFQDSectionHeader padding={false}>{heading}</LFQDSectionHeader>
+    {@render children?.()}
+  </div>
+</dialog>
+
+<style>
+  :global(body:has(dialog[open])) {
+    overflow: hidden;
+  }
+
+  button {
+    font-family: 'IBM Plex Sans';
+    border: 2px solid var(--blue);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--sky);
+    color: var(--blue);
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  dialog {
+    --blue: var(--lfds-semantic-icon-on-button-tertiary);
+    --sky: var(--lfds-semantic-background-button-tertiary);
+
+    --t: var(--lfqd-time-long);
+    --w: 50%;
+    --bg: var(--lfds-semantic-background-primary);
+    --easeOutBack: var(--lfqd-transition-bounce);
+    --padding: 2rem;
+    --paddingTop: 2rem;
+
+    --bottomDrawerCornerRadius: 1.5rem;
+    --padBounce: 10vmax;
+    --maxHeight: 80dvh;
+
+    box-sizing: border-box;
+
+    max-height: 100%;
+    max-width: 100%;
+
+    margin: 0;
+    width: calc(var(--w) + var(--padBounce));
+    height: 100dvh;
+
+    border: none;
+    padding: 0;
+    padding-right: var(--padBounce);
+
+    background: var(--bg);
+
+    inset: unset;
+    right: 0;
+    top: 0;
+
+    transition: all calc(var(--t) / 2) ease-in allow-discrete;
+
+    translate: 100% 0;
+
+    &:before {
+      content: '';
+      width: 20vw;
+      height: 0.25rem;
+      background: var(--blue);
+      border-radius: 1rem;
+      display: block;
+      position: absolute;
+      left: 50%;
+      translate: -50% 0;
+      margin: 1.75rem auto 0;
+    }
+
+    @media (hover), (width > 600px) {
+      &:before {
+        content: unset;
+      }
+    }
+
+    &:open {
+      opacity: 1;
+      translate: calc(var(--padBounce)) 0;
+      /* box-shadow: 0px 1px 64px 0px rgba(0, 0, 0, 0.15); */
+      transition: all var(--t) var(--easeOutBack) allow-discrete;
+    }
+
+    @starting-style {
+      &:open {
+        opacity: 0;
+        translate: 100% 0;
+      }
+    }
+
+    &::backdrop {
+      background: #0000;
+      transition: background calc(var(--t) / 2) allow-discrete;
+    }
+
+    &:open::backdrop {
+      background-color: var(--lfds-semantic-background-transparent-secondary);
+    }
+
+    @starting-style {
+      &:open::backdrop {
+        background: #0000;
+      }
+    }
+
+    &.size-small {
+    --w: 30rem;
+  }
+
+  &.size-medium {
+    --w: 46rem;
+  }
+
+  &.size-large {
+    --w: 61rem;
+  }
+  
+    button.close {
+      --buttonWidth: 2rem;
+      --buttonInset: 2rem;
+
+      width: var(--buttonWidth);
+      aspect-ratio: 1/1;
+      background: oklch(from var(--sky) l c h / 0.8);
+      text-indent: -1000rem;
+      border-radius: 50%;
+      position: absolute;
+      border: 1px solid var(--lfds-semantic-border-on-highlight-primary);
+      padding: 0;
+      top: var(--buttonInset);
+      right: calc(var(--padBounce) + var(--buttonInset));
+      transition: all var(--t) allow-discrete;
+
+      @media (width < 30rem) {
+        --buttonInset: 1rem;
+        max-height: var(--maxHeight);
+      }
+
+      &:before,
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 0.75rem;
+        height: 0.125rem;
+        background: var(--blue);
+        translate: -50% -50%;
+        inset: 0.9375rem;
+        rotate: 45deg;
+      }
+
+      &:after {
+        rotate: -45deg;
+      }
+
+      &:hover {
+        scale: 1.1;
+      }
+    }
+
+    .scrollWrapper {
+      padding: var(--padding);
+      padding-top: var(--paddingTop);
+      overflow-y: auto;
+      max-height: 100%;
+      position: relative;
+      z-index: -1;
+      
+      display: grid;
+      gap: 1rem;
+
+      @media (width < 30rem) {
+        max-height: var(--maxHeight);
+      }
+    }
+
+    @media (width < 30rem) {
+      --t: 0.4s;
+      width: 100%;
+      max-height: calc(var(--maxHeight) + var(--padBounce));
+      height: auto;
+
+      border-top-left-radius: var(--bottomDrawerCornerRadius);
+      border-top-right-radius: var(--bottomDrawerCornerRadius);
+
+      padding-right: 0;
+      padding-bottom: var(--padBounce);
+
+      --padding: 1rem;
+
+      top: unset;
+      bottom: 0;
+
+      translate: 0 100%;
+
+      &:open {
+        translate: 0 var(--padBounce);
+      }
+
+      @starting-style {
+        &:open {
+          translate: 0 100%;
+        }
+      }
+
+      button.close {
+        right: var(--buttonInset);
+      }
+    }
+  }
+</style>
