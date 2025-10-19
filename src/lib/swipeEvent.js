@@ -1,4 +1,4 @@
-export const addSwipeEvent = (element, eventtype) => {
+export const addSwipeEvent = (element, eventtype, swipeableElement = element) => {
   const swipeThreshold = 60
 
   let startPos, lastPos, willFire
@@ -48,7 +48,7 @@ export const addSwipeEvent = (element, eventtype) => {
 
     // custom for drawer component
     let amountSwipedDown = y - startY > 0 ? y - startY : 0
-    element.style.setProperty(
+    swipeableElement.style.setProperty(
       'translate',
       `0 calc(${amountSwipedDown}px + var(--padBounce))`,
     )
@@ -63,7 +63,7 @@ export const addSwipeEvent = (element, eventtype) => {
     element.removeEventListener('touchend', onTouchEnd)
 
     // custom for drawer component
-    element.style.removeProperty('translate')
+    swipeableElement.style.removeProperty('translate')
   }
 
   const destroy = () => {

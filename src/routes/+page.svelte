@@ -16,11 +16,13 @@
 
   import { försäkringsdata } from '$lib/mockdata'
   import { renderSheet } from '$lib/utils.svelte'
-  import LFQDDialogSheet from '$lib/LFQDDialogSheet.svelte'
 
   let dialog = $state()
 
   let efakturor = $state(true)
+
+
+  $inspect(page.state?.sheetIsOpen)
 </script>
 
 <Header />
@@ -94,7 +96,7 @@
 
 <Sheet
   data={page.state?.sheetData}
-  open={page.state?.sheetIsOpen ? true : false}
+  open={page.state?.sheetIsOpen}
   bind:efakturor
 />
 

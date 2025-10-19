@@ -1,5 +1,6 @@
 import { pushState } from '$app/navigation'
 import { page } from '$app/state'
+import { randomChars } from 'ouml'
 
 export const isSmallScreen = innerWidth => innerWidth < 16 * 60
 
@@ -8,7 +9,7 @@ export const onCloseSheet = () =>
 
 export const renderSheet = data => {
   pushState(``, {
-    sheetIsOpen: true,
+    sheetIsOpen: randomChars(),
     sheetData: data,
   })
 }

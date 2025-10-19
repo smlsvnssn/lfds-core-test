@@ -11,7 +11,6 @@
 
   import { bankdata } from '$lib/mockdata'
   import { renderSheet } from '$lib/utils.svelte'
-
 </script>
 
 <LFQDBox>
@@ -34,6 +33,7 @@
           renderSheet({
             title: 'Lägg till betalning',
             size: 'large',
+            content: 'mock',
           })
         }}
       >
@@ -49,6 +49,7 @@
           renderSheet({
             title: 'Gör överföring',
             size: 'large',
+            content: 'mock',
           })
         }}
       >

@@ -1,7 +1,6 @@
 <script>
   import LFQDSectionHeader from './LFQDSectionHeader.svelte'
   import { addSwipeEvent } from './swipeEvent'
-  import { onCloseSheet } from './utils.svelte'
 
   /**
    * @import { Snippet } from 'svelte'
@@ -18,19 +17,21 @@
     open = false,
     heading = 'Heading',
     size = 'small',
+    onclose,
     children,
   } = $props()
 
   //
   //
 
-  let swipeEvent, mq
+  let swipeEvent, mq, prevId
+  let header
 
   const onMediaQueryChange = e => {
     if (e.matches) {
-      swipeEvent = addSwipeEvent(dialog, 'swipedown')
+      swipeEvent = addSwipeEvent(header, 'swipedown', dialog)
       //dialog.addEventListener('swipedown', e => e.target.hidePopover())
-      dialog.addEventListener('swipedown', e => e.target?.close())
+      header.addEventListener('swipedown', e => dialog.close())
     } else {
       swipeEvent?.destroy()
     }
@@ -43,8 +44,11 @@
     onMediaQueryChange(mq)
   })
 
-  $inspect(open)
-  $effect(() => (open == true ? dialog.showModal() : dialog.close()))
+  $effect(() => {
+    if (open != false && open != prevId) dialog.showModal()
+    else dialog.close()
+    prevId = open
+  })
 </script>
 
 <dialog
@@ -52,9 +56,11 @@
   id="sheet"
   bind:this={dialog}
   closedby="any"
-  onclose={onCloseSheet}
+  {onclose}
 >
-  <button class="close" onclick={() => dialog.close()}> Stäng </button>
+  <header bind:this={header}>
+    <button class="close" onclick={() => dialog.close()}> Stäng </button>
+  </header>
   <div class="scrollWrapper">
     <LFQDSectionHeader padding={false}>{heading}</LFQDSectionHeader>
     {@render children?.()}
@@ -66,6 +72,32 @@
     overflow: hidden;
   }
 
+  header {
+    height: 4rem;
+    width: 100%;
+    position: fixed;
+    background: var(--bg);
+    
+    &:before {
+      content: '';
+      width: 20vw;
+      height: 0.25rem;
+      background: var(--blue);
+      border-radius: 1rem;
+      display: block;
+      position: absolute;
+      left: 50%;
+      translate: -50% 0;
+      margin: 1.75rem auto 0;
+    }
+    
+    @media (hover), (width > 600px) {
+      background: transparent;
+      &:before {
+        content: unset;
+      }
+    }
+  }
   button {
     font-family: 'IBM Plex Sans';
     border: 2px solid var(--blue);
@@ -114,25 +146,6 @@
     transition: all calc(var(--t) / 2) ease-in allow-discrete;
 
     translate: 100% 0;
-
-    &:before {
-      content: '';
-      width: 20vw;
-      height: 0.25rem;
-      background: var(--blue);
-      border-radius: 1rem;
-      display: block;
-      position: absolute;
-      left: 50%;
-      translate: -50% 0;
-      margin: 1.75rem auto 0;
-    }
-
-    @media (hover), (width > 600px) {
-      &:before {
-        content: unset;
-      }
-    }
 
     &:open {
       opacity: 1;
@@ -220,6 +233,7 @@
     }
 
     .scrollWrapper {
+      box-sizing: border-box;
       padding: var(--padding);
       padding-top: var(--paddingTop);
       overflow-y: auto;

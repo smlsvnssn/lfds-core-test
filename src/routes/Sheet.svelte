@@ -28,8 +28,8 @@
         <lfui-button
           tabindex="0"
           role="button"
-          onkeydown={e => e.key == 'Enter' && sheet?.close()}
-          onclick={() => sheet?.close()}>Anslut till mötet</lfui-button
+          onkeydown={e => e.key == 'Enter' && onCloseSheet()}
+          onclick={() => onCloseSheet()}>Anslut till mötet</lfui-button
         >
       </LFQDPadding>
     </LFQDBox>
@@ -40,8 +40,8 @@
         <lfui-button
           tabindex="0"
           role="button"
-          onkeydown={e => e.key == 'Enter' && sheet?.close()}
-          onclick={() => sheet?.close()}
+          onkeydown={e => e.key == 'Enter' && onCloseSheet()}
+          onclick={() => onCloseSheet()}
         >
           Gör något som en konsekvens av dokumentet
         </lfui-button>
@@ -57,9 +57,9 @@
     <lfui-button
       tabindex="0"
       role="button"
-      onkeydown={e => e.key == 'Enter' && sheet?.close()}
+      onkeydown={e => e.key == 'Enter' && onCloseSheet()}
       onclick={() => {
-        sheet?.close()
+        onCloseSheet()
         efakturor = false
       }}
       style="margin-top: 1rem"
@@ -70,7 +70,9 @@
     <LFQDBox>
       <LFQDRow {...data} />
     </LFQDBox>
+  {:else if data?.content == 'mock'}
+    <MockForm close={() => onCloseSheet()}></MockForm>
   {:else}
-    <MockForm close={() => sheet?.close()}></MockForm>
+    <p>...</p>
   {/if}
 </LFQDDialogSheet>
