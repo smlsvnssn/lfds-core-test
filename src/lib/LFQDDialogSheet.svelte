@@ -164,17 +164,18 @@
     }
 
     &.size-small {
-    --w: 30rem;
-  }
+      --w: 30rem;
+      --t: 0.3s;
+    }
 
-  &.size-medium {
-    --w: 46rem;
-  }
+    &.size-medium {
+      --w: 46rem;
+    }
 
-  &.size-large {
-    --w: 61rem;
-  }
-  
+    &.size-large {
+      --w: 61rem;
+    }
+
     button.close {
       --buttonWidth: 2rem;
       --buttonInset: 2rem;
@@ -225,7 +226,7 @@
       max-height: 100%;
       position: relative;
       z-index: -1;
-      
+
       display: grid;
       gap: 1rem;
 
