@@ -10,14 +10,12 @@
 
   let { data, open, efakturor = $bindable(), skada = $bindable() } = $props()
 
-  let sheet = $state()
 </script>
 
 <LFQDDialogSheet
   size={data?.size ?? 'small'}
   {open}
   onclose={onCloseSheet}
-  height=""
   heading={data?.title ?? data?.titleLeft}
 >
   {#if data?.content == 'möte'}

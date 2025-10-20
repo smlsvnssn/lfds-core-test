@@ -1,6 +1,7 @@
 <script>
   import { isFunc } from 'ouml'
   /**
+   * @import { EventHandler } from 'svelte/elements'
    * @import { Snippet } from 'svelte'
    * @type {{
    *   titleLeft: string
@@ -8,8 +9,9 @@
    *   titleRight?: string
    *   subtitleRight?: string
    *   icon?: string | Snippet
-   *   onclick?: function
+   *   onclick?: EventHandler
    *   chevron?: boolean
+   *   state?: 'active' | 'inactive'
    * }}
    */
   let {
@@ -20,6 +22,7 @@
     icon = 'placeholder',
     onclick = v => v,
     chevron = true,
+    state = 'active',
   } = $props()
 
   let hasRightCol = $derived(titleRight || subtitleRight)
@@ -28,7 +31,8 @@
 <div
   class="row
     {chevron === true ? '' : 'noChevron'} 
-    {hasRightCol ? '' : 'noRightCol'}"
+    {hasRightCol ? '' : 'noRightCol'} 
+    {state == 'active' ? '' : 'inactive'}"
   {onclick}
   tabindex="0"
   role="link"
@@ -37,7 +41,7 @@
   {#if isFunc(icon)}
     {@render icon()}
   {:else}
-    <lfui-icon icon-id={icon} size="24"></lfui-icon>
+    <lfui-icon icon-id={icon} size="24" color="var(--iconClr)"></lfui-icon>
   {/if}
 
   <div class="left">
@@ -59,6 +63,8 @@
 
 <style>
   .row {
+    --iconClr: var(--lfds-semantic-icon-primary);
+
     display: grid;
     grid: auto-flow / 1.5rem 1fr 1fr 1.5rem;
     place-items: center start;
@@ -118,8 +124,12 @@
 
     &:hover {
       background: var(--lfds-semantic-background-hover);
-      lfui-icon[icon-id='chevron-right'] {
-        translate: 0.125rem 0;
+    }
+
+    &.inactive {    
+      h5 {
+        color: var(--lfds-semantic-text-secondary);
+        text-decoration: line-through;
       }
     }
   }

@@ -10,6 +10,7 @@
 
   import mums from './mums.svg'
   import { försäkringsdata } from '$lib/mockdata'
+  import LFQDDialogSheet from '$lib/LFQDDialogSheet.svelte'
 
   let sheetIsOpen = $state(false)
 

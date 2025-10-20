@@ -39,7 +39,8 @@
     }
     /* Här fanns det inte mycket semantiskt att hämta :-) */
     &.success::after {
-      background: var(--lfds-semantic-border-on-success);
+      /* background: var(--lfds-semantic-border-on-success); */
+      background: var(--lfds-primitives-color-green-450);
     }
     &.info::after {
       background: var(--lfds-semantic-border-on-info);

@@ -6,7 +6,7 @@
   /**
    * @import { Snippet } from 'svelte'
    * @type {{
-   *   dialog: HTMLElement
+   *   dialog?: HTMLElement
    *   open?: boolean
    *   heading: string
    *   size: 'small' | 'medium' | 'large'
