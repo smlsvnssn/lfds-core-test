@@ -11,7 +11,7 @@
 
   import lörem from 'loerem'
   import * as ö from 'ouml'
-  import {bankdata, försäkringsdata} from '$lib/mockdata'
+  import {bankdata, försäkringsdata} from '$lib/mockdata.svelte'
 
   import bubbel from './bubbel.svg'
 

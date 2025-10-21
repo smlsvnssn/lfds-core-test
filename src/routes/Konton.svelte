@@ -9,7 +9,7 @@
 
   import { log, prettyNumber, random, sum } from 'ouml'
 
-  import { bankdata } from '$lib/mockdata'
+  import { bankdata } from '$lib/mockdata.svelte'
   import { renderSheet } from '$lib/utils.svelte'
 </script>
 

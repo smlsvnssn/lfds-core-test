@@ -8,8 +8,12 @@
   import { onCloseSheet } from '$lib/utils.svelte'
   import LFQDDialogSheet from '$lib/LFQDDialogSheet.svelte'
 
-  let { data, open, efakturor = $bindable(), skada = $bindable() } = $props()
+  let { data, open, activeTodo } = $props()
 
+  const close = () => {
+    activeTodo.callback(activeTodo)
+    onCloseSheet()
+  }
 </script>
 
 <LFQDDialogSheet
@@ -25,20 +29,20 @@
         <lfui-button
           tabindex="0"
           role="button"
-          onkeydown={e => e.key == 'Enter' && onCloseSheet()}
-          onclick={() => onCloseSheet()}>Anslut till mötet</lfui-button
+          onkeydown={e => e.key == 'Enter' && close()}
+          onclick={close}>Anslut till mötet</lfui-button
         >
       </LFQDPadding>
     </LFQDBox>
   {:else if data?.content == 'dok'}
     <LFQDBox>
-      <LFQDPadding>
+      <LFQDPadding amount="2">
         {@html löremIpsum({ numberOfParagraphs: 10 })}
         <lfui-button
           tabindex="0"
           role="button"
-          onkeydown={e => e.key == 'Enter' && onCloseSheet()}
-          onclick={() => onCloseSheet()}
+          onkeydown={e => e.key == 'Enter' && close()}
+          onclick={close}
         >
           Gör något som en konsekvens av dokumentet
         </lfui-button>
@@ -54,25 +58,16 @@
     <lfui-button
       tabindex="0"
       role="button"
-      onkeydown={e => e.key == 'Enter' && onCloseSheet()}
-      onclick={() => {
-        onCloseSheet()
-        efakturor = false
-      }}
+      onkeydown={e => e.key == 'Enter' && close()}
+      onclick={close}
       style="margin-top: 1rem"
     >
       Lägg till efakturor
     </lfui-button>
   {:else if data?.content == 'skada'}
-    <MockForm
-      close={() => {
-        onCloseSheet()
-        skada = false
-      }}
-      buttontext="Komplettera din skada"
-    ></MockForm>
+    <MockForm {close} buttontext="Komplettera din skada"></MockForm>
   {:else if data?.content == 'mock'}
-    <MockForm close={() => onCloseSheet()}></MockForm>
+    <MockForm {close}></MockForm>
   {:else if data?.titleLeft}
     <LFQDBox>
       <LFQDRow {...data} />

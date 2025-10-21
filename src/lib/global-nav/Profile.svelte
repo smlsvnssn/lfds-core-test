@@ -5,6 +5,10 @@
   import LFQDRow from '$lib/LFQDRow.svelte'
   import LFQDSectionHeader from '$lib/LFQDSectionHeader.svelte'
   import { goto } from '$app/navigation'
+
+  import { topicList } from '$lib/mockdata.svelte'
+  import { hasActiveTodosInTopic } from '$lib/utils.svelte'
+  
 </script>
 
 <LFQDLayout>
@@ -20,7 +24,7 @@
       onclick={() => goto('/mer/bonus')}
     />
     <LFQDRow titleLeft="Avtal och dokument" icon="documents" />
-    {#if true}
+    {#if hasActiveTodosInTopic(topicList.dokument)}
       <span class="badge">
         <LFQDBadge size="circle"></LFQDBadge>
       </span>

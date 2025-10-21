@@ -1,6 +1,6 @@
 <script>
   import MiniMasonry from 'minimasonry'
-  import { debounce } from 'ouml'
+  import { debounce, waitFrames } from 'ouml'
 
   /**
    * @import { Snippet } from 'svelte'
@@ -30,6 +30,9 @@
 
       resizeSniffer ??= new ResizeObserver(debounce(() => masonry.layout(), 10))
       ;[...el.children].forEach(element => resizeSniffer.observe(element))
+
+      // wait 1 tick, rerun 
+      waitFrames(1, () => masonry.layout())
     } else destroy()
     return destroy
   })

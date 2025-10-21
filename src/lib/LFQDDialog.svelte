@@ -17,6 +17,7 @@
 <style>
   :global(body:has(dialog[open])) {
     overflow: hidden;
+   
   }
 
   dialog {

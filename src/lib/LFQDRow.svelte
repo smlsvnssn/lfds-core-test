@@ -11,7 +11,7 @@
    *   icon?: string | Snippet
    *   onclick?: EventHandler
    *   chevron?: boolean
-   *   state?: 'active' | 'inactive'
+   *   state?: 'active' | 'inactive' | 'disabled'
    * }}
    */
   let {
@@ -32,11 +32,11 @@
   class="row
     {chevron === true ? '' : 'noChevron'} 
     {hasRightCol ? '' : 'noRightCol'} 
-    {state == 'active' ? '' : 'inactive'}"
+    {state == 'active' ? '' : state}"
   {onclick}
   tabindex="0"
   role="link"
-  onkeydown={e => e.key == 'Enter' && onclick()}
+  onkeydown={e => e.key == 'Enter' && onclick(e)}
 >
   {#if isFunc(icon)}
     {@render icon()}
@@ -126,10 +126,18 @@
       background: var(--lfds-semantic-background-hover);
     }
 
-    &.inactive {    
+    &.inactive {
       h5 {
         color: var(--lfds-semantic-text-secondary);
         text-decoration: line-through;
+      }
+    }
+
+    &.disabled {
+      pointer-events: none;
+      --iconClr: var(--lfds-semantic-icon-secondary);
+      h5 {
+        color: var(--lfds-semantic-text-secondary);
       }
     }
   }

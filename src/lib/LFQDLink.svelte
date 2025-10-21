@@ -7,10 +7,10 @@
    *   children?: Snippet
    * }}
    */
-  let { href, rel, children } = $props()
+  let { href, rel, children, ...rest } = $props()
 </script>
 
-<a {href} {rel}>{@render children?.()}</a>
+<a {href} {rel} {...rest}>{@render children?.()}</a>
 
 <style>
   a {

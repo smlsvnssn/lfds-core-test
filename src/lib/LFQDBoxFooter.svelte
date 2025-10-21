@@ -9,7 +9,7 @@
   let { children, padEnd } = $props()
 </script>
 
-<div class="boxFooter" style="padding-right: {padEnd ? '1.25rem' : '.75rem'}">
+<div class="boxFooter" >
   {@render children?.()}
 </div>
 

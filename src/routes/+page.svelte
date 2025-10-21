@@ -14,21 +14,25 @@
 
   import { page } from '$app/state'
 
-  import { försäkringsdata } from '$lib/mockdata'
+  import { försäkringsdata, todos } from '$lib/mockdata.svelte'
   import { renderSheet } from '$lib/utils.svelte'
+  import LFQDBadge from '$lib/LFQDBadge.svelte'
 
   let dialog = $state()
 
-  let efakturor = $state(true)
-  let skada = $state(true)
-
-  $inspect(page.state?.sheetIsOpen)
+  let activeTodo = $state()
 </script>
+
+<Sheet
+  data={page.state?.sheetData}
+  open={page.state?.sheetIsOpen}
+  {activeTodo}
+/>
 
 <Header />
 
 <LFQDLayout type="masonry">
-  <Todos {efakturor} {skada} />
+  <Todos {todos} bind:activeTodo />
 
   <LFQDBox>
     <div class="highlight placeholder">
@@ -37,12 +41,20 @@
   </LFQDBox>
 
   <LFQDBox>
-    <div class="placeholder">
-      <p>Lisa Flitig AB</p>
-      <p>Lisa Flitig HB</p>
-      <p>Lars Flitig (6 år)</p>
-      <p>Leonora Flitig (17 år)</p>
-    </div>
+    <LFQDRow
+      titleLeft="Lisa Flitig"
+      icon="user"
+      chevron="false"
+      state="disabled"
+    />
+    {#if true}
+      <span class="badge">
+        <LFQDBadge size="circle"></LFQDBadge>
+      </span>
+    {/if}
+    <LFQDRow titleLeft="Lisa Flitig AB" icon="briefcase" />
+    <LFQDRow titleLeft="Lars Flitig" icon="family" />
+    <LFQDRow titleLeft="Leonora Flitig" icon="family" />
   </LFQDBox>
 
   <Konton />
@@ -108,12 +120,7 @@
   </LFQDBox>
 </LFQDLayout>
 
-<Sheet
-  data={page.state?.sheetData}
-  open={page.state?.sheetIsOpen}
-  bind:efakturor
-  bind:skada
-/>
+
 
 <LFQDDialogTakeover bind:dialog>
   <p>Hej.</p>
@@ -149,5 +156,14 @@
       border-radius: 0;
       border: none;
     }
+  }
+
+  .badge {
+    position: relative;
+    display: block;
+    width: 0;
+    height: 0;
+    top: -3.25rem;
+    left: 2rem;
   }
 </style>

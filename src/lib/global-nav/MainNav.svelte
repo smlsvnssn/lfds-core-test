@@ -7,6 +7,8 @@
   import Profile from './Profile.svelte'
   import LFQDBadge from '$lib/LFQDBadge.svelte'
   import LFQDDialogSheet from '$lib/LFQDDialogSheet.svelte'
+  import { hasActiveTodosInTopic } from '$lib/utils.svelte'
+  import { topicList } from '$lib/mockdata.svelte'
 
   let { links = [] } = $props()
 
@@ -20,16 +22,21 @@
   let sheetHeading = $state('')
   let sheetType = $state()
 
-  const openSheet = (heading, type, e) => (
-    e?.preventDefault(),
-    (sheetIsOpen = true),
-    (sheetHeading = heading),
-    (sheetType = type)
-  )
+  const openSheet = (heading, type, e) => {
+    e?.preventDefault()
+    sheetIsOpen = true
+    sheetHeading = heading
+    sheetType = type
+  }
   const closeSheet = () => (sheetIsOpen = false)
 
   let dialog = $state()
-  const openDialog = e => (e.preventDefault(), dialog?.showModal())
+  const openDialog = e => {
+    e.preventDefault()
+    dialog?.showModal()
+  }
+
+  let hasUnread = $state(true)
 </script>
 
 <div class="mainNav">
@@ -42,15 +49,21 @@
       <li>
         <a
           href="#"
-          onclick={e => openSheet('Dina meddelanden', sheets.readmessage, e)}
-          onkeydown={e =>
-            e.key == 'Enter' &&
-            openSheet('Dina meddelanden', sheets.readmessage, e)}
+          onclick={e => {
+            hasUnread = false
+            openSheet('Dina meddelanden', sheets.readmessage, e)
+          }}
+          onkeydown={e => {
+            if (e.key == 'Enter') {
+              hasUnread = false
+              openSheet('Dina meddelanden', sheets.readmessage, e)
+            }
+          }}
         >
           <lfui-icon icon-id="envelope" size="24" color="var(--iconClr)"
           ></lfui-icon>
           <span>Meddelanden</span>
-          {#if true}
+          {#if hasUnread}
             <span class="badge">
               <LFQDBadge size="circle"></LFQDBadge>
             </span>
@@ -83,7 +96,7 @@
           <lfui-icon icon-id="user" size="24" color="var(--iconClr)"
           ></lfui-icon>
           <span>Profil</span>
-          {#if true}
+          {#if hasActiveTodosInTopic(topicList.dokument)}
             <span class="badge">
               <LFQDBadge size="circle"></LFQDBadge>
             </span>

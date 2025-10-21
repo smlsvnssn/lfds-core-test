@@ -51,8 +51,13 @@
   })
 
   $effect(() => {
-    if (open != false && open != prevId) dialog?.showModal()
-    else dialog?.close()
+    if (open && open != prevId) {
+      dialog?.showModal()
+      document.body.inert = true
+    } else {
+      dialog?.close()
+      document.body.inert = false
+    }
     prevId = open
   })
 </script>
@@ -63,6 +68,7 @@
   bind:this={dialog}
   closedby="any"
   onclose={delayClose}
+  autofocus
 >
   <header bind:this={header}>
     <button class="close" onclick={() => dialog.close()}> Stäng </button>
@@ -129,7 +135,8 @@
 
     --bottomDrawerCornerRadius: 1.5rem;
     --padBounce: 10vmax;
-    --maxHeight: 80dvh;
+    --maxHeight: 90vh;
+    --minHeight: 30vh;
 
     box-sizing: border-box;
 
@@ -175,6 +182,8 @@
 
     &:open::backdrop {
       background-color: var(--lfds-semantic-background-transparent-secondary);
+      pointer-events: none;
+      touch-action: none;
     }
 
     @starting-style {
@@ -251,14 +260,17 @@
 
       display: grid;
       gap: 1rem;
+      place-content: start stretch;
 
       @media (width < 30rem) {
         max-height: var(--maxHeight);
+        min-height: var(--minHeight);
       }
     }
 
     @media (width < 30rem) {
       --t: 0.4s;
+      --easeOutBack: ease-out;
       width: 100%;
       max-height: calc(var(--maxHeight) + var(--padBounce));
       height: auto;

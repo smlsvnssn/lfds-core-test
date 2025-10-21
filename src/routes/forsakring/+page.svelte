@@ -4,7 +4,20 @@
   import LFQDBox from '$lib/LFQDBox.svelte'
 
   import { random, times } from 'ouml'
+  import Sheet from '../Sheet.svelte'
+  import Todos from '../Todos.svelte'
+  import { todos, topicList } from '$lib/mockdata.svelte'
+  import { page } from '$app/state'
+
+  let activeTodo = $state()
+
 </script>
+
+<Sheet
+  data={page.state?.sheetData}
+  open={page.state?.sheetIsOpen}
+  {activeTodo}
+/>
 
 <LFQDLayout type="header">
   <LFQDLayoutArea type="header">
@@ -20,6 +33,7 @@
 </LFQDLayout>
 
 <LFQDLayout type="masonry">
+  <Todos {todos} topic={topicList.försäkring} bind:activeTodo />
   {#each times(random(6) + 3) as thing}
     <LFQDBox>
       <div class="placeholder"></div>
