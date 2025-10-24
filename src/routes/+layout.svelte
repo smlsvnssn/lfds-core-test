@@ -86,6 +86,7 @@
   :global(p) {
     font-family: var(--lfds-typography-font-family-ibm);
     font-weight: var(--lfds-typography-weight-regular);
+    color: var(--lfds-semantic-text);
     font-size: 1rem;
     margin: 0;
     line-height: 1.5;
@@ -123,3 +124,4 @@
     line-height: 1.5;
   }
 </style>
+

@@ -1,11 +1,11 @@
 <script>
-  import LFQDAmountHeader from '$lib/LFQDAmountHeader.svelte'
-  import LFQDPadding from '$lib/LFQDPadding.svelte'
-  import LFQDBox from '$lib/LFQDBox.svelte'
-  import LFQDBoxHeader from '$lib/LFQDBoxHeader.svelte'
-  import LFQDBoxFooter from '$lib/LFQDBoxFooter.svelte'
-  import LFQDRow from '$lib/LFQDRow.svelte'
-  import LFQDLink from '$lib/LFQDLink.svelte'
+  import LFQDAmountHeader from '$lib/components/LFQDAmountHeader.svelte'
+  import LFQDPadding from '$lib/components/LFQDPadding.svelte'
+  import LFQDBox from '$lib/components/LFQDBox.svelte'
+  import LFQDBoxHeader from '$lib/components/LFQDBoxHeader.svelte'
+  import LFQDBoxFooter from '$lib/components/LFQDBoxFooter.svelte'
+  import LFQDRow from '$lib/components/LFQDRow.svelte'
+  import LFQDLink from '$lib/components/LFQDLink.svelte'
 
   import { log, prettyNumber, random, sum } from 'ouml'
 

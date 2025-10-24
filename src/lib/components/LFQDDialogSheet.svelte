@@ -1,7 +1,7 @@
 <script>
   import { wait } from 'ouml'
   import LFQDSectionHeader from './LFQDSectionHeader.svelte'
-  import { addSwipeEvent } from './swipeEvent'
+  import { addSwipeEvent } from '../swipeEvent'
 
   /**
    * @import { Snippet } from 'svelte'

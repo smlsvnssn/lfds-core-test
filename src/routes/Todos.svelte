@@ -1,9 +1,9 @@
 <script>
-  import LFQDBox from '$lib/LFQDBox.svelte'
-  import LFQDBoxHeader from '$lib/LFQDBoxHeader.svelte'
-  import LFQDRow from '$lib/LFQDRow.svelte'
-  import LFQDBadge from '$lib/LFQDBadge.svelte'
-  import LFQDRowProgressBar from '$lib/LFQDRowProgressBar.svelte'
+  import LFQDBox from '$lib/components/LFQDBox.svelte'
+  import LFQDBoxHeader from '$lib/components/LFQDBoxHeader.svelte'
+  import LFQDRow from '$lib/components/LFQDRow.svelte'
+  import LFQDBadge from '$lib/components/LFQDBadge.svelte'
+  import LFQDRowProgressBar from '$lib/components/LFQDRowProgressBar.svelte'
 
   import { is, wait } from 'ouml'
   import { renderSheet } from '$lib/utils.svelte'
@@ -11,7 +11,7 @@
 
   let { todos, activeTodo = $bindable(), topic = topicList.start } = $props()
 
-  let myTodos = $derived(todos.filter(({topics}) => topics.includes(topic)))
+  let myTodos = $derived(todos.filter(({ topics }) => topics.includes(topic)))
 
   const onDo = todo => {
     activeTodo = todo

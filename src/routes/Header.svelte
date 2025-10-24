@@ -1,5 +1,5 @@
 <script>
-  import lisa from './lisa.png'
+  import lisa from '$lib/assets/lisa.png'
 </script>
 
 <header class="start">

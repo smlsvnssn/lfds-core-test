@@ -1,7 +1,7 @@
 <script>
-  import LFQDPadding from '$lib/LFQDPadding.svelte'
-  import LFQDBox from '$lib/LFQDBox.svelte'
-  import LFQDBoxHeader from '$lib/LFQDBoxHeader.svelte'
+  import LFQDPadding from '$lib/components/LFQDPadding.svelte'
+  import LFQDBox from '$lib/components/LFQDBox.svelte'
+  import LFQDBoxHeader from '$lib/components/LFQDBoxHeader.svelte'
 
   import löremIpsum from 'loerem'
   import { random, times } from 'ouml'

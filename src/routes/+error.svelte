@@ -1,8 +1,8 @@
 <script>
-  import LFQDBox from '$lib/LFQDBox.svelte'
+  import LFQDBox from '$lib/components/LFQDBox.svelte'
 
   import { page } from '$app/state'
-  import LFQDLayout from '$lib/LFQDLayout.svelte'
+  import LFQDLayout from '$lib/components/LFQDLayout.svelte'
 </script>
 
 <LFQDLayout>

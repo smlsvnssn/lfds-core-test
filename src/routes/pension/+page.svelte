@@ -1,13 +1,13 @@
 <script>
-  import LFQDBox from '$lib/LFQDBox.svelte'
-  import LFQDBoxHeader from '$lib/LFQDBoxHeader.svelte'
-  import LFQDRow from '$lib/LFQDRow.svelte'
-  import LFQDLayout from '$lib/LFQDLayout.svelte'
-  import LFQDLayoutArea from '$lib/LFQDLayoutArea.svelte'
-  import LFQDPadding from '$lib/LFQDPadding.svelte'
+  import LFQDBox from '$lib/components/LFQDBox.svelte'
+  import LFQDBoxHeader from '$lib/components/LFQDBoxHeader.svelte'
+  import LFQDRow from '$lib/components/LFQDRow.svelte'
+  import LFQDLayout from '$lib/components/LFQDLayout.svelte'
+  import LFQDLayoutArea from '$lib/components/LFQDLayoutArea.svelte'
+  import LFQDPadding from '$lib/components/LFQDPadding.svelte'
 
   import * as ö from 'ouml'
-  import LFQDSectionHeader from '$lib/LFQDSectionHeader.svelte'
+  import LFQDSectionHeader from '$lib/components/LFQDSectionHeader.svelte'
 </script>
 
 <LFQDLayout type="twocol-with-header">
@@ -22,32 +22,26 @@
 
   <LFQDLayoutArea type="main">
     <LFQDBox>
-      <div class="placeholder">
-      </div>
+      <div class="placeholder"></div>
     </LFQDBox>
 
     <LFQDBox>
-      <div class="placeholder">
-      </div>
+      <div class="placeholder"></div>
     </LFQDBox>
   </LFQDLayoutArea>
 
   <LFQDLayoutArea type="aside">
-   <LFQDBox>
-      <div class="placeholder">
-      </div>
+    <LFQDBox>
+      <div class="placeholder"></div>
     </LFQDBox>
   </LFQDLayoutArea>
 
   <LFQDLayoutArea type="secondary">
     <LFQDBox>
-      <div class="placeholder">
-      </div>
+      <div class="placeholder"></div>
     </LFQDBox>
   </LFQDLayoutArea>
 </LFQDLayout>
-
-
 
 <style>
   .highlight {

@@ -4,20 +4,20 @@
   import Todos from './Todos.svelte'
   import Sheet from './Sheet.svelte'
 
-  import LFQDBox from '$lib/LFQDBox.svelte'
-  import LFQDBoxHeader from '$lib/LFQDBoxHeader.svelte'
-  import LFQDBoxFooter from '$lib/LFQDBoxFooter.svelte'
-  import LFQDRow from '$lib/LFQDRow.svelte'
-  import LFQDLink from '$lib/LFQDLink.svelte'
-  import LFQDLayout from '$lib/LFQDLayout.svelte'
-  import LFQDDialogTakeover from '$lib/LFQDDialogTakeover.svelte'
-
-  import { page } from '$app/state'
+  import LFQDBox from '$lib/components/LFQDBox.svelte'
+  import LFQDBoxHeader from '$lib/components/LFQDBoxHeader.svelte'
+  import LFQDBoxFooter from '$lib/components/LFQDBoxFooter.svelte'
+  import LFQDRow from '$lib/components/LFQDRow.svelte'
+  import LFQDLink from '$lib/components/LFQDLink.svelte'
+  import LFQDLayout from '$lib/components/LFQDLayout.svelte'
+  import LFQDDialogTakeover from '$lib/components/LFQDDialogTakeover.svelte'
+  import LFQDBadge from '$lib/components/LFQDBadge.svelte'
 
   import { försäkringsdata, todos } from '$lib/mockdata.svelte'
   import { renderSheet } from '$lib/utils.svelte'
-  import LFQDBadge from '$lib/LFQDBadge.svelte'
 
+  import { page } from '$app/state'
+  
   let dialog = $state()
 
   let activeTodo = $state()
@@ -119,8 +119,6 @@
     <header><p>Här kan kommunikationsytor ligga</p></header>
   </LFQDBox>
 </LFQDLayout>
-
-
 
 <LFQDDialogTakeover bind:dialog>
   <p>Hej.</p>

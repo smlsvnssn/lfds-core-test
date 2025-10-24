@@ -1,16 +1,17 @@
 <script>
-  import LFQDPadding from '$lib/LFQDPadding.svelte'
-  import LFQDBox from '$lib/LFQDBox.svelte'
-  import LFQDBoxHeader from '$lib/LFQDBoxHeader.svelte'
-  import LFQDBoxFooter from '$lib/LFQDBoxFooter.svelte'
-  import LFQDRow from '$lib/LFQDRow.svelte'
-  import LFQDLink from '$lib/LFQDLink.svelte'
-  import LFQDLayout from '$lib/LFQDLayout.svelte'
-  import LFQDLayoutArea from '$lib/LFQDLayoutArea.svelte'
+  import LFQDPadding from '$lib/components/LFQDPadding.svelte'
+  import LFQDBox from '$lib/components/LFQDBox.svelte'
+  import LFQDBoxHeader from '$lib/components/LFQDBoxHeader.svelte'
+  import LFQDBoxFooter from '$lib/components/LFQDBoxFooter.svelte'
+  import LFQDRow from '$lib/components/LFQDRow.svelte'
+  import LFQDLink from '$lib/components/LFQDLink.svelte'
+  import LFQDLayout from '$lib/components/LFQDLayout.svelte'
+  import LFQDLayoutArea from '$lib/components/LFQDLayoutArea.svelte'
 
   import mums from './mums.svg'
   import { försäkringsdata } from '$lib/mockdata.svelte'
-  import LFQDDialogSheet from '$lib/LFQDDialogSheet.svelte'
+  import LFQDDialogSheet from '$lib/components/LFQDDialogSheet.svelte'
+  import LFQDToggle from '$lib/components/LFQDToggle.svelte'
 
   let sheetIsOpen = $state(false)
 
@@ -57,6 +58,54 @@
       <lfui-typography-heading level="h4">H4</lfui-typography-heading>
     </LFQDPadding>
   </LFQDBox>
+
+  <LFQDLayout type="header">
+    <LFQDBox>
+      <LFQDPadding>
+        <div class="twoCol">
+          <lfui-button-shortcut
+            href="/konton"
+            label="Konton och kort"
+            layout="vertical"
+            icon-id="card"
+          ></lfui-button-shortcut>
+
+          <lfui-button-shortcut
+            href="/konton"
+            label="Betala och överför"
+            layout="vertical"
+            icon-id="payment"
+          ></lfui-button-shortcut>
+
+          <lfui-button-shortcut
+            href="/lan"
+            label="Lån"
+            layout="vertical"
+            icon-id="money"
+          ></lfui-button-shortcut>
+
+          <lfui-button-shortcut
+            href="/pension"
+            label="Pension"
+            icon-id="pension"
+            layout="vertical"
+          ></lfui-button-shortcut>
+        </div>
+      </LFQDPadding>
+    </LFQDBox>
+  </LFQDLayout>
+
+  <LFQDLayout>
+    <LFQDBox>
+      <LFQDPadding>
+        <lfui-button-shortcut
+          href="#"
+          label="Kontakta oss"
+          icon-id="call-center"
+        ></lfui-button-shortcut>
+      </LFQDPadding>
+    </LFQDBox>
+  </LFQDLayout>
 
   <LFQDBox>
     <LFQDPadding>
@@ -154,6 +203,8 @@
 
         <lfui-form-radio name="betalsatt" id="example" label="Autogiro"
         ></lfui-form-radio>
+
+        <LFQDToggle>Kortbetalning</LFQDToggle>
       </form>
 
       <lfui-form-input
@@ -250,6 +301,12 @@
       gap: 1rem;
       padding: 3rem 1rem 1.5rem;
     }
+  }
+
+  .twoCol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
   }
 
   form.cards {

@@ -1,14 +1,10 @@
 <script>
-  import LFQDBox from '$lib/LFQDBox.svelte'
-  import LFQDBoxHeader from '$lib/LFQDBoxHeader.svelte'
-  import LFQDRow from '$lib/LFQDRow.svelte'
-  import LFQDLayout from '$lib/LFQDLayout.svelte'
-  import LFQDLayoutArea from '$lib/LFQDLayoutArea.svelte'
-  import LFQDPadding from '$lib/LFQDPadding.svelte'
-  import LFQDSectionHeader from '$lib/LFQDSectionHeader.svelte'
+  import LFQDBox from '$lib/components/LFQDBox.svelte'
+  import LFQDLayout from '$lib/components/LFQDLayout.svelte'
+  import LFQDPadding from '$lib/components/LFQDPadding.svelte'
 
-  import * as ö from 'ouml'
   import { isSmallScreen } from '$lib/utils.svelte'
+  import Profile from './Profile.svelte'
 
   let innerWidth = $state(0)
 </script>
@@ -54,68 +50,68 @@
 {/if}
 
 <LFQDLayout>
-    <LFQDBox>
-      <LFQDPadding>
-          <lfui-button-shortcut
-            href="#"
-            label="Avtal och dokument"
-            icon-id="documents"
-          ></lfui-button-shortcut>
+  <LFQDBox>
+    <LFQDPadding>
+      <lfui-button-shortcut href="#" label="Kontakta oss" icon-id="call-center"
+      ></lfui-button-shortcut>
+    </LFQDPadding>
+  </LFQDBox>
+</LFQDLayout>
 
-          <lfui-button-shortcut
-            href="#"
-            label="BankID och Swish"
-            icon-id="swish"
-          ></lfui-button-shortcut>
+<Profile></Profile>
 
-          <lfui-button-shortcut
-            href="#"
-            label="Inställningar"
-            icon-id="gear"
-          ></lfui-button-shortcut>
+<LFQDLayout>
+  <LFQDBox>
+    <LFQDPadding>
+      <lfui-button-shortcut
+        href="#"
+        label="Avtal och dokument"
+        icon-id="documents"
+      ></lfui-button-shortcut>
 
-          <lfui-button-shortcut
-            href="#"
-            label="Kontakta oss"
-            icon-id="call-center"
-          ></lfui-button-shortcut>
-      </LFQDPadding>
-    </LFQDBox>
+      <lfui-button-shortcut href="#" label="BankID och Swish" icon-id="swish"
+      ></lfui-button-shortcut>
 
-    <LFQDBox>
-      <LFQDPadding>
-        <lfui-button-shortcut
-          href="/spara"
-          label="Tester rows"
-          layout="vertical"
-          icon-id="money"
-        ></lfui-button-shortcut>
+      <lfui-button-shortcut href="#" label="Inställningar" icon-id="gear"
+      ></lfui-button-shortcut>
 
-        <lfui-button-shortcut
-          href="/mer/bonus"
-          label="Bonusskiss"
-          layout="vertical"
-          icon-id="cup"
-        ></lfui-button-shortcut>
+      <lfui-button-shortcut href="#" label="Kontakta oss" icon-id="call-center"
+      ></lfui-button-shortcut>
+    </LFQDPadding>
+  </LFQDBox>
 
-        <lfui-button-shortcut
-          href="/mer/layout"
-          label="Tester layout"
-          layout="vertical"
-          icon-id="picture"
-        ></lfui-button-shortcut>
+  <LFQDBox>
+    <LFQDPadding>
+      <lfui-button-shortcut
+        href="/spara"
+        label="Tester rows"
+        layout="vertical"
+        icon-id="money"
+      ></lfui-button-shortcut>
 
-        <lfui-button-shortcut
-          href="/mer/bitar"
-          label="Tester lite av varje"
-          icon-id="picture"
-          layout="vertical"
-        ></lfui-button-shortcut>
-      </LFQDPadding>
-    </LFQDBox>
-  </LFQDLayout>
+      <lfui-button-shortcut
+        href="/mer/bonus"
+        label="Bonusskiss"
+        layout="vertical"
+        icon-id="cup"
+      ></lfui-button-shortcut>
 
+      <lfui-button-shortcut
+        href="/mer/layout"
+        label="Tester layout"
+        layout="vertical"
+        icon-id="picture"
+      ></lfui-button-shortcut>
 
+      <lfui-button-shortcut
+        href="/mer/bitar"
+        label="Tester lite av varje"
+        icon-id="picture"
+        layout="vertical"
+      ></lfui-button-shortcut>
+    </LFQDPadding>
+  </LFQDBox>
+</LFQDLayout>
 
 <style>
   .highlight {

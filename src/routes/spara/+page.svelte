@@ -1,19 +1,19 @@
 <script>
   import Sheet from './Sheet.svelte'
-  import LFQDPadding from '$lib/LFQDPadding.svelte'
-  import LFQDBox from '$lib/LFQDBox.svelte'
-  import LFQDBoxHeader from '$lib/LFQDBoxHeader.svelte'
-  import LFQDBoxFooter from '$lib/LFQDBoxFooter.svelte'
-  import LFQDRow from '$lib/LFQDRow.svelte'
-  import LFQDLink from '$lib/LFQDLink.svelte'
-  import LFQDLayout from '$lib/LFQDLayout.svelte'
-  import LFQDLayoutArea from '$lib/LFQDLayoutArea.svelte'
+  import LFQDPadding from '$lib/components/LFQDPadding.svelte'
+  import LFQDBox from '$lib/components/LFQDBox.svelte'
+  import LFQDBoxHeader from '$lib/components/LFQDBoxHeader.svelte'
+  import LFQDBoxFooter from '$lib/components/LFQDBoxFooter.svelte'
+  import LFQDRow from '$lib/components/LFQDRow.svelte'
+  import LFQDLink from '$lib/components/LFQDLink.svelte'
+  import LFQDLayout from '$lib/components/LFQDLayout.svelte'
+  import LFQDLayoutArea from '$lib/components/LFQDLayoutArea.svelte'
 
   import lörem from 'loerem'
   import * as ö from 'ouml'
-  import {bankdata, försäkringsdata} from '$lib/mockdata.svelte'
+  import { bankdata, försäkringsdata } from '$lib/mockdata.svelte'
 
-  import bubbel from './bubbel.svg'
+  import bubbel from '$lib/assets/bubbel.svg'
 
   import { pushState } from '$app/navigation'
   import { page } from '$app/state'
@@ -47,19 +47,19 @@
       sheetData: { title: 'Varsågod!', bubbel },
     })
   }
-
-  
 </script>
 
 <LFQDLayout type="header">
-    <LFQDBox>
-      <header>
-        <lfui-icon icon-id="savings" size="72"></lfui-icon>
+  <LFQDBox>
+    <header>
+      <lfui-icon icon-id="savings" size="72"></lfui-icon>
 
-        <h1>Ditt sparande</h1>
-        <p>Här testar vi också hur navigation bakåt skulle kunna funka med sheets.</p>
-      </header>
-    </LFQDBox>
+      <h1>Ditt sparande</h1>
+      <p>
+        Här testar vi också hur navigation bakåt skulle kunna funka med sheets.
+      </p>
+    </header>
+  </LFQDBox>
 </LFQDLayout>
 
 <LFQDLayout>

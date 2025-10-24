@@ -31,18 +31,21 @@
       resizeSniffer ??= new ResizeObserver(debounce(() => masonry.layout(), 10))
       ;[...el.children].forEach(element => resizeSniffer.observe(element))
 
-      // wait 1 tick, rerun 
+      // wait 1 tick, rerun
       waitFrames(1, () => masonry.layout())
     } else destroy()
     return destroy
   })
 </script>
 
-<section class="layout {type}" bind:this={el}>
-  {@render children?.()}
+<section>
+  <div class="layout {type}" bind:this={el}>{@render children?.()}</div>
 </section>
 
 <style>
+  section {
+    container-type: inline-size;
+  }
   .layout {
     display: grid;
     margin: auto;
@@ -53,7 +56,7 @@
     gap: 0.5rem;
     max-width: var(--lfqd-layout-narrow);
 
-    @media (width < 30rem) {
+    @container (width < 30rem) {
       gap: 0.5rem !important;
       grid-template-columns: 1fr;
       border-radius: 0;
@@ -75,7 +78,7 @@
       gap: 1.5rem;
       max-width: var(--lfqd-layout-wide);
 
-      @media (width < 30rem) {
+      @container (width < 30rem) {
         grid: 'main' 'aside' 'secondary' / 1fr;
       }
     }
@@ -90,7 +93,7 @@
       gap: 1.5rem;
       max-width: var(--lfqd-layout-wide);
 
-      @media (width < 30rem) {
+      @container (width < 30rem) {
         grid: 'header' 'main' 'aside' 'secondary' / 1fr;
       }
     }
@@ -114,7 +117,7 @@
       gap: 1.5rem;
       max-width: var(--lfqd-layout-wider);
 
-      @media (width < 30rem) {
+      @container (width < 30rem) {
         grid: 'header' 'main' 'aside' 'secondary ' / 1fr;
       }
     }

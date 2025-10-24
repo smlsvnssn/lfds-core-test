@@ -1,12 +1,12 @@
 <script>
   import LFQDLogo from './Logo.svelte'
-  import LFQDDialog from '../LFQDDialog.svelte'
-  import LFQDDialogTakeover from '../LFQDDialogTakeover.svelte'
+  import LFQDDialog from '$lib/components/LFQDDialog.svelte'
+  import LFQDDialogTakeover from '$lib/components/LFQDDialogTakeover.svelte'
   import { page } from '$app/state'
   import { Enum } from 'ouml'
-  import Profile from './Profile.svelte'
-  import LFQDBadge from '$lib/LFQDBadge.svelte'
-  import LFQDDialogSheet from '$lib/LFQDDialogSheet.svelte'
+  import Profile from '../../routes/mer/Profile.svelte'
+  import LFQDBadge from '$lib/components/LFQDBadge.svelte'
+  import LFQDDialogSheet from '$lib/components/LFQDDialogSheet.svelte'
   import { hasActiveTodosInTopic } from '$lib/utils.svelte'
   import { topicList } from '$lib/mockdata.svelte'
 
@@ -86,7 +86,7 @@
         </a>
       </li>
 
-      <li>
+      <!-- <li>
         <a
           href="#"
           onclick={e => openSheet('Profil', sheets.profile, e)}
@@ -102,7 +102,7 @@
             </span>
           {/if}
         </a>
-      </li>
+      </li> -->
 
       <li>
         <a

@@ -1,12 +1,12 @@
 <script>
   import MockForm from './MockForm.svelte'
 
-  import LFQDPadding from '$lib/LFQDPadding.svelte'
-  import LFQDBox from '$lib/LFQDBox.svelte'
-  import LFQDRow from '$lib/LFQDRow.svelte'
+  import LFQDPadding from '$lib/components/LFQDPadding.svelte'
+  import LFQDBox from '$lib/components/LFQDBox.svelte'
+  import LFQDRow from '$lib/components/LFQDRow.svelte'
   import löremIpsum from 'loerem'
   import { onCloseSheet } from '$lib/utils.svelte'
-  import LFQDDialogSheet from '$lib/LFQDDialogSheet.svelte'
+  import LFQDDialogSheet from '$lib/components/LFQDDialogSheet.svelte'
 
   let { data, open, activeTodo } = $props()
 

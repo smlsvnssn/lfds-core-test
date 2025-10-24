@@ -1,7 +1,7 @@
 <script>
-  import LFQDLayout from '$lib/LFQDLayout.svelte'
-  import LFQDLayoutArea from '$lib/LFQDLayoutArea.svelte'
-  import LFQDBox from '$lib/LFQDBox.svelte'
+  import LFQDLayout from '$lib/components/LFQDLayout.svelte'
+  import LFQDLayoutArea from '$lib/components/LFQDLayoutArea.svelte'
+  import LFQDBox from '$lib/components/LFQDBox.svelte'
 
   import { random, times } from 'ouml'
 </script>
