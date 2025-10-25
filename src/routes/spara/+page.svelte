@@ -7,7 +7,6 @@
   import LFQDRow from '$lib/components/LFQDRow.svelte'
   import LFQDLink from '$lib/components/LFQDLink.svelte'
   import LFQDLayout from '$lib/components/LFQDLayout.svelte'
-  import LFQDLayoutArea from '$lib/components/LFQDLayoutArea.svelte'
 
   import lörem from 'loerem'
   import * as ö from 'ouml'
@@ -15,39 +14,26 @@
 
   import bubbel from '$lib/assets/bubbel.svg'
 
-  import { pushState } from '$app/navigation'
   import { page } from '$app/state'
+  import { renderSheet } from '$lib/utils.svelte'
 
-  const closeSheet = () => {
-    pushState(``, {
-      sheetIsOpen: false,
+  const renderFakedata = (data) =>
+    renderSheet({
+      title: data?.titleLeft,
+      text: lörem({ numberOfParagraphs: 2, sentencesPerParagraph: 4 }),
+      dummy: ö.times(ö.random(4) + 1, () => ({
+        titleLeft: lörem({ isName: true }),
+        subtitleLeft: ö.randomChars(),
+        titleRight: ö.prettyNumber(Math.abs(ö.randomNormal(0, 50000))) + ' kr',
+        icon: 'user',
+      })),
     })
-  }
 
-  const renderSheet = data => {
-    pushState(``, {
-      sheetIsOpen: true,
-      sheetData: {
-        title: data?.titleLeft,
-        text: lörem({ numberOfParagraphs: 2, sentencesPerParagraph: 4 }),
-        dummy: ö.times(ö.random(4) + 1, () => ({
-          titleLeft: lörem({ isName: true }),
-          subtitleLeft: ö.randomChars(),
-          titleRight:
-            ö.prettyNumber(Math.abs(ö.randomNormal(0, 50000))) + ' kr',
-          icon: 'user',
-        })),
-      },
-    })
-  }
-
-  const renderBubbel = () => {
-    pushState('', {
-      sheetIsOpen: true,
-      sheetData: { title: 'Varsågod!', bubbel },
-    })
-  }
+  const renderBubbel = () => renderSheet({ title: 'Varsågod!', bubbel })
 </script>
+
+<Sheet state={page.state}></Sheet>
+
 
 <LFQDLayout type="header">
   <LFQDBox>
@@ -67,7 +53,7 @@
     <LFQDBoxHeader>Mina konton</LFQDBoxHeader>
 
     {#each bankdata as item}
-      <LFQDRow {...item} onclick={() => renderSheet(item)} />
+      <LFQDRow {...item} onclick={() => renderFakedata(item)} />
     {/each}
 
     <LFQDBoxFooter padEnd="true">
@@ -87,7 +73,7 @@
     <LFQDBoxHeader>Mina försäkringar</LFQDBoxHeader>
 
     {#each försäkringsdata as item}
-      <LFQDRow {...item} onclick={() => renderSheet(item)} />
+      <LFQDRow {...item} onclick={() => renderFakedata(item)} />
     {/each}
 
     <LFQDBoxFooter>
@@ -139,8 +125,6 @@
     </LFQDPadding>
   </LFQDBox>
 </LFQDLayout>
-
-<Sheet state={page.state} render={renderSheet} close={closeSheet}></Sheet>
 
 <style>
   header {

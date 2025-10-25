@@ -29,17 +29,20 @@
   let swipeEvent, mq, prevId
   let header
 
+  const animationDelay = 300
+
+  const delayClose = () => wait(animationDelay, onclose)
+
   const onMediaQueryChange = e => {
     if (e.matches) {
       swipeEvent = addSwipeEvent(header, 'swipedown', dialog)
       //dialog.addEventListener('swipedown', e => e.target.hidePopover())
       header.addEventListener('swipedown', e => dialog.close())
     } else {
+      header.removeEventListener('swipedown', e => dialog.close())
       swipeEvent?.destroy()
     }
   }
-
-  const delayClose = () => wait(500, onclose)
 
   $effect(() => {
     mq ??= matchMedia('(hover), (width < 30rem)')
@@ -53,6 +56,7 @@
   $effect(() => {
     if (open && open != prevId) {
       dialog?.showModal()
+      // Handling "touchthrough" on backdrop on mobile. Weird behaviour. TODO: Learn more
       document.body.inert = true
     } else {
       dialog?.close()
@@ -60,6 +64,7 @@
     }
     prevId = open
   })
+
 </script>
 
 <dialog
@@ -111,21 +116,7 @@
     }
   }
 
-  button {
-    font-family: 'IBM Plex Sans';
-    border: 2px solid var(--blue);
-    border-radius: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: var(--sky);
-    color: var(--blue);
-    font-weight: 700;
-    cursor: pointer;
-  }
-
   dialog {
-    --blue: var(--lfds-semantic-icon-on-button-tertiary);
-    --sky: var(--lfds-semantic-background-button-tertiary);
-
     --t: var(--lfqd-time-long);
     --w: 50%;
     --bg: var(--lfds-semantic-background-primary);
@@ -208,14 +199,18 @@
     button.close {
       --buttonWidth: 2rem;
       --buttonInset: 2rem;
+      --accent: var(--lfds-semantic-icon-on-button-tertiary);
+      --bg: var(--lfds-semantic-background-button-tertiary);
+      --border: var(--lfds-semantic-border-on-highlight-primary);
 
       width: var(--buttonWidth);
       aspect-ratio: 1/1;
-      background: oklch(from var(--sky) l c h / 0.8);
+      cursor: pointer;
+      background: oklch(from var(--bg) l c h / 0.8);
       text-indent: -1000rem;
       border-radius: 50%;
       position: absolute;
-      border: 1px solid var(--lfds-semantic-border-on-highlight-primary);
+      border: 1px solid var(--border);
       padding: 0;
       top: var(--buttonInset);
       right: calc(var(--padBounce) + var(--buttonInset));
@@ -233,7 +228,7 @@
         position: absolute;
         width: 0.75rem;
         height: 0.125rem;
-        background: var(--blue);
+        background: var(--accent);
         translate: -50% -50%;
         inset: 0.9375rem;
         rotate: 45deg;

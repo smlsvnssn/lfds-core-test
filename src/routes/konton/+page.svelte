@@ -4,6 +4,7 @@
   import LFQDBox from '$lib/components/LFQDBox.svelte'
 
   import { random, times } from 'ouml'
+  import LFQDToggle from '$lib/components/LFQDToggle.svelte'
 </script>
 
 <LFQDLayout type="header">
@@ -20,6 +21,25 @@
 </LFQDLayout>
 
 <LFQDLayout type="masonry">
+  <LFQDBox>
+    <div class="highlight placeholder">
+      <p>Viktig sak vi vill påminna om.</p>
+      <LFQDToggle size="large">
+        {#snippet before()}
+          Nej till viktig grej
+        {/snippet}
+        Ja till viktig grej
+      </LFQDToggle>
+
+      <!-- <LFQDToggle>
+        {#snippet before()}
+          Nej
+        {/snippet}
+        Ja
+      </LFQDToggle> -->
+    </div>
+  </LFQDBox>
+
   {#each times(random(6) + 3) as thing}
     <LFQDBox>
       <div class="placeholder"></div>
@@ -55,11 +75,5 @@
     }
   }
 
-  p {
-    font-size: 1.125rem;
-    max-width: 60ch;
-    @media (width < 30rem) {
-      font-size: 1rem;
-    }
-  }
+
 </style>

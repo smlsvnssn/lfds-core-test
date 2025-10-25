@@ -11,7 +11,7 @@
   let { data, open, activeTodo } = $props()
 
   const close = () => {
-    activeTodo.callback(activeTodo)
+    activeTodo?.callback?.(activeTodo)
     onCloseSheet()
   }
 </script>

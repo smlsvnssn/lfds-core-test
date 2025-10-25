@@ -24,7 +24,6 @@
   let isDark = $state()
 
   $effect(() => {
-    log(isDark)
     if (is(isDark)) {
       document
         .querySelector('body')
@@ -35,19 +34,25 @@
     }
   })
 
-  $inspect(isDark)
 </script>
 
 <LFQDDialogSheet
   size={page.state.sheetData?.size ?? 'small'}
-  open={page.state.sheetIsOpen}
+  open={page.state?.sheetIsOpen && page.state?.sheetId == 0 ?
+    page.state?.sheetIsOpen
+  : false}
   onclose={onCloseSheet}
   heading={page.state.sheetData?.heading}
 >
   {#if page.state.sheetData?.content == 'bonus'}
     <Bonus></Bonus>
   {:else if page.state.sheetData?.content == 'utseende'}
-    <LFQDToggle bind:checked={isDark}>Växla till {isDark ? 'ljust' : 'mörkt'} läge</LFQDToggle>
+    <LFQDToggle bind:checked={isDark}>
+      {#snippet before()}
+        Ljust läge
+      {/snippet}
+      Mörkt läge
+    </LFQDToggle>
   {/if}
 </LFQDDialogSheet>
 

@@ -17,15 +17,20 @@
   import { renderSheet } from '$lib/utils.svelte'
 
   import { page } from '$app/state'
-  
+  import LFQDToggle from '$lib/components/LFQDToggle.svelte'
+
   let dialog = $state()
 
   let activeTodo = $state()
+
+ // $inspect(page.state)
 </script>
 
 <Sheet
   data={page.state?.sheetData}
-  open={page.state?.sheetIsOpen}
+  open={page.state?.sheetIsOpen && page.state?.sheetId == 0 ?
+    page.state?.sheetIsOpen
+  : false}
   {activeTodo}
 />
 
@@ -37,6 +42,7 @@
   <LFQDBox>
     <div class="highlight placeholder">
       <p>Viktig sak vi vill påminna om.</p>
+      
     </div>
   </LFQDBox>
 

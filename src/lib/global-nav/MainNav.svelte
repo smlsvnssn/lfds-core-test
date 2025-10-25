@@ -1,34 +1,13 @@
 <script>
   import LFQDLogo from './Logo.svelte'
   import LFQDDialog from '$lib/components/LFQDDialog.svelte'
-  import LFQDDialogTakeover from '$lib/components/LFQDDialogTakeover.svelte'
   import { page } from '$app/state'
-  import { Enum } from 'ouml'
   import Profile from '../../routes/mer/Profile.svelte'
   import LFQDBadge from '$lib/components/LFQDBadge.svelte'
   import LFQDDialogSheet from '$lib/components/LFQDDialogSheet.svelte'
-  import { hasActiveTodosInTopic } from '$lib/utils.svelte'
-  import { topicList } from '$lib/mockdata.svelte'
+  import { onCloseSheet, renderSheet } from '$lib/utils.svelte'
 
   let { links = [] } = $props()
-
-  const sheets = Enum({
-    readmessage: Symbol('readmessage'),
-    writemessage: Symbol('writemessage'),
-    profile: Symbol('profile'),
-  })
-
-  let sheetIsOpen = $state(false)
-  let sheetHeading = $state('')
-  let sheetType = $state()
-
-  const openSheet = (heading, type, e) => {
-    e?.preventDefault()
-    sheetIsOpen = true
-    sheetHeading = heading
-    sheetType = type
-  }
-  const closeSheet = () => (sheetIsOpen = false)
 
   let dialog = $state()
   const openDialog = e => {
@@ -37,7 +16,32 @@
   }
 
   let hasUnread = $state(true)
+
+  const openMessages = () => {
+    hasUnread = false
+    renderSheet({ heading: 'Meddelanden' }, 'mainNav')
+  }
+
+  const openWriteMessage = () => {
+    renderSheet({ heading: 'Skriv nytt meddelande' }, 'mainNav')
+  }
+
 </script>
+
+<LFQDDialogSheet
+  size="small"
+  open={page.state?.sheetIsOpen && page.state?.sheetId === 'mainNav' ?
+    page.state?.sheetIsOpen
+  : false}
+  onclose={onCloseSheet}
+  heading={page.state?.sheetData?.heading || 'Hej.'}
+>
+  {#if page.state.sheetData?.sheetType == 'profile'}
+    <Profile />
+  {:else}
+    ...
+  {/if}
+</LFQDDialogSheet>
 
 <div class="mainNav">
   <div class="logo">
@@ -50,15 +54,10 @@
         <a
           href="#"
           onclick={e => {
-            hasUnread = false
-            openSheet('Dina meddelanden', sheets.readmessage, e)
+            e.preventDefault()
+            openMessages()
           }}
-          onkeydown={e => {
-            if (e.key == 'Enter') {
-              hasUnread = false
-              openSheet('Dina meddelanden', sheets.readmessage, e)
-            }
-          }}
+          onkeydown={e => e.key == 'Enter' && openMessages()}
         >
           <lfui-icon icon-id="envelope" size="24" color="var(--iconClr)"
           ></lfui-icon>
@@ -74,11 +73,11 @@
       <li>
         <a
           href="#"
-          onclick={e =>
-            openSheet('Skriv nytt meddelande', sheets.writemessage, e)}
-          onkeydown={e =>
-            e.key == 'Enter' &&
-            openSheet('Skriv nytt meddelande', sheets.writemessage, e)}
+          onclick={e => {
+            e.preventDefault()
+            openWriteMessage()
+          }}
+          onkeydown={e => e.key == 'Enter' && openWriteMessage}
         >
           <lfui-icon icon-id="edit" size="24" color="var(--iconClr)"
           ></lfui-icon>
@@ -161,20 +160,6 @@
     </lfui-button>
   </div>
 </LFQDDialog>
-
-<LFQDDialogSheet
-  size="small"
-  open={sheetIsOpen}
-  onclose={closeSheet}
-  height=""
-  heading={sheetHeading || 'Hej.'}
->
-  {#if sheetType == sheets.profile}
-    <Profile />
-  {:else}
-    ...
-  {/if}
-</LFQDDialogSheet>
 
 <style>
   .mainNav {

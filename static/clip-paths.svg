@@ -1,0 +1,10 @@
+<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<clipPath id="cross" clipPathUnits="objectBoundingBox">
+	<path d="M15.8994 7.41406L12.3633 10.9492L15.8994 14.4854L14.4854 15.8994L10.9492 12.3633L7.41406 15.8994L6 14.4854L9.53516 10.9492L6 7.41406L7.41406 6L10.9492 9.53516L14.4854 6L15.8994 7.41406Z"/>
+  </clipPath>
+  <clipPath id="checkmark">
+	<path d="M17.3135 8.41504L11.6562 14.0703L11.6572 14.0713L10.2422 15.4854L6 11.2432L7.41406 9.8291L10.2422 12.6562L15.8994 7L17.3135 8.41504Z" />
+  </clipPath>
+</defs>
+</svg>

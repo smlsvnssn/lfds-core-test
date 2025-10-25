@@ -14,7 +14,9 @@
 
 <Sheet
   data={page.state?.sheetData}
-  open={page.state?.sheetIsOpen}
+  open={page.state?.sheetIsOpen && page.state?.sheetId == 0 ?
+    page.state?.sheetIsOpen
+  : false}
   {activeTodo}
 />
 

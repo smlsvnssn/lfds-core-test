@@ -4,7 +4,9 @@
   import LFQDBoxHeader from '$lib/components/LFQDBoxHeader.svelte'
 
   import löremIpsum from 'loerem'
-  import { random, times } from 'ouml'
+  import { pipe, prettyNumber, random, times } from 'ouml'
+  import { bankdata } from '$lib/mockdata.svelte'
+  import { parseToNumber } from '$lib/utils.svelte'
 
   let { close, buttontext = 'Skicka' } = $props()
 
@@ -30,6 +32,12 @@
       sentencesPerParagraph: 1,
       maxSentenceLength: 8,
     })
+
+  const stealRandomAmount = () => {
+    let account = bankdata.find(({ titleLeft }) => titleLeft == 'Lönekonto')
+    account.titleRight = pipe(account.titleRight, parseToNumber, v => v - random(1000), prettyNumber) + ' kr'
+    close()
+  }
 </script>
 
 <LFQDBox>
@@ -50,10 +58,10 @@
 
     <lfui-button
       type="button"
-      onclick={close}
+      onclick={stealRandomAmount}
       tabindex="0"
       role="link"
-      onkeydown={e => e.key == 'Enter' && close()}
+      onkeydown={e => e.key == 'Enter' && stealRandomAmount()}
     >
       {buttontext}
     </lfui-button>

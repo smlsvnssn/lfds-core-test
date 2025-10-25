@@ -69,7 +69,7 @@ export const topicList = Enum({
 export const todos = $state([
   {
     type: 'todo',
-    topics: [topicList.möte, topicList.start, topicList.försäkring],
+    topics: [topicList.möte, topicList.start],
     titleLeft: 'Du har ett digitalt möte om 12 minuter',
     subtitleLeft: 'Anslut till mötet',
     sheetData: { title: 'Detaljer om ditt möte', content: 'möte' },
