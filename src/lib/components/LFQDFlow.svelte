@@ -1,6 +1,23 @@
 <script>
   /**
+   * Uses a few bleeding edge things around scrolling not yet in firefox/safari.
+   * Scrollend event polyfill: https://github.com/igorskyflyer/npm-scrollend-polyfill
+   *
+   * TODO:
+   * Snippet args for button text
+   * Pagination without numbers
+   * Fullview variant? Better height handling
+   * Sticky top and/or bottom
+   * "Pricebox" - option for accumulated value
+   * Handle layout using existing components
+   */
+
+  import { isFunc, log, waitFrames } from 'ouml'
+  import { fade } from 'svelte/transition'
+
+  /**
    * @import { Snippet } from 'svelte'
+   *
    * @typedef {{
    *   index:number,
    *   snippet:Snippet<PageValidatedCallback[]>,
@@ -10,16 +27,13 @@
    * }} Page
    *
    * @typedef {(v: boolean, page:Page) => void} PageValidatedCallback
+   *
    * @type {{
    *   confirmationPage?: Snippet
    * } & {
    *   [key: string]: Snippet<PageValidatedCallback[]>;
    * }}
    */
-
-  import { isFunc, log, waitFrames } from 'ouml'
-  import { fade } from 'svelte/transition'
-
   let { confirmationPage, ...pageSnippets } = $props()
 
   /**
@@ -58,7 +72,7 @@
 
     waitFrames(1, () => {
       isScrollingByNavigation = true
-      pages[activePage]?.element?.scrollIntoView({ container: 'nearest' })
+      pages[activePage]?.element?.scrollIntoView({ block: 'nearest' })
     })
   }
 
@@ -182,7 +196,6 @@
     overflow-x: auto;
     overscroll-behavior-x: contain;
     scroll-snap-type: x mandatory;
-    scroll-snap-stop: always;
     scroll-behavior: smooth;
     scrollbar-width: none;
     margin: 0;
@@ -195,6 +208,7 @@
     gap: 1rem;
 
     li {
+      scroll-snap-stop: always;
       scroll-snap-align: start;
       list-style: none;
 
@@ -224,7 +238,6 @@
           cursor: pointer;
           width: 2rem;
           aspect-ratio: 1;
-          background: var(--lfds-semantic-background-secondary);
           border-radius: 100%;
           transition: all var(--lfqd-time-default);
 
@@ -235,25 +248,26 @@
           font-weight: var(--lfds-typography-weight-semibold);
           font-size: 0.875rem;
 
-          border: 1px solid var(--lfds-semantic-border-secondary);
+          background: var(--lfds-semantic-background-secondary);
           color: var(--lfds-semantic-text-secondary);
+          border: 1px solid var(--lfds-semantic-border-secondary);
 
           &.valid {
-            border: 1px solid var(--lfds-semantic-border-selected);
             color: var(--lfds-semantic-text-link);
+            border: 1px solid var(--lfds-semantic-border-selected);
           }
 
           &.active {
             cursor: auto;
-            color: var(--lfds-semantic-text-inverted);
             background: var(--lfds-semantic-background-selected);
+            color: var(--lfds-semantic-text-inverted);
             border: 1px solid var(--lfds-semantic-border-selected);
           }
 
           &[disabled] {
             cursor: auto;
-            border: 1px solid var(--lfds-semantic-border-secondary);
             color: var(--lfds-semantic-text-secondary);
+            border: 1px solid var(--lfds-semantic-border-secondary);
           }
         }
       }
