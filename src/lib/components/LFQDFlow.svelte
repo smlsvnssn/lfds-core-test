@@ -2,12 +2,15 @@
   /**
    * Uses a few bleeding edge things around scrolling not yet in firefox/safari.
    * Scrollend event polyfill: https://github.com/igorskyflyer/npm-scrollend-polyfill
+   * container-type: scroll-state; and scroll-state queries: Doable with js 
+   * 
    *
    * TODO:
    * Snippet args for button text
    * Pagination without numbers
    * Fullview variant? Better height handling
-   * Sticky top and/or bottom
+   * √ Sticky top and/or bottom (Row has overflow hidden for rounded corners. Possible other solution? Clip-path?)
+   * https://kevdees.com/fixing-border-radius-clipping-with-css-contain-paint/
    * "Pricebox" - option for accumulated value
    * Handle layout using existing components
    */
@@ -140,7 +143,7 @@
               : ''}
               onclick={() => scrollToPage(i)}
             >
-              {i}
+              {i + 1}
             </button>
           </li>
         {/each}
@@ -188,6 +191,10 @@
 
 <style>
   div.flow {
+    /* TODO: set these dynamically somehow */
+    --topMenuHeight: 4rem;
+    --bottomMenuHeight: 4.5rem;
+
     display: grid;
     gap: 1rem;
   }
@@ -217,11 +224,39 @@
     }
   }
 
-  nav.pagination {
+  nav {
     display: grid;
-    place-items: center;
     position: sticky;
-    top: 0;
+    container-type: scroll-state;
+
+    z-index: 1;
+
+    background: var(--lfds-semantic-background-secondary);
+    margin: -1rem;
+    padding: 1rem;
+
+    &:before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      transition: box-shadow var(--lfqd-time-default) ease-out;
+    }
+  }
+
+  nav.pagination {
+    place-items: center;
+    top: var(--topMenuHeight);
+
+    @media (width < 30rem) {
+      top: 0;
+    }
+
+    &:before {
+      @container scroll-state(stuck: top) {
+        box-shadow: var(--lfqd-box-shadow);
+      }
+    }
 
     ul {
       margin: 0;
@@ -276,9 +311,20 @@
 
   nav.steps {
     width: 100%;
-    display: grid;
     grid-auto-flow: column;
     justify-content: space-between;
+
+    bottom: 0;
+
+    @media (width < 30rem) {
+      bottom: var(--bottomMenuHeight);
+    }
+
+    &:before {
+      @container scroll-state(stuck: bottom) {
+        box-shadow: var(--lfqd-box-shadow-upwards);
+      }
+    }
 
     button {
       cursor: pointer;

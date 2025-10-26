@@ -1,5 +1,5 @@
 <script>
-  import { autoAnimate } from '@formkit/auto-animate';
+  import { autoAnimate } from '@formkit/auto-animate'
   let { children } = $props()
 </script>
 
@@ -9,7 +9,7 @@
 
 <style>
   .box {
-    overflow: hidden;
+    contain: paint;
     border-radius: var(--lfds-semantic-sizes-radius-md);
     background: var(--lfds-semantic-background-secondary);
 
