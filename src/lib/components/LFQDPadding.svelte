@@ -25,5 +25,9 @@
     &.p3 {
       padding: 3rem;
     }
+
+    @media (width < 30rem) {
+      padding: 1rem;
+    }
   }
 </style>

@@ -48,29 +48,41 @@
 
 <LFQDBox>
   <LFQDBoxHeader>{heading()}</LFQDBoxHeader>
-  <LFQDPadding>
+  <div>
     {#each times(random(1, 6))}
-      <lfui-form-input label="{q()}?" help-text={helptext()}></lfui-form-input>
+    <lfui-form-input label="{q()}?" help-text={helptext()}></lfui-form-input>
+  {/each}
+
+  <form style="display: grid; width: 100%;">
+    <p>
+      {q()}?
+    </p>
+    {#each times(random(1, 6))}
+      <lfui-form-checkbox label={heading()}> </lfui-form-checkbox>
     {/each}
+  </form>
+  </div>
 
-    <form style="display: grid; width: 100%;">
-      <p>
-        {q()}?
-      </p>
-      {#each times(random(1, 6))}
-        <lfui-form-checkbox label={heading()}> </lfui-form-checkbox>
-      {/each}
-    </form>
-
-    {#if buttontext}
-      <lfui-button
-        type="button"
-        onclick={stealRandomAmount}
-        tabindex="0"
-        role="link"
-        onkeydown={e => e.key == 'Enter' && stealRandomAmount()}
-      >
-        {buttontext}
-      </lfui-button>{/if}
-  </LFQDPadding>
+  {#if buttontext}
+    <lfui-button
+      type="button"
+      onclick={stealRandomAmount}
+      tabindex="0"
+      role="link"
+      onkeydown={e => e.key == 'Enter' && stealRandomAmount()}
+    >
+      {buttontext}
+    </lfui-button>{/if}
 </LFQDBox>
+
+<style>
+
+  div {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+    @media (width < 30rem){
+      padding: 1rem 0 0 0;
+    }
+  }
+</style>
