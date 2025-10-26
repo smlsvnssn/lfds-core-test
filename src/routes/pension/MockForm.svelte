@@ -1,7 +1,7 @@
 <script>
   import LFQDPadding from '$lib/components/LFQDPadding.svelte'
   import LFQDBox from '$lib/components/LFQDBox.svelte'
-  import LFQDBoxHeader from '$lib/components/LFQDBoxHeader.svelte'
+  import LFQDSectionHeader from '$lib/components/LFQDSectionHeader.svelte'
 
   import löremIpsum from 'loerem'
   import { pipe, prettyNumber, random, times } from 'ouml'
@@ -46,10 +46,9 @@
   }
 </script>
 
-<LFQDBox>
-  <LFQDBoxHeader>{heading()}</LFQDBoxHeader>
-  <div>
-    {#each times(random(1, 6))}
+<LFQDSectionHeader size="medium" padding={false}>{heading()}</LFQDSectionHeader>
+<div>
+  {#each times(random(1, 6))}
     <lfui-form-input label="{q()}?" help-text={helptext()}></lfui-form-input>
   {/each}
 
@@ -61,28 +60,23 @@
       <lfui-form-checkbox label={heading()}> </lfui-form-checkbox>
     {/each}
   </form>
-  </div>
+</div>
 
-  {#if buttontext}
-    <lfui-button
-      type="button"
-      onclick={stealRandomAmount}
-      tabindex="0"
-      role="link"
-      onkeydown={e => e.key == 'Enter' && stealRandomAmount()}
-    >
-      {buttontext}
-    </lfui-button>{/if}
-</LFQDBox>
+{#if buttontext}
+  <lfui-button
+    type="button"
+    onclick={stealRandomAmount}
+    tabindex="0"
+    role="link"
+    onkeydown={e => e.key == 'Enter' && stealRandomAmount()}
+  >
+    {buttontext}
+  </lfui-button>{/if}
 
 <style>
-
   div {
     display: grid;
     gap: 1rem;
-    padding: 1rem;
-    @media (width < 30rem){
-      padding: 1rem 0 0 0;
-    }
+    padding: 1rem 0 0 0;
   }
 </style>

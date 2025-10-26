@@ -64,7 +64,6 @@
     }
     prevId = open
   })
-
 </script>
 
 <dialog
@@ -87,33 +86,6 @@
 <style>
   :global(body:has(dialog[open])) {
     overflow: hidden;
-  }
-
-  header {
-    height: 4rem;
-    width: 100%;
-    position: fixed;
-    background: var(--bg);
-
-    &:before {
-      content: '';
-      width: 20vw;
-      height: 0.25rem;
-      background: var(--blue);
-      border-radius: 1rem;
-      display: block;
-      position: absolute;
-      left: 50%;
-      translate: -50% 0;
-      margin: 1.75rem auto 0;
-    }
-
-    @media (hover), (width > 600px) {
-      background: transparent;
-      &:before {
-        content: unset;
-      }
-    }
   }
 
   dialog {
@@ -151,6 +123,33 @@
     transition: all calc(var(--t) / 2) ease-in allow-discrete;
 
     translate: 100% 0;
+
+    header {
+      height: 4rem;
+      width: 100%;
+      position: fixed;
+      background: var(--bg);
+
+      &:before {
+        content: '';
+        width: 20vw;
+        height: 0.25rem;
+        background: var(--lfds-semantic-background-button-primary);
+        border-radius: 1rem;
+        display: block;
+        position: absolute;
+        left: 50%;
+        translate: -50% 0;
+        margin: 1.75rem auto 0;
+      }
+
+      @media (hover), (width > 600px) {
+        background: transparent;
+        &:before {
+          content: unset;
+        }
+      }
+    }
 
     &:open {
       opacity: 1;
