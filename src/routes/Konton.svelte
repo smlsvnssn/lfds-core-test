@@ -1,4 +1,6 @@
 <script>
+  import LFQDButton from '../lib/components/LFQDButton.svelte'
+
   import LFQDAmountHeader from '$lib/components/LFQDAmountHeader.svelte'
   import LFQDPadding from '$lib/components/LFQDPadding.svelte'
   import LFQDBox from '$lib/components/LFQDBox.svelte'
@@ -31,37 +33,27 @@
 
   <LFQDPadding>
     <div style="width:100%; display: grid; gap:1rem; grid-auto-flow:column">
-      <a
-        href="#"
-        class="fancyLink"
+      <LFQDButton
+        icon="payment"
         onclick={e => {
-          e.preventDefault()
           renderSheet({
             title: 'Lägg till betalning',
             size: 'medium',
             content: 'mock',
           })
         }}
-      >
-        <lfui-icon icon-id="payment" size="24"></lfui-icon>
-        <p>Ny betalning</p>
-      </a>
+      >Ny betalning</LFQDButton>
 
-      <a
-        href="#"
-        class="fancyLink"
+      <LFQDButton
+        icon="transfer"
         onclick={e => {
-          e.preventDefault()
           renderSheet({
             title: 'Gör överföring',
             size: 'medium',
             content: 'mock',
           })
         }}
-      >
-        <lfui-icon icon-id="transfer" size="24"></lfui-icon>
-        <p>Ny överföring</p>
-      </a>
+      >Ny överföring</LFQDButton>
     </div>
   </LFQDPadding>
 

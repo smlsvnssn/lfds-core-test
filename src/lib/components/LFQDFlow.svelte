@@ -2,8 +2,8 @@
   /**
    * Uses a few bleeding edge things around scrolling not yet in firefox/safari.
    * Scrollend event polyfill: https://github.com/igorskyflyer/npm-scrollend-polyfill
-   * container-type: scroll-state; and scroll-state queries: Doable with js 
-   * 
+   * container-type: scroll-state; and scroll-state queries: Doable with js
+   *
    *
    * TODO:
    * Snippet args for button text
@@ -33,11 +33,18 @@
    *
    * @type {{
    *   confirmationPage?: Snippet
+   *   background?: 'primary' | 'secondary'
+   *   isInSheet?: boolean
    * } & {
    *   [key: string]: Snippet<PageValidatedCallback[]>;
    * }}
    */
-  let { confirmationPage, ...pageSnippets } = $props()
+  let {
+    confirmationPage,
+    background = 'secondary',
+    isInSheet = false,
+    ...pageSnippets
+  } = $props()
 
   /**
    * Wraps incoming snippets with some state, and stores the rendered element
@@ -128,7 +135,12 @@
   })
 </script>
 
-<div class="flow">
+<div
+  class="flow {isInSheet ? 'inSheet' : ''}"
+  style="--background: {background == 'primary' ?
+    'var(--lfds-semantic-background-primary);'
+  : 'var(--lfds-semantic-background-secondary);'}"
+>
   {#if activePage == pages.length}
     {@render confirmationPage?.()}
   {:else}
@@ -194,9 +206,29 @@
     /* TODO: set these dynamically somehow */
     --topMenuHeight: 4rem;
     --bottomMenuHeight: 4.5rem;
+    --background: var(--lfds-semantic-background-secondary);
 
     display: grid;
     gap: 1rem;
+    box-sizing: border-box;
+
+    &.inSheet {
+      --topMenuHeight: 1rem;
+      --bottomMenuHeight: 0;
+
+      nav {
+        margin: 0;
+        padding: 1rem 0;
+      }
+      nav.pagination {
+        @media (width < 30rem) {
+          top: var(--topMenuHeight);
+        }
+      }
+      nav.steps {
+        translate: 0 2rem;
+      }
+    }
   }
 
   ul.pages {
@@ -228,10 +260,12 @@
     display: grid;
     position: sticky;
     container-type: scroll-state;
+    box-sizing: border-box;
+    width: 100%;
 
     z-index: 1;
 
-    background: var(--lfds-semantic-background-secondary);
+    background: var(--background);
     margin: -1rem;
     padding: 1rem;
 
@@ -310,7 +344,6 @@
   }
 
   nav.steps {
-    width: 100%;
     grid-auto-flow: column;
     justify-content: space-between;
 

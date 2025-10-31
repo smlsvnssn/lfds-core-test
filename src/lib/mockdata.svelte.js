@@ -28,6 +28,26 @@ export let bankdata = $state([
   },
 ])
 
+export let pensionsdata = $state([
+  {
+    titleLeft: 'Individuellt pensionssparande',
+    titleRight: '628 878 kr',
+    icon: 'savings',
+  },
+  {
+    titleLeft: 'Deloitte AB Tjänstepensionsplan',
+    subtitleLeft: '100001008043',
+    titleRight: '185 912 kr',
+    icon: 'pension',
+  },
+  {
+    titleLeft: 'Eget pensionssparande',
+    subtitleLeft: '00263163',
+    titleRight: '102 477 kr',
+    icon: 'pension',
+  },
+])
+
 export let försäkringsdata = $state([
   {
     titleLeft: 'Villahemförsäkring',
@@ -132,5 +152,39 @@ export const todos = $state([
       todo.state = 'success'
       todo.percentCompleted = 66
     },
+  },
+  {
+    type: 'todo',
+    topics: [topicList.pension],
+    titleLeft: 'Vill du ändra villkor till Nya Trad?',
+    subtitleLeft: 'Det betyder i korthet x, y, och Ω.',
+    sheetData: {
+      title: 'Ändra villkor till Nya Trad',
+      size: 'medium',
+    },
+    iconId: 'pension',
+    delay: 1000,
+    callback: todo => {
+      todo.state = 'inactive'
+      todo.iconId = 'check-enclosed'
+    },
+    state: 'active',
+  },
+  {
+    type: 'todo',
+    topics: [topicList.pension],
+    titleLeft: 'Gör en genomgång av din tjänstepension',
+    subtitleLeft: 'Är din pension bra placerad? Kolla!',
+    sheetData: {
+      title: 'Genomgång av din tjänstepension',
+      size: 'medium',
+    },
+    iconId: 'pension',
+    delay: 1000,
+    callback: todo => {
+      todo.state = 'inactive'
+      todo.iconId = 'check-enclosed'
+    },
+    state: 'active',
   },
 ])

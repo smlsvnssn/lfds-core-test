@@ -1,5 +1,6 @@
 <script>
   import MockForm from './MockForm.svelte'
+  import MockFlow from './MockFlow.svelte'
 
   import LFQDPadding from '$lib/components/LFQDPadding.svelte'
   import LFQDBox from '$lib/components/LFQDBox.svelte'
@@ -68,6 +69,8 @@
     <MockForm {close} buttontext="Komplettera din skada"></MockForm>
   {:else if data?.content == 'mock'}
     <MockForm {close}></MockForm>
+  {:else if data?.content == 'mockflow'}
+    <MockFlow {close}></MockFlow>
   {:else if data?.titleLeft}
     <LFQDBox>
       <LFQDRow {...data} />
