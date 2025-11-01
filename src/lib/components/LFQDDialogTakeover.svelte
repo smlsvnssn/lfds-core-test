@@ -56,7 +56,7 @@
     filter: drop-shadow(0px 6px 6px rgba(0, 0, 0, 0.1))
       drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.1));
 
-    transition: all 0.3s allow-discrete;
+    transition: all 0.3s ease-in allow-discrete;
 
     visibility: hidden;
     opacity: 0;
@@ -68,6 +68,8 @@
       opacity: 1;
       scale: 1;
       translate: 0 0;
+          transition: all 0.3s ease-out allow-discrete;
+
     }
     @starting-style {
       &:open {
@@ -84,6 +86,7 @@
       margin: 0;
       padding: 1rem;
 
+      opacity: 1;
       scale: 1;
       translate: 100% 0;
 
@@ -96,7 +99,7 @@
       @starting-style {
         &:open {
           visibility: hidden;
-          opacity: 0;
+          opacity: 1;
           scale: 1;
           translate: 100% 0;
         }

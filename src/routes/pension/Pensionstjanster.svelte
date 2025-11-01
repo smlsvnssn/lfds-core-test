@@ -13,27 +13,46 @@
 <LFQDBox>
   <!-- <LFQDBoxHeader>Konton och kort</LFQDBoxHeader> -->
 
-  <LFQDPadding>
-    <!-- <div style="width:100%; display: grid; gap:1rem; grid-auto-flow:column"> -->
-      <LFQDButton
-        icon="document"
-        onclick={e => {
-          renderSheet({
-            title: 'Dina årsbesked',
-          })
-        }}>Dina årsbesked</LFQDButton
-      >
+  <!-- <LFQDPadding>
+    <LFQDButton
+      icon="document"
+      onclick={e => {
+        renderSheet({
+          title: 'Dina årsbesked',
+        })
+      }}>Dina årsbesked</LFQDButton
+    >
 
-      <LFQDButton
-        icon="coins"
-        onclick={e => {
-          renderSheet({
-            title: 'Räkna på din framtida pension',
-          })
-        }}>Räkna på din pension</LFQDButton
-      >
-    <!-- </div> -->
-  </LFQDPadding>
+    <LFQDButton
+      icon="coins"
+      onclick={e => {
+        renderSheet({
+          title: 'Räkna på din framtida pension',
+        })
+      }}>Räkna på din pension</LFQDButton
+    >
+  </LFQDPadding> -->
+
+  <LFQDRow
+    icon="document"
+    titleLeft="Dina årsbesked"
+    onclick={() =>
+      renderSheet({
+        title: 'Dina årsbesked',
+        size: 'large',
+      })}
+  />
+
+  <LFQDRow
+    icon="coins"
+    titleLeft="Räkna på din pension"
+    subtitleLeft="Hur mycket får du?"
+    onclick={() =>
+      renderSheet({
+        title: 'Räkna på din framtida pension',
+        size: 'large',
+      })}
+  />
 
   <LFQDRow
     icon="sustainability"
@@ -42,7 +61,7 @@
     onclick={() =>
       renderSheet({
         title: 'Hållbarhetsrapport',
-        size:'large'
+        size: 'large',
       })}
   />
 </LFQDBox>

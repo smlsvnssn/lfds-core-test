@@ -4,9 +4,8 @@
   import LFQDBoxHeader from '$lib/components/LFQDBoxHeader.svelte'
 
   import löremIpsum from 'loerem'
-  import { pipe, prettyNumber, random, times } from 'ouml'
+  import { pipe, prettyNumber, random, times, strToNum } from 'ouml'
   import { bankdata } from '$lib/mockdata.svelte'
-  import { parseToNumber } from '$lib/utils.svelte'
 
   let { close, buttontext = 'Skicka' } = $props()
 
@@ -38,7 +37,7 @@
     account.titleRight =
       pipe(
         account.titleRight,
-        parseToNumber,
+        strToNum,
         v => v - random(1000),
         prettyNumber,
       ) + ' kr'

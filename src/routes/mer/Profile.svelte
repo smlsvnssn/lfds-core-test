@@ -16,12 +16,15 @@
     hasActiveTodosInTopic,
     renderSheet,
     onCloseSheet,
+    isSmallScreen,
   } from '$lib/utils.svelte'
   import { page } from '$app/state'
 
   import { is, log } from 'ouml'
 
   let isDark = $state()
+  let wWidth = $state()
+  let isSmall = $derived(isSmallScreen(wWidth))
 
   $effect(() => {
     if (is(isDark)) {
@@ -33,8 +36,9 @@
         document.querySelector('body').getAttribute('data-theme') == 'dark'
     }
   })
-
 </script>
+
+<svelte:window bind:innerWidth={wWidth} />
 
 <LFQDDialogSheet
   size={page.state.sheetData?.size ?? 'small'}
@@ -57,7 +61,7 @@
 </LFQDDialogSheet>
 
 <LFQDLayout>
-  <LFQDSectionHeader padding={false} size="medium">
+  <LFQDSectionHeader padding={isSmall} size="medium">
     Dina uppgifter
   </LFQDSectionHeader>
 
@@ -99,7 +103,7 @@
     />
   </LFQDBox>
 
-  <LFQDSectionHeader padding={false} size="medium">
+  <LFQDSectionHeader padding={isSmall} size="medium">
     Banktjänster
   </LFQDSectionHeader>
 
@@ -127,7 +131,7 @@
     />
   </LFQDBox>
 
-  <LFQDSectionHeader padding={false} size="medium">
+  <LFQDSectionHeader padding={isSmall} size="medium">
     Inställningar
   </LFQDSectionHeader>
 

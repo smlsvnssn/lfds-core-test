@@ -6,16 +6,16 @@
   import LFQDRow from '$lib/components/LFQDRow.svelte'
   import LFQDLink from '$lib/components/LFQDLink.svelte'
 
-  import { prettyNumber, round, sum } from 'ouml'
+  import { prettyNumber, strToNum, round, sum } from 'ouml'
   import { pensionsdata } from '$lib/mockdata.svelte'
-  import { parseToNumber, renderSheet } from '$lib/utils.svelte'
+  import { renderSheet } from '$lib/utils.svelte'
   import { Tween } from 'svelte/motion'
   import { expoOut } from 'svelte/easing'
   import Erbjudande from './Erbjudande.svelte'
   import LFQDPadding from '$lib/components/LFQDPadding.svelte'
 
   let amount = Tween.of(
-    () => sum(pensionsdata.map(({ titleRight }) => parseToNumber(titleRight))),
+    () => sum(pensionsdata.map(({ titleRight }) => strToNum(titleRight))),
     { easing: expoOut, duration: 500 },
   )
 </script>
@@ -23,15 +23,11 @@
 <LFQDBox>
   <LFQDBoxHeader>Ditt pensionssparande</LFQDBoxHeader>
 
-  <LFQDAmountHeader
+  <!-- <LFQDAmountHeader
     title="Värde hos oss:"
-    amount={prettyNumber(amount.current, undefined, 0) + ' kr'}
+    amount={prettyNumber(amount.current, 0) + ' kr'}
     subtitle="1,2% mer än samma tid förra månaden"
-  ></LFQDAmountHeader>
-
-  <LFQDPadding>
-    <Erbjudande></Erbjudande>
-  </LFQDPadding>
+  ></LFQDAmountHeader> -->
 
   {#each pensionsdata as item}
     <LFQDRow {...item} onclick={() => renderSheet(item)} />

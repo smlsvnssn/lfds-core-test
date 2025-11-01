@@ -9,14 +9,14 @@
   import LFQDRow from '$lib/components/LFQDRow.svelte'
   import LFQDLink from '$lib/components/LFQDLink.svelte'
 
-  import { prettyNumber, round, sum } from 'ouml'
+  import { prettyNumber, round, sum, strToNum } from 'ouml'
   import { bankdata } from '$lib/mockdata.svelte'
-  import { parseToNumber, renderSheet } from '$lib/utils.svelte'
+  import { renderSheet } from '$lib/utils.svelte'
   import { Tween } from 'svelte/motion'
   import { expoOut } from 'svelte/easing'
 
   let amount = Tween.of(
-    () => sum(bankdata.map(({ titleRight }) => parseToNumber(titleRight))),
+    () => sum(bankdata.map(({ titleRight }) => strToNum(titleRight))),
     { easing: expoOut, duration: 500 },
   )
 
@@ -27,7 +27,7 @@
   <LFQDBoxHeader>Konton och kort</LFQDBoxHeader>
 
   <LFQDAmountHeader
-    amount={prettyNumber(amount.current, undefined, 0) + ' kr'}
+    amount={prettyNumber(amount.current, 0) + ' kr'}
     subtitle="12% mindre än samma tid förra månaden"
   ></LFQDAmountHeader>
 

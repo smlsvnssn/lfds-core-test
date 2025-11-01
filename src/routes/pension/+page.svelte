@@ -1,10 +1,11 @@
 <script>
-
   import LFQDBox from '$lib/components/LFQDBox.svelte'
   import LFQDLayout from '$lib/components/LFQDLayout.svelte'
   import LFQDLayoutArea from '$lib/components/LFQDLayoutArea.svelte'
   import LFQDPadding from '$lib/components/LFQDPadding.svelte'
   import LFQDFlow from '$lib/components/LFQDFlow.svelte'
+  import LFQDAmountHeader from '$lib/components/LFQDAmountHeader.svelte'
+
   import MockForm from '../MockForm.svelte'
   import Todos from '../Todos.svelte'
   import { todos, topicList } from '$lib/mockdata.svelte'
@@ -14,6 +15,18 @@
   import { page } from '$app/state'
   import Pensionstjnster from './Pensionstjanster.svelte'
   import { goto } from '$app/navigation'
+
+  import { prettyNumber, strToNum, round, sum } from 'ouml'
+  import { pensionsdata } from '$lib/mockdata.svelte'
+  import { Tween } from 'svelte/motion'
+  import { expoOut } from 'svelte/easing'
+  import Erbjudande from './Erbjudande.svelte'
+  import Header from './Header.svelte'
+
+  let amount = Tween.of(
+    () => sum(pensionsdata.map(({ titleRight }) => strToNum(titleRight))),
+    { easing: expoOut, duration: 500 },
+  )
 
   let activeTodo = $state()
 </script>
@@ -25,12 +38,19 @@
   : false}
   {activeTodo}
 />
+
 <LFQDLayout type="twocol-with-header">
   <LFQDLayoutArea type="header">
     <LFQDBox>
       <header>
         <lfui-icon icon-id="pension" size="72"></lfui-icon>
-        <h1>Pension</h1>
+        <h1>Din pension</h1>
+
+        <Header
+          title="Totalt värde hos oss:"
+          amount={prettyNumber(amount.current, 0) + ' kr'}
+          subtitle="1,2% mer än samma tid förra året"
+        ></Header>
       </header>
     </LFQDBox>
   </LFQDLayoutArea>
@@ -38,9 +58,9 @@
   <LFQDLayoutArea type="main">
     <Todos {todos} topic={topicList.pension}></Todos>
 
+    <Erbjudande></Erbjudande>
+
     <Pensionssparande></Pensionssparande>
-
-
 
     <lfui-notification-alert
       variant="info"
@@ -179,9 +199,9 @@
 
   header {
     display: grid;
-    gap: 1.5rem;
+    gap: .5rem;
     place-items: center;
-    padding: 5rem 3.5rem 3.5rem;
+    padding: 4.5rem 3.5rem 3.5rem;
     @media (width < 30rem) {
       gap: 1rem;
       padding: 3rem 1rem 1.5rem;
@@ -196,7 +216,7 @@
     margin: 0%;
 
     @media (width < 30rem) {
-      font-size: 1.875rem;
+      font-size: 1.75rem;
     }
   }
 

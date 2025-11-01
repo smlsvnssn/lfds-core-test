@@ -53,7 +53,7 @@
 
     grid: 'main' 'aside' 'secondary' / 1fr;
 
-    gap: 0.5rem;
+    gap: 1.5rem;
     max-width: var(--lfqd-layout-narrow);
 
     @container (width < 30rem) {
@@ -136,7 +136,11 @@
       display: grid;
       justify-items: stretch;
       align-items: start;
-      gap: 0.5rem;
+      gap: 1.5rem;
+
+      @container (width < 30rem) {
+        gap: 0.5rem !important;
+      }
     }
 
     :global(> .aside) {

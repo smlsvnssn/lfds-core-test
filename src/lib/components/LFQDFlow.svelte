@@ -216,17 +216,18 @@
       --topMenuHeight: 1rem;
       --bottomMenuHeight: 0;
 
-      nav {
-        margin: 0;
-        padding: 1rem 0;
-      }
-      nav.pagination {
-        @media (width < 30rem) {
+      @media (width < 30rem) {
+        nav {
+          margin: -1rem;
+          padding: 1rem;
+          width: calc(100% + 2rem);
+        }
+        nav.pagination {
           top: var(--topMenuHeight);
         }
-      }
-      nav.steps {
-        translate: 0 2rem;
+        nav.steps {
+          translate: 0 2rem;
+        }
       }
     }
   }
@@ -266,8 +267,6 @@
     z-index: 1;
 
     background: var(--background);
-    margin: -1rem;
-    padding: 1rem;
 
     &:before {
       content: '';

@@ -23,7 +23,7 @@
         <h4>Samla ditt pensionssparande</h4>
         <p>
           Fyll i dina uppgifter så hjälper vi dig att flytta ditt
-          pensionssparande till Länsförsäkringar.
+          pensionssparande till LF.
         </p>
         <LFQDLink
           onclick={() =>
