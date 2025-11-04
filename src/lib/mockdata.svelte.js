@@ -89,6 +89,20 @@ export const topicList = Enum({
 export const todos = $state([
   {
     type: 'todo',
+    topics: [topicList.start],
+    titleLeft: 'Du har en offert att ta ställning till',
+    subtitleLeft: 'Hemförsäkring och fordonsförsäkring',
+    sheetData: { title: 'Offert'},
+    delay: 1000,
+    callback: todo => {
+      todo.state = 'inactive'
+      todo.iconId = 'check-enclosed'
+    },
+    iconId: 'contract',
+    state: 'active',
+  },
+  {
+    type: 'todo',
     topics: [topicList.möte, topicList.start],
     titleLeft: 'Du har ett digitalt möte om 12 minuter',
     subtitleLeft: 'Anslut till mötet',

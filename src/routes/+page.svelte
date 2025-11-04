@@ -23,7 +23,7 @@
 
   let activeTodo = $state()
 
- // $inspect(page.state)
+  // $inspect(page.state)
 </script>
 
 <Sheet
@@ -42,7 +42,6 @@
   <LFQDBox>
     <div class="highlight placeholder">
       <p>Viktig sak vi vill påminna om.</p>
-      
     </div>
   </LFQDBox>
 
@@ -81,12 +80,12 @@
   </LFQDBox>
 
   <LFQDBox>
-    <LFQDBoxHeader>Lån</LFQDBoxHeader>
+    <LFQDBoxHeader>Kommande transaktioner</LFQDBoxHeader>
     <div class="placeholder"></div>
   </LFQDBox>
 
   <LFQDBox>
-    <LFQDBoxHeader>Kommande transaktioner</LFQDBoxHeader>
+    <LFQDBoxHeader>Lån</LFQDBoxHeader>
     <div class="placeholder"></div>
   </LFQDBox>
 

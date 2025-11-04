@@ -124,31 +124,25 @@
 
     translate: 100% 0;
 
-    header {
-      height: 4rem;
+    @media (width < 30rem) {
+      --t: 0.4s;
+      --easeOutBack: ease-out;
       width: 100%;
-      position: fixed;
-      background: var(--bg);
+      max-height: calc(var(--maxHeight) + var(--padBounce));
+      height: auto;
 
-      &:before {
-        content: '';
-        width: 20vw;
-        height: 0.25rem;
-        background: var(--lfds-semantic-background-button-primary);
-        border-radius: 1rem;
-        display: block;
-        position: absolute;
-        left: 50%;
-        translate: -50% 0;
-        margin: 1.75rem auto 0;
-      }
+      border-top-left-radius: var(--bottomDrawerCornerRadius);
+      border-top-right-radius: var(--bottomDrawerCornerRadius);
 
-      @media (hover), (width > 600px) {
-        background: transparent;
-        &:before {
-          content: unset;
-        }
-      }
+      padding-right: 0;
+      padding-bottom: var(--padBounce);
+
+      --padding: 1rem;
+
+      top: unset;
+      bottom: 0;
+
+      translate: 0 100%;
     }
 
     &:open {
@@ -156,12 +150,20 @@
       translate: calc(var(--padBounce)) 0;
       /* box-shadow: 0px 1px 64px 0px rgba(0, 0, 0, 0.15); */
       transition: all var(--t) var(--easeOutBack) allow-discrete;
+
+      @media (width < 30rem) {
+        translate: 0 var(--padBounce);
+      }
     }
 
     @starting-style {
       &:open {
         opacity: 0;
         translate: 100% 0;
+
+        @media (width < 30rem) {
+          translate: 0 100%;
+        }
       }
     }
 
@@ -195,6 +197,33 @@
       --w: 61rem;
     }
 
+    header {
+      height: 4rem;
+      width: 100%;
+      position: fixed;
+      background: var(--bg);
+
+      &:before {
+        content: '';
+        width: 20vw;
+        height: 0.25rem;
+        background: var(--lfds-semantic-background-button-primary);
+        border-radius: 1rem;
+        display: block;
+        position: absolute;
+        left: 50%;
+        translate: -50% 0;
+        margin: 1.75rem auto 0;
+      }
+
+      @media (hover), (width > 600px) {
+        background: transparent;
+        &:before {
+          content: unset;
+        }
+      }
+    }
+
     button.close {
       --buttonWidth: 2rem;
       --buttonInset: 2rem;
@@ -217,6 +246,7 @@
 
       @media (width < 30rem) {
         --buttonInset: 1rem;
+        right: var(--buttonInset);
         max-height: var(--maxHeight);
       }
 
@@ -253,47 +283,13 @@
       z-index: -1;
 
       display: grid;
-      gap: 1rem;
+      gap: 1.5rem;
       place-content: start stretch;
 
       @media (width < 30rem) {
+        gap: 1rem;
         max-height: var(--maxHeight);
         min-height: var(--minHeight);
-      }
-    }
-
-    @media (width < 30rem) {
-      --t: 0.4s;
-      --easeOutBack: ease-out;
-      width: 100%;
-      max-height: calc(var(--maxHeight) + var(--padBounce));
-      height: auto;
-
-      border-top-left-radius: var(--bottomDrawerCornerRadius);
-      border-top-right-radius: var(--bottomDrawerCornerRadius);
-
-      padding-right: 0;
-      padding-bottom: var(--padBounce);
-
-      --padding: 1rem;
-
-      top: unset;
-      bottom: 0;
-
-      translate: 0 100%;
-
-      &:open {
-        translate: 0 var(--padBounce);
-      }
-
-      @starting-style {
-        &:open {
-          translate: 0 100%;
-        }
-      }
-
-      button.close {
-        right: var(--buttonInset);
       }
     }
   }

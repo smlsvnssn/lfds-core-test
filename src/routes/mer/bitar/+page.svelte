@@ -12,12 +12,26 @@
   import { försäkringsdata } from '$lib/mockdata.svelte'
   import LFQDDialogSheet from '$lib/components/LFQDDialogSheet.svelte'
   import LFQDToggle from '$lib/components/LFQDToggle.svelte'
+  import LFQDSelect from '$lib/components/LFQDSelect.svelte'
 
   let sheetIsOpen = $state(false)
 
   const openSheet = () => (sheetIsOpen = true)
   const closeSheet = () => (sheetIsOpen = false)
 </script>
+
+{#snippet optionContent()}
+  <lfui-icon color="currentcolor" icon-id=heart></lfui-icon>
+  <span>Fyran</span>
+{/snippet}
+<LFQDSelect label='LFQD Select är i huset:'>
+  <option disabled selected>Välj en siffra</option>
+
+  <option>Ettan</option>
+  <option>Tvåan</option>
+  <option>Trean</option>
+  <option>{@render optionContent()}</option>
+</LFQDSelect>
 
 <LFQDLayout type="masonry">
   <LFQDBox>

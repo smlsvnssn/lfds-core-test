@@ -9,7 +9,7 @@
    *   children?: Snippet
    * }}
    */
-  let { type = 'onecol', children } = $props()
+  let { type = '', children } = $props()
 
   let el, masonry, resizeSniffer
 
@@ -51,8 +51,6 @@
     margin: auto;
     width: 100%;
 
-    grid: 'main' 'aside' 'secondary' / 1fr;
-
     gap: 1.5rem;
     max-width: var(--lfqd-layout-narrow);
 
@@ -67,6 +65,10 @@
 
       gap: 1.5rem;
       max-width: var(--lfqd-layout-wider);
+    }
+
+    &.onecol {
+      grid: 'main' 'aside' 'secondary' / 1fr;
     }
 
     &.twocol {

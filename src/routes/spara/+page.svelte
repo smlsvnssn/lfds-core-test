@@ -16,8 +16,9 @@
 
   import { page } from '$app/state'
   import { renderSheet } from '$lib/utils.svelte'
+  import LFQDSelect from '$lib/components/LFQDSelect.svelte'
 
-  const renderFakedata = (data) =>
+  const renderFakedata = data =>
     renderSheet({
       title: data?.titleLeft,
       text: lörem({ numberOfParagraphs: 2, sentencesPerParagraph: 4 }),
@@ -33,7 +34,6 @@
 </script>
 
 <Sheet state={page.state}></Sheet>
-
 
 <LFQDLayout type="header">
   <LFQDBox>

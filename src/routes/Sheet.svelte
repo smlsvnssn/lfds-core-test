@@ -61,7 +61,6 @@
       role="button"
       onkeydown={e => e.key == 'Enter' && close()}
       onclick={close}
-      style="margin-top: 1rem"
     >
       Lägg till efakturor
     </lfui-button>

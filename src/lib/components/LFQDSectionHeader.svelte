@@ -16,6 +16,8 @@
 
 <style>
   .sectionHeader {
+    container-type: inline-size;
+
     font-family: var(--lfds-typography-font-family-ibm);
 
     padding: 2rem 1rem 0.25rem;
@@ -25,6 +27,11 @@
       font-weight: var(--lfds-typography-weight-semibold);
       color: var(--lfds-semantic-text-brand-primary);
       margin: 0;
+      margin-bottom: -0.75rem;
+
+      @container (width < 30rem) {
+        margin-bottom: 0;
+      }
     }
 
     &.noPad {
