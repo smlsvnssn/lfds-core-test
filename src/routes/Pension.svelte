@@ -15,57 +15,29 @@
   import { Tween } from 'svelte/motion'
   import { expoOut } from 'svelte/easing'
 
-  let bankdata = personas[activePersona.id].data.bankdata
+  let pensionsdata = personas[activePersona.id].data.pensionsdata
 
   let amount = Tween.of(
-    () => sum(bankdata.map(({ titleRight }) => strToNum(titleRight))),
+    () => sum(pensionsdata.map(({ titleRight }) => strToNum(titleRight))),
     { easing: expoOut, duration: 500 },
   )
-
- // $inspect(bankdata)
 </script>
 
 <LFQDBox>
-  <LFQDBoxHeader>Konton och kort</LFQDBoxHeader>
+  <LFQDBoxHeader>Pension</LFQDBoxHeader>
 
   <LFQDAmountHeader
     amount={prettyNumber(amount.current, 0) + ' kr'}
-    subtitle="12% mindre än samma tid förra månaden"
+    subtitle="1,2% mer än samma tid förra året"
   ></LFQDAmountHeader>
 
-  <LFQDPadding>
-    <div style="width:100%; display: grid; gap:1rem; grid-auto-flow:column">
-      <LFQDButton
-        icon="payment"
-        onclick={e => {
-          renderSheet({
-            title: 'Lägg till betalning',
-            size: 'medium',
-            content: 'mock',
-          })
-        }}>Ny betalning</LFQDButton
-      >
-
-      <LFQDButton
-        icon="transfer"
-        onclick={e => {
-          renderSheet({
-            title: 'Gör överföring',
-            size: 'medium',
-            content: 'mock',
-          })
-        }}>Ny överföring</LFQDButton
-      >
-    </div>
-  </LFQDPadding>
-
-  {#each bankdata as item}
+  {#each pensionsdata as item}
     <LFQDRow {...item} onclick={() => renderSheet(item)} />
   {/each}
 
-  <LFQDBoxFooter padEnd="true">
-    <LFQDLink href="/konton">
-      Alla konton och kort
+  <LFQDBoxFooter >
+    <LFQDLink href="/pension">
+      Allt om din pension
       <lfui-icon icon-id="chevron-right" size="24"></lfui-icon>
     </LFQDLink>
   </LFQDBoxFooter>

@@ -13,15 +13,28 @@
   import LFQDDialogTakeover from '$lib/components/LFQDDialogTakeover.svelte'
   import LFQDBadge from '$lib/components/LFQDBadge.svelte'
 
-  import { försäkringsdata, todos } from '$lib/mockdata.svelte'
+  import {
+    försäkringsdata,
+    activePersona,
+    personas,
+    setPersona,
+  } from '$lib/mockdata.svelte'
   import { renderSheet } from '$lib/utils.svelte'
+
+  let todos = personas[activePersona.id].data.todos
 
   import { page } from '$app/state'
   import LFQDToggle from '$lib/components/LFQDToggle.svelte'
+  import Pension from './Pension.svelte'
 
   let dialog = $state()
 
   let activeTodo = $state()
+
+  $inspect(personas)
+
+  setPersona(1)
+  $inspect(personas)
 
   // $inspect(page.state)
 </script>
@@ -94,10 +107,7 @@
     <div class="placeholder"></div>
   </LFQDBox>
 
-  <LFQDBox>
-    <LFQDBoxHeader>Pension</LFQDBoxHeader>
-    <div class="placeholder"></div>
-  </LFQDBox>
+  <Pension></Pension>
 
   <LFQDBox>
     <LFQDBoxHeader>Sparande</LFQDBoxHeader>

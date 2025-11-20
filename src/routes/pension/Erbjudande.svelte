@@ -8,8 +8,8 @@
   let visible = $state(true)
 </script>
 
+{#if visible}
 <LFQDBox>
-  {#if visible}
     <div class="highlight">
       <lfui-icon
         icon-id="cross"
@@ -34,8 +34,8 @@
         >
       </div>
     </div>
+  </LFQDBox>
   {/if}
-</LFQDBox>
 
 <style>
   img {

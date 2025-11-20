@@ -26,14 +26,14 @@
   //
   //
 
-  let swipeEvent, mq, prevId
+  let swipeEvent, touchScreenMq, prevId
   let header
 
   const animationDelay = 300
 
   const delayClose = () => wait(animationDelay, onclose)
 
-  const onMediaQueryChange = e => {
+  const onScreentypeChange = e => {
     if (e.matches) {
       swipeEvent = addSwipeEvent(header, 'swipedown', dialog)
       //dialog.addEventListener('swipedown', e => e.target.hidePopover())
@@ -45,12 +45,12 @@
   }
 
   $effect(() => {
-    mq ??= matchMedia('(hover), (width < 30rem)')
+    touchScreenMq ??= matchMedia('(hover), (width < 30rem)')
 
-    mq.addEventListener('change', onMediaQueryChange)
-    onMediaQueryChange(mq)
+    touchScreenMq.addEventListener('change', onScreentypeChange)
+    onScreentypeChange(touchScreenMq)
 
-    return () => mq.removeEventListener('change', onMediaQueryChange)
+    return () => touchScreenMq.removeEventListener('change', onScreentypeChange)
   })
 
   $effect(() => {

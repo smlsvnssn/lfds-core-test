@@ -86,7 +86,7 @@
     })
   }
 
-  const back = () => scrollToPage(activePage >= 0 ? activePage - 1 : 0)
+  const back = () => scrollToPage(activePage > 0 ? activePage - 1 : 0)
 
   /**
    * @type {PageValidatedCallback}
