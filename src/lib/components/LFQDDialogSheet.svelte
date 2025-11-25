@@ -98,7 +98,7 @@
 
     --bottomDrawerCornerRadius: 1.5rem;
     --padBounce: 10vmax;
-    --maxHeight: 90vh;
+    --maxHeight: 90dvh;
     --minHeight: 30vh;
 
     box-sizing: border-box;
