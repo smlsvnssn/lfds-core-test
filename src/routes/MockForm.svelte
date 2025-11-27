@@ -26,6 +26,7 @@
       maxSentenceLength: 4,
       punchline: 'Är du drabbad',
     })
+    
   const helptext = () =>
     löremIpsum({
       useLörem: false,
@@ -58,10 +59,11 @@
       {/each}
     </form>
 
-    {#snippet optionContent()}
+    <!-- {#snippet optionContent()}
       <lfui-icon color="currentcolor" icon-id="heart"></lfui-icon>
       <span>Fyran</span>
     {/snippet}
+
     <LFQDSelect label="LFQD Select är i huset:">
       <option disabled selected>Välj en siffra</option>
 
@@ -70,7 +72,7 @@
       <option>Trean</option>
       <option>{@render optionContent()}</option>
     </LFQDSelect>
-    
+     -->
 
     {#if buttontext}
       <lfui-button
