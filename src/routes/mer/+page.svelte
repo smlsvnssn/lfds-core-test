@@ -2,16 +2,18 @@
   import LFQDBox from '$lib/components/LFQDBox.svelte'
   import LFQDLayout from '$lib/components/LFQDLayout.svelte'
   import LFQDPadding from '$lib/components/LFQDPadding.svelte'
+  import LFQDSectionHeader from '$lib/components/LFQDSectionHeader.svelte'
 
   import { isSmallScreen } from '$lib/utils.svelte'
   import Profile from './Profile.svelte'
 
   let innerWidth = $state(0)
+  let isSmall = $derived(isSmallScreen(innerWidth))
 </script>
 
 <svelte:window bind:innerWidth />
 
-{#if isSmallScreen(innerWidth)}
+{#if isSmall}
   <LFQDLayout type="header">
     <LFQDBox>
       <LFQDPadding>
@@ -48,7 +50,6 @@
     </LFQDBox>
   </LFQDLayout>
 {/if}
-
 <LFQDLayout>
   <LFQDBox>
     <LFQDPadding>
@@ -61,7 +62,7 @@
 <Profile></Profile>
 
 <LFQDLayout>
-  <LFQDBox>
+  <!-- <LFQDBox>
     <LFQDPadding>
       <lfui-button-shortcut
         href="#"
@@ -78,8 +79,11 @@
       <lfui-button-shortcut href="#" label="Kontakta oss" icon-id="call-center"
       ></lfui-button-shortcut>
     </LFQDPadding>
-  </LFQDBox>
+  </LFQDBox> -->
 
+  <!-- <LFQDSectionHeader padding={isSmall} size="medium">
+    Tester och annat
+  </LFQDSectionHeader>
   <LFQDBox>
     <LFQDPadding>
       <lfui-button-shortcut
@@ -110,7 +114,7 @@
         layout="vertical"
       ></lfui-button-shortcut>
     </LFQDPadding>
-  </LFQDBox>
+  </LFQDBox> -->
 </LFQDLayout>
 
 <style>

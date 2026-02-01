@@ -14,11 +14,15 @@
   header.start {
     display: grid;
     --lfqd-layout-wider: 85rem;
-
+    
+    /* background: var(--lfds-semantic-text-brand-primary); */
+    background: white;
+    
     place-items: stretch;
     padding: 0;
     margin: -1.5rem;
-    margin-bottom: -3.5rem;
+    /* margin-bottom: -3.5rem; */
+    margin-bottom: 0rem;
 
     @media (width < 30rem) {
       margin: 0;
@@ -29,6 +33,9 @@
     img {
       width: 100%;
       object-fit: cover;
+      opacity: .0;
+      max-height: 10rem;
+
     }
     img,
     div {
@@ -38,30 +45,30 @@
       place-self: end center;
       width: 100%;
       max-width: var(--lfqd-layout-wider);
-      padding: 3rem .75rem;
+      padding: 1rem .75rem;
       box-sizing: border-box;
 
       @media (width < 85rem) {
-        padding: 3rem 1.5rem;
+        padding: 3rem 1.5rem 1rem;
       }
 
       @media (width < 30rem) {
-        padding: 6rem 1rem 1rem;
+        padding: 3rem 1rem 1rem;
       }
     }
     h1,
     p {
       text-align: start;
-      color: var(--lfds-primitives-color-neutral-0);
+      /* color: var(--lfds-primitives-color-neutral-0); */
     }
     h1 {
-      font-size: 3rem;
+      font-size: 2.5rem;
       @media (width < 30rem) {
         font-size: 1.875rem;
       }
     }
     p {
-      font-size: 1.25rem;
+      font-size: 1rem;
       @media (width < 30rem) {
         font-size: 1rem;
       }

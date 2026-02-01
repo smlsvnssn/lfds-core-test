@@ -20,6 +20,7 @@ export const renderSheet = (data, sheetId = 0) => {
     sheetData: $state.snapshot(data),
   })
 }
+
 export const hasActiveTodosInTopic = topic =>
   todos.filter(
     ({ topics, state }) => topics.includes(topic) && state == 'active',

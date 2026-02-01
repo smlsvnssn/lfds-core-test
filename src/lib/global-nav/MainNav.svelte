@@ -25,7 +25,6 @@
   const openWriteMessage = () => {
     renderSheet({ heading: 'Skriv nytt meddelande' }, 'mainNav')
   }
-
 </script>
 
 <LFQDDialogSheet
@@ -207,6 +206,8 @@
     font-size: 0.6875rem;
 
     background: var(--lfds-semantic-background-secondary);
+
+    border-bottom: 1px solid oklch( from var(--lfds-semantic-border-secondary) l c h / .3);
 
     ul {
       display: grid;
