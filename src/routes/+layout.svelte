@@ -47,6 +47,7 @@
       { path: '/lan', icon: 'mortgage', name: 'Lån' },
       { path: '/forsakring', icon: 'umbrella', name: 'Försäkring' },
       { path: '/pension', icon: 'pension', name: 'Pension' },
+      //{ path: '/pension', icon: 'house', name: 'Fastighetsförmedling' },
       { path: '/mer', icon: 'more-horizontal', name: 'Mer' },
     ]}
 ></LFQDMainNav>

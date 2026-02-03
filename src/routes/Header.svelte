@@ -3,7 +3,7 @@
 </script>
 
 <header class="start">
-  <img src={lisa} alt="" />
+  <!-- <img src={lisa} alt="" /> -->
   <div>
     <h1>Hej Lisa!</h1>
     <p>Hos oss kan du samla allt inom bank, pension och försäkring.</p>
@@ -16,13 +16,14 @@
     --lfqd-layout-wider: 85rem;
     
     /* background: var(--lfds-semantic-text-brand-primary); */
-    background: white;
+    background: var(--lfds-semantic-background-secondary);
     
     place-items: stretch;
     padding: 0;
     margin: -1.5rem;
     /* margin-bottom: -3.5rem; */
     margin-bottom: 0rem;
+    min-height: 10rem;
 
     @media (width < 30rem) {
       margin: 0;
@@ -34,7 +35,6 @@
       width: 100%;
       object-fit: cover;
       opacity: .0;
-      max-height: 10rem;
 
     }
     img,
